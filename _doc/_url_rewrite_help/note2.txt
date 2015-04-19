@@ -1,0 +1,7 @@
+﻿Tạo một Page Template tạm gọi là "Template A" trong cấu trúc Theme
+Vào mục Settings > Permalinks chọn cấu trúc "Post name", không để mặc định dạng ".../?id=123"
+Sử dụng module "Pages" mặc định để tạo trang tĩnh tạm gọi là "Page A", cấu hình đường dẫn tĩnh mong muốn.
+Chọn Page Tempate cho "Page A"
+Cấu hình các URI param trong function để sử dụng hàm get query vả của WP, không dùng $_GET[...] (vì không hỗ trợ URL rewrite)
+Lập trình giao diện cho "Template A"
+

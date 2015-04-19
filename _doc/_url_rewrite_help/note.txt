@@ -1,0 +1,9 @@
+﻿loai-san-pham/([0-9]{1,})/(.*)$
+=> index.php?pagename=product-cat&id=$matches[1]
+http://localhost/mpd_2015/loai-san-pham/95/{any string}
+=> http://localhost/mpd_2015/index.php?pagename=product-cat&id=95
+
+loai-san-pham/([0-9]{1,})$
+=> index.php?pagename=product-cat&id=$matches[1]
+http://localhost/mpd_2015/loai-san-pham/95
+=> http://localhost/mpd_2015/index.php?pagename=product-cat&id=95
