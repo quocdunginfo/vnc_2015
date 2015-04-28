@@ -10,6 +10,10 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
     function __construct()
     {
         parent::__construct();
+
+        $record = new QdWidgetNav();
+        $record->SETRANGE('group_id', $this->data['theme_root_setup']->widgetnavcat_id);
+        $this->data['widget_nav_list'] = $record->GETLIST();
     }
 
     protected function getBreadcrumbs()
@@ -282,47 +286,39 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
             </div>
         </div>
         <!-- END BIG SALE -->
+        <?=$this->getWidgetNavsPart()?>
+    <?php
 
+    }
+    protected function getWidgetNavsPart()
+    {
+        if($this->data['widget_nav_list']==null || empty($this->data['widget_nav_list']))
+        {
+            return;
+        }
+        ?>
         <div class="container-non-responsive" style="border-top: 1px solid rgb(203,203,203);margin-top: 20px;">
 
             <div class="row">
-                <!-- Dịch vụ 1 -->
-                <div class="col-xs-3">
-                    <div class="vn-dichvu-title">MUA SẮM</div>
-                    <p class="vn-dichvu">
-                        Thu mua đồ hiệu, đồ qua sử dụng, đồ mới 100%.
-                    </p>
+                <?php
+                foreach($this->data['widget_nav_list'] as $item):
+                ?>
+                    <!-- Dịch vụ -->
+                    <div class="col-xs-3">
+                        <div class="vn-dichvu-title"><?=$item->title?></div>
+                        <p class="vn-dichvu">
+                            <?=$item->content?>
+                        </p>
 
-                    <div class="vn-dichvu-btn">
-                        <button class="btn btn-default" type="submit" style="width:120px;">XEM HÀNG</button>
+                        <div class="vn-dichvu-btn">
+                            <button class="btn btn-default" type="submit" style="width:120px;" onclick="location.href='<?=$item->path?>'">
+                                <?=$item->button_text?>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
 
-                <!-- Dịch vụ 2 -->
-                <div class="col-xs-3">
-                    <div class="vn-dichvu-title">KÝ GỬI</div>
-                    <p class="vn-dichvu">
-                        Thu mua đồ hiệu, đồ qua sử dụng, đồ mới 100%.
-                    </p>
-
-                    <div class="vn-dichvu-btn">
-                        <button class="btn btn-default" type="submit" style="width:120px;">KÝ GỬI NGAY</button>
-                    </div>
-                </div>
-
-                <!-- Dịch vụ 3 -->
-                <div class="col-xs-3">
-                    <div class="vn-dichvu-title">THU MUA</div>
-                    <p class="vn-dichvu">
-                        Thu mua đồ hiệu, đồ qua sử dụng, đồ mới 100%.
-                    </p>
-
-                    <div class="vn-dichvu-btn">
-                        <button class="btn btn-default" type="submit" style="width:120px;">BÁN NGAY</button>
-                    </div>
-                </div>
-
-                <!-- Dịch vụ 4 -->
+                <!-- Dịch vụ 4
                 <div class="col-xs-3">
                     <div class="vn-dichvu-title">TÀI CHÍNH</div>
                     <p class="vn-dichvu">
@@ -332,10 +328,10 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
                     <div class="vn-dichvu-btn">
                         <button class="btn btn-default" type="submit" style="width:120px;">DỊCH VỤ</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
-    <?php
+<?php
     }
 }
 
