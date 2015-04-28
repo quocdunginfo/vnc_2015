@@ -1,0 +1,412 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 25, 2015, 11:59:59 PM
+    Author     : John Chuong
+*/
+
+/* Begin Layout */
+@media screen and (min-width: 992px)
+{
+    .container-non-responsive {
+      /* Margin/padding copied from Bootstrap */
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      /* Set width to your desired site width */
+      min-width: 992px;
+      width: 100%;
+      max-width: 1170px;
+    }
+
+    /* End Layout */
+
+    /* Begin Header */
+    .vn-cas-header {
+        background-color: #3C62B5;
+        height: 40px;
+        padding: 0px; 
+        font-size: 12px;
+    }
+
+    .header-phonenumber{
+        padding: 10px 0px 10px 15px;    
+        color: rgb(207,205,205);
+        text-align: left;        
+    }
+
+    .header-info {
+        padding: 12px 0px 8px 0px;
+        color: rgb(255,255,255);
+        text-align: center;
+        font-size: 12.5px;        
+    }
+
+    .header-links {
+        margin-top: 12px;         
+        text-align: right;
+    }
+
+    .header-links a {    
+        color: rgb(207,205,205);
+        text-decoration: none;
+    }
+
+    .header-links a:hover { 
+        //font-weight: bold;
+        color: rgb(255,255,255);
+    }
+
+    .header-links img {
+        margin: 0px 5px;      
+    }
+
+    .vn-cas-logo {        
+    }
+
+    .logo {
+        margin-left: auto;
+        margin-right: auto;
+        width: 450px;
+    }
+    
+    .vn-cas-nav {
+        height: 50px;
+        position: absolute;
+        background-color: white;
+        width: 100%;
+        z-index: 16; 
+        border-bottom: 1px solid rgb(203,203,203);
+}
+        
+    
+    .vn-nav-size {
+        width: 16%;
+        text-align: center;
+    }
+    .vn-nav-size a{
+        padding: 10px 0px;
+    }
+
+    .column {
+        float: left;    
+        padding: 0px 15px 0px 0px;;    
+        position: relative;
+    }
+
+    .panner{
+         background-color: rgba(255,255,255,0.8);
+         position: absolute;
+         top: 10%;
+         left: 10%;
+         //z-index:15;
+         width: 50%;
+         min-width: 470px;
+         max-width: 600px;
+
+         height: 240px;
+         min-height: 210px;
+         padding-left: 25px;
+         padding-top: 20px;
+         //margin-left:-30%;     
+         list-style:none;
+    }
+
+    .panner p {
+        margin-top: 3%;
+        margin-right: 27%;
+        font-size: 17px;
+    }
+
+    .ibs_panner {
+        border: 2px solid #337ab7;
+        color: #337ab7;
+        background-color: rgba(255,255,255,0);
+        border-radius: 0px;
+        font-weight: bold;
+        margin-right: 15px;
+        width: 150px;
+    }
+    .vn-choise-box {
+        width: 100%;
+        height: 332px;
+        border: 2px solid #ebebeb;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+    .vn-pic-title {
+        position: absolute;
+        background-color: rgba(255,255,255,0.8);
+        left: 0px;
+        bottom: 0px;                         
+        padding-top: 10px;       
+        width: 100%;
+    }
+
+    .vn-pic-title p {
+        text-align: center;
+        font-size: 20px;    
+    }
+
+    .vn-sanpham-size {
+        padding-left: 7.5px;
+        padding-right: 7.5px;
+    }
+    
+    .vn-index-sanpham {
+       margin-top: 10px; 
+    }
+        
+    .vn-sanpham-box {
+        width: 100%;
+        height: 156px;
+        margin-bottom: 15px;
+        border: 2px solid #ebebeb;
+    }
+    .fixed {
+        position:fixed;
+        top:0;
+        z-index: 1000;
+    }    
+        
+    /* End Header */
+
+    /* Begin Footer */
+    .vn-cas-footer {
+        background-color: rgb(231,231,232);
+        margin-top: 50px;
+    }
+
+    .footer-email {
+        background-color: rgb(231,231,232);
+        height: 150px;
+    }
+
+    .footer-center {
+        background-color: rgb(136,136,136);
+        height: 350px;
+    }
+
+    .footer-center li {
+        list-style:none;
+        margin-bottom: 10px;
+        font-size: 14px;         
+    }
+
+
+
+    .footer-bottom {
+        background-color: rgb(136,136,136);
+        height: 105px;
+    }
+
+    .title-email {
+        margin-top: 30px;
+        text-align: center;   
+    }
+
+    .footer-center-img {
+        margin-right: 12px;
+        margin-top: 10px;
+        height: 36px;
+        width: 34px;    
+    }
+
+    .vn-icon:hover{
+        text-decoration: none;
+    }
+
+    .vn-ft-links{
+        margin-bottom: 20px;
+        font-size: 13px;        
+        color: rgb(255,255,255);
+
+    }
+
+    .vn-ft-links:hover {
+        color: rgb(82,82,82);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .form-email {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        height: 35px;
+        width: 501px;
+        background-image: url("../img/form-email.png");
+        position: relative;
+    }
+
+    .copyright {
+        position: absolute;
+        right: 15px;        
+        top: 20px;
+        width: 90px;
+        height: 60px;        
+    }
+    
+    .email-button {
+        position: absolute;        
+        right: 0px;
+        height: 35px;
+        width: 97px;
+        background-color: rgba(0,0,0,0);
+        border: none;
+    }
+    
+    .exit-button {
+        background: url("../img/download.png") no-repeat scroll 0 0 transparent;
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        bottom: 15px;
+        right: 0;
+    }
+    
+    /* End Footer */
+
+    /* Begin Index */
+    .vn-dichvu {
+        text-align: center;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+    
+    .vn-dichvu-title {
+        font-size: 20px;
+        margin: 20px 0px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .vn-dichvu-btn {
+        width: 130px;
+        margin-left: auto;
+        margin-right: auto;        
+    }
+    /* End Index */   
+    
+      
+      .img-responsive {
+        border: 1px solid rgb(131,131,131);
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .vn-choise-img {
+           //width: 100%;
+           //height: 100%;
+           /* position: absolute; */
+      }
+      .footer-center-img-tt {
+          height: 30px;
+          width: 60px;
+          margin-right: 10px;
+      }
+      .logo-thanhtoan {
+          width: 300px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 50px;
+      }
+      header.carousel {
+          height: 500px;
+      }
+      
+      .img-hover {
+          height: 156px;
+          width: 260px;          
+      }
+      .p-edit-1 {
+          margin-bottom: 8px;
+          padding-left: 0px;
+          font-size: 13px;
+      }
+      .edit-left-7_5 {
+          padding-left: 7.5px;
+      }
+      .edit-right-7_5 {
+          padding-right: 7.5px;
+      }
+      
+      /* San pham */
+      
+      .content {
+          margin-top: 50px;
+          padding-top: 20px;
+      }
+      
+      .sanpham-header {
+          color: black;
+      }
+      
+      .product-list {
+          list-style: none;
+          border-bottom: rgb(203,203,203) solid 1px;
+          padding-left: 0px;
+      }
+      
+      .product-list ul {
+          list-style: none;
+      }
+      
+      .product-list ul{
+          display: none;
+      }
+      
+      .product-list ul ul{
+          display: none;
+      }
+      
+      .product-title:hover {
+          font-weight: bold;
+          font-size: 12px;
+          color: black;
+      }
+      
+      .product-title:hover .product-list-sub {
+          display: block;
+          font-weight: normal;
+          font-size: 14px;
+      }
+      
+      .product-title-sub:hover {
+          font-weight: bold;
+          font-size: 13px;
+          color: black;
+      }
+      
+      .product-title-sub:hover .product{
+          display: block;
+      }
+      
+      .product-links {
+          color: black;
+      }
+      
+      .product-links:hover {
+          text-decoration: none;
+          font-weight: bold;
+          color: black;
+      }
+      
+      .product-quanao {
+          text-align: center;
+          border: rgb(203,203,203) solid 1px;          
+      }
+      .product-list li {
+          margin-top: 5px;
+          margin-bottom: 5px;
+      }
+}

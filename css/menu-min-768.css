@@ -1,0 +1,125 @@
+
+@media screen and (min-width: 768px) and (max-width: 991px)
+{
+    /*  menu  */
+    .navMenu {
+    height: 40px;
+    line-height: 36px;
+    width: 100%;
+    border-radius: 5px;
+    }
+    .navMenu ul{
+        padding: 0;
+        list-style: none;
+		white-space: nowrap;
+    }
+    .navMenu ul li{
+            float: left;            
+            text-align: left;
+            line-height: 21px;               
+            
+    }
+    .navMenu ul li .nav-links{
+        display: block;
+        padding: 5px 25px 5px 0px;
+        color: #333;
+        /* background: #f2f2f2; */
+        text-decoration: none;        
+        font-size: 9.5px;
+        font-weight: bold;
+        //border-bottom: 2px solid rgb(200,200,200);        
+    }
+    .navMenu ul li .nav-links:hover{        
+            border-bottom: 2px solid rgb(32,32,32) ;
+        }
+    .navMenu ul li ul{
+            display: none;
+    }
+    .navMenu ul li:hover ul{
+            display: block; /* display the dropdown */
+    }
+
+    .navMenu input {
+        background: url(http://cssdeck.com/uploads/media/items/4/4yK4Jqj.jpg) 10px center no-repeat #FFF;
+        border: 1px solid #AAA;
+        color: #666;
+        float: right;
+        font-size: 12px;
+        /* margin: 7px 32px 0 0; */
+        opacity: 1;
+        outline: none;
+        padding-left: 30px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border-bottom-width: 1px;
+        border-top-width: 1px;
+        height: 33px;
+        width: 150px;
+        /* CSS3 */
+        /* border-radius: 25px; */
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+    }
+
+    .navMenu input:hover { opacity: 1 }
+    
+
+    .vn-sub {
+        position: fixed;    
+        left: 0px;
+        width: 100%;
+        height: 390px;
+        background-color: rgba(255,255,255,0.92);
+
+    }
+
+    .sub-image {
+        width: 100%; 
+        height: 150px;
+        /* background-color: red; */
+        margin-top: 30px;
+        /* border: 1px solid rgb(152,153,154); */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sub-title {
+        margin-top: 10px;
+        height: 80px;    
+        padding-top: 5px;
+        color: rgb(64,64,65);
+        font-weight: bold;
+    }
+
+    .sub-info {
+        text-align: left;    
+        height: 180px;
+    }
+
+    .vn-sub-title{    
+        font-weight: bold;
+        font-size: 16px;
+        padding-right: -15px;
+    }
+    
+    .vn-sub-title a {
+        font-size: 15px;
+    }
+
+    .vn-sub-icons{
+        font-size: 15px;
+        margin-top: 7px;
+    }
+
+    .nav-sub-links {
+     color: rgb(64,64,65);   
+    }
+
+    .nav-sub-links:hover {
+        text-decoration: none;
+        font-weight: bold;
+    }
+}
+

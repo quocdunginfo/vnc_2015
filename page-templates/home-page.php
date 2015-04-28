@@ -4,11 +4,12 @@
 Template Name: Trang chủ
 */
 QdT_Library::loadLayout('root');
+
 class QdT_PageT_HomePage extends QdT_Layout_Root
 {
     function __construct()
     {
-
+        parent::__construct();
     }
 
     protected function getBreadcrumbs()
@@ -20,78 +21,323 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
     {
         return '';
     }
+
     protected function getContentPart()
     {
         ?>
-        <!-- CONTENT -->
-        <div class="container" id="qd_container_content" style="margin-top: 55px">
-            <!-- WIDGET -->
-            <div class="row clearfix">
-                <style>
-                    .qd-image-box {
-                        width: 449px;
-                        height: 280px;
-                        position: relative;
-                        border: solid 1px #CACACA;
-                        margin-bottom: 65px;
-                    }
-                    .qd-image-box .qd-image-box-bg {
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                    }
-
-                    .qd-left {
-                        float: right;
-                    }
-
-                    .qd-image-box-right {
-                        float: left;
-                    }
-
-                    .qd-image-box-caption {
-                        line-height: 60px;
-                        text-align: center;
-                        vertical-align: middle;
-                        width: 100%;
-                        height: 55px;
-                        position: absolute;
-                        bottom: 0px;
-                        left: 0px;
-                        background: rgba(0, 0, 0, 0.4);
-                        color: white;
-                        font-size: 18px;
-                    }
-                </style>
-                <?php
-                $count = 0;
-                foreach (QdProductCat::all(array('order' => '`order` asc')) as $item):
-                    ?>
-                    <div class="col-xs-6 column">
-                        <a href="<?= $item->getPermalink() ?>">
-                            <div class="qd-image-box">
-                                <div class="qd-image-box-bg" style="background-color: white"></div>
-                                <div class="qd-image-box-bg <?= $count % 2 == 0 ? 'qd-left' : 'qd-right' ?>"
-                                     style="background: url(<?= $item->avatar ?>); background-repeat: no-repeat;
-                                         background-size: contain;
-                                         background-position: center;">
-                                    <div class="qd-image-box-caption">
-                                        <?= $item->name ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                <?php
-                endforeach;
-                ?>
+        <!-- BEST CHOICE 1 -->
+        <div class="container-non-responsive">
+            <div class="row">
+                <div class="col-lg-12" style="margin-top: 20px;">
+                    <h2 class="page-header">BEST CHOICE</h2>
+                </div>
             </div>
-            <!-- END WIDGET -->
+            <div class="row">
+                <div class="col-xs-6 edit-right-7_5">
+                    <div class="vn-choise-box" style="background: url('img/current 3.jpg');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                        <div class="vn-pic-title">
+                            <p>ĐIỆN THOẠI VÀ PHỤ KIỆN</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 edit-left-7_5">
+                    <div class="vn-choise-box" style="background: url('img/current 3.jpg');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                        <div class="vn-pic-title">
+                            <p>THỜI TRANG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row" style="margin-top: 25px;">
+                <div class="col-xs-6 edit-right-7_5">
+                    <div class="vn-choise-box" style="background: url('img/current 3.jpg');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                        <div class="vn-pic-title">
+                            <p>TRANG SỨC CAO CẤP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- END CONTENT-->
+        <!-- END BEST CHOICE 1 -->
+
+        <!-- BEST CHOICE 2 -->
+        <div class="container-non-responsive">
+            <div class="row">
+                <div class="col-lg-12" style="margin-top: 20px;">
+                    <h2 class="page-header">BEST CHOICE</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 edit-right-7_5">
+                    <div class="vn-choise-box" style="background: url('img/current 3.jpg');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                        <div class="vn-pic-title">
+                            <p>ĐIỆN THOẠI VÀ PHỤ KIỆN</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 edit-left-7_5">
+                    <div class="vn-choise-box" style="background: url('img/current 3.jpg');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                        <div class="vn-pic-title">
+                            <p>THỜI TRANG</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 25px;">
+                <div class="col-xs-6 edit-right-7_5">
+                    <div class="vn-choise-box" style="background: url('img/current 3.jpg');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                        <div class="vn-pic-title">
+                            <p>TRANG SỨC CAO CẤP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END BEST CHOICE 2 -->
+
+        <!-- BIG SALE -->
+        <div class="container-non-responsive">
+            <!-- Title BIG SALE -->
+            <div class="row">
+                <div class="col-lg-12" style="margin-top: 20px;">
+                    <h2 class="page-header">BIG SALE</h2>
+                </div>
+            </div>
+
+
+            <!-- San pham 1 -->
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-xs-3 vn-sanpham-size" style="padding-left: 15px;">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b style="color: rgb(131,131,132);font-weight: normal;">5.000.000 VND</b><img
+                            src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                        <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
+                    </p>
+                </div>
+                <div class="col-xs-3 vn-sanpham-size">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                    </p>
+                </div>
+                <div class="col-xs-3 vn-sanpham-size">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                    </p>
+                </div>
+                <div class="col-xs-3 vn-sanpham-size" style="padding-right: 15px;">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                    </p>
+                </div>
+            </div>
+
+            <!-- San pham 2 -->
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-xs-3 vn-sanpham-size" style="padding-left: 15px;">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b style="color: rgb(131,131,132);font-weight: normal;">5.000.000 VND</b><img
+                            src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                        <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
+                    </p>
+                </div>
+                <div class="col-xs-3 vn-sanpham-size">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                    </p>
+                </div>
+                <div class="col-xs-3 vn-sanpham-size">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                    </p>
+                </div>
+                <div class="col-xs-3 vn-sanpham-size" style="padding-right: 15px;">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                    </p>
+                </div>
+            </div>
+
+            <!-- San pham 3 -->
+            <div class="row" style="margin-top: 20px;" style="padding-left: 15px;">
+                <div class="col-xs-3 vn-sanpham-size">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                    </p>
+                </div>
+                <div class="col-xs-3 vn-sanpham-size">
+                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- END BIG SALE -->
+
+        <div class="container-non-responsive" style="border-top: 1px solid rgb(203,203,203);margin-top: 20px;">
+
+            <div class="row">
+                <!-- Dịch vụ 1 -->
+                <div class="col-xs-3">
+                    <div class="vn-dichvu-title">MUA SẮM</div>
+                    <p class="vn-dichvu">
+                        Thu mua đồ hiệu, đồ qua sử dụng, đồ mới 100%.
+                    </p>
+
+                    <div class="vn-dichvu-btn">
+                        <button class="btn btn-default" type="submit" style="width:120px;">XEM HÀNG</button>
+                    </div>
+                </div>
+
+                <!-- Dịch vụ 2 -->
+                <div class="col-xs-3">
+                    <div class="vn-dichvu-title">KÝ GỬI</div>
+                    <p class="vn-dichvu">
+                        Thu mua đồ hiệu, đồ qua sử dụng, đồ mới 100%.
+                    </p>
+
+                    <div class="vn-dichvu-btn">
+                        <button class="btn btn-default" type="submit" style="width:120px;">KÝ GỬI NGAY</button>
+                    </div>
+                </div>
+
+                <!-- Dịch vụ 3 -->
+                <div class="col-xs-3">
+                    <div class="vn-dichvu-title">THU MUA</div>
+                    <p class="vn-dichvu">
+                        Thu mua đồ hiệu, đồ qua sử dụng, đồ mới 100%.
+                    </p>
+
+                    <div class="vn-dichvu-btn">
+                        <button class="btn btn-default" type="submit" style="width:120px;">BÁN NGAY</button>
+                    </div>
+                </div>
+
+                <!-- Dịch vụ 4 -->
+                <div class="col-xs-3">
+                    <div class="vn-dichvu-title">TÀI CHÍNH</div>
+                    <p class="vn-dichvu">
+                        Thu mua đồ hiệu, đồ qua sử dụng, đồ mới 100%.
+                    </p>
+
+                    <div class="vn-dichvu-btn">
+                        <button class="btn btn-default" type="submit" style="width:120px;">DỊCH VỤ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     <?php
     }
 }
+
 $obj = new QdT_PageT_HomePage();
 $obj->render();
