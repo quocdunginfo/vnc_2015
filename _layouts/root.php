@@ -9,6 +9,7 @@
 class QdT_Layout_Root
 {
     protected $data = array();
+
     function __construct()
     {
         $this->data['theme_root_setup'] = QdTRootSetup::GET();
@@ -30,14 +31,17 @@ class QdT_Layout_Root
     {
         return QdT_Library::getNotSetText();
     }
+
     protected function getPageTitle()
     {
         return get_bloginfo('name');
     }
+
     protected function getPageDescription()
     {
         return get_bloginfo('description');
     }
+
     public function render()
     {
         $temp_p = get_template_directory_uri() . '/';
@@ -47,10 +51,10 @@ class QdT_Layout_Root
         <head>
             <base href="<?= $temp_p ?>">
             <meta charset="<?php bloginfo('charset'); ?>">
-            <title><?=$this->getPageTitle()?></title>
+            <title><?= $this->getPageTitle() ?></title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="description" content="<?=$this->getPageDescription()?>">
+            <meta name="description" content="<?= $this->getPageDescription() ?>">
             <meta name="author" content="quocdunginfo">
             <?php wp_head(); ?>
 
@@ -87,24 +91,25 @@ class QdT_Layout_Root
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
             <![endif]-->
 
-            <?=QdT_Library::FERequestCompactLayout()?>
+            <?= QdT_Library::FERequestCompactLayout() ?>
         </head>
 
         <body <?php body_class(); ?> style="/*background: rgba(0,0,0,0.1);*/">
 
-            <?=$this->getHeaderPart()?>
+        <?= $this->getHeaderPart() ?>
 
         <?php
         //main content
         $this->getContentPart();
         ?>
 
-        <?=$this->getFooterPart()?>
+        <?= $this->getFooterPart() ?>
         <?php wp_footer(); ?>
         </body>
         </html>
     <?php
     }
+
     protected function getHeaderPart()
     {
         //$logo_url = ot_get_option('header_logo', 'img/logo.jpg');
@@ -115,11 +120,11 @@ class QdT_Layout_Root
                 <div class="row">
                     <div class="col-xs-3 header-phonenumber">
                         <!-- Phone Number -->
-                        <?=$this->data['theme_root_setup']->topleft_tuvan?>
+                        <?= $this->data['theme_root_setup']->topleft_tuvan ?>
                     </div>
                     <div class="col-xs-5 header-info">
                         <!-- Content -->
-                        <?=$this->data['theme_root_setup']->topcenter_promotion?>
+                        <?= $this->data['theme_root_setup']->topcenter_promotion ?>
                     </div>
                     <div class="col-xs-4 header-links">
                         <!-- Content
@@ -128,7 +133,7 @@ class QdT_Layout_Root
                         <a href="#">HƯỚNG DẪN</a>
                         <img src="img/border-links.png">
                         <a href="#">LIÊN HỆ</a> -->
-                        <?=$this->data['theme_root_setup']->topright_navs?>
+                        <?= $this->data['theme_root_setup']->topright_navs ?>
                     </div>
                 </div>
             </div>
@@ -167,7 +172,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -182,7 +188,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -195,16 +202,19 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                     <div class="sub-info" style="margin-top: 5px;position: relative;">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a>
+                                        </div>
                                         <button class="exit-button">abc</button>
                                     </div>
                                 </div>
@@ -234,7 +244,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -249,7 +260,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -262,16 +274,19 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                     <div class="sub-info" style="margin-top: 5px;position: relative;">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a>
+                                        </div>
                                         <button class="exit-button"></button>
                                     </div>
                                 </div>
@@ -301,7 +316,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -316,7 +332,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -329,16 +346,19 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                     <div class="sub-info" style="margin-top: 5px;position: relative;">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a>
+                                        </div>
                                         <button class="exit-button"></button>
                                     </div>
                                 </div>
@@ -348,7 +368,7 @@ class QdT_Layout_Root
             </ul>
             <!-- end -->
         </li>
-        <li >
+        <li>
             <a href="#" class="nav-links">XE - PHỤ KIỆN</a>
             <!-- begin -->
             <ul class="vn-sub">
@@ -368,7 +388,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -383,7 +404,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -396,16 +418,19 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                     <div class="sub-info" style="margin-top: 5px;position: relative;">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a>
+                                        </div>
                                         <button class="exit-button"></button>
                                     </div>
                                 </div>
@@ -436,7 +461,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -451,7 +477,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -464,16 +491,19 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                     <div class="sub-info" style="margin-top: 5px;position: relative;">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Sản phẩm khác</a>
+                                        </div>
                                         <button class="exit-button"></button>
                                     </div>
                                 </div>
@@ -492,9 +522,10 @@ class QdT_Layout_Root
         </div>
         <!-- End Navigation -->
         <hr>
-        <?=$this->getBannerPart()?>
-        <?php
+        <?= $this->getBannerPart() ?>
+    <?php
     }
+
     protected function getBannerPart()
     {
         //$slider = Qdmvc_Helper::getSlider(ot_get_option('banner_meta_slider_shortcode', ''));
@@ -522,8 +553,9 @@ class QdT_Layout_Root
             </div>
 
         </header>
-        <?php
+    <?php
     }
+
     protected function getBreadcrumbsPart()
     {
         ?>
@@ -579,7 +611,7 @@ class QdT_Layout_Root
             <div class="row clearfix" style="width: 960px;">
                 <div class="col-xs-12 column">
                     <?php
-                    if($this->getContentTitle()!=''):
+                    if ($this->getContentTitle() != ''):
                         ?>
                         <h3 style="padding: 30px 0px 20px 0px; margin: 0px; font-weight: bold; font-size: 24px">
                             <?= $this->getContentTitle() ?>
@@ -588,8 +620,9 @@ class QdT_Layout_Root
                 </div>
             </div>
         </div>
-        <?php
+    <?php
     }
+
     protected function getFooterPart()
     {
         ?>
@@ -615,35 +648,55 @@ class QdT_Layout_Root
             <!-- Begin Footer Center-->
             <div class="footer-center">
                 <div class="container-non-responsive ">
-                    <div class="row">
+                    <style>
+                        /*quocdunginfo*/
+                        .qd-widget-navs {
+                            padding-top: 68px;
+                        }
+                        .qd-widget-navs h2
+                        {
+                            list-style: none;
+                            margin-bottom: 10px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            margin-top: 0px;
+                        }
+                        .widget_advanced_menu li a {
+                            margin-bottom: 20px;
+                            font-size: 13px;
+                            color: rgb(255, 255, 255);
+                        }
+                        .widget_advanced_menu li a:hover {
+                            color: rgb(82,82,82);
+                            text-decoration: none;
+                            font-size: 14px;
+                            font-weight: bold;
+                         }
+                        .widget_advanced_menu ul.menu {
+                            padding-left: 0px;
+                        }
+                        /*END quocdunginfo*/
+                    </style>
+                    <div class="row qd-widget-navs">
                         <div class="col-lg-3 col-xs-2">
+                            <?php get_sidebar('footer-menu-1'); ?>
+                            <!--
                             <ul style="margin-top: 68px;padding-left: 0px;">
                                 <li style="font-weight: bold;"> CÔNG TY </li>
                                 <li> <a href="#" class="vn-ft-links">GIỚI THIỆU </a></li>
                                 <li> <a href="#" class="vn-ft-links">TUYỂN DỤNG </a></li>
                                 <li> <a href="#" class="vn-ft-links">LIÊN HỆ </a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                         <div class="col-xs-3">
-                            <ul style="margin-top: 68px;padding-left: 0px;">
-                                <li style="font-weight: bold;"> DỊCH VỤ </li>
-                                <li> <a href="#" class="vn-ft-links">BÁN LẺ VÀ SỈ </a></li>
-                                <li> <a href="#" class="vn-ft-links">THU MUA VÀ THANH LÝ </a></li>
-                                <li> <a href="#" class="vn-ft-links">DỊCH VỤ KÝ GỬI </a></li>
-                                <li> <a href="#" class="vn-ft-links">DỊCH VỤ TÀI CHÍNH </a></li>
-                            </ul>
+                            <?php get_sidebar('footer-menu-2'); ?>
                         </div>
                         <div class="col-xs-3">
-                            <ul style="margin-top: 68px;padding-left: 0px;">
-                                <li style="font-weight: bold;"> HỖ TRỢ </li>
-                                <li> <a href="#" class="vn-ft-links">TÌM CỬA HÀNG </a></li>
-                                <li> <a href="#" class="vn-ft-links">HƯỚNG DẪN GIAO DỊCH </a></li>
-                                <li> <a href="#" class="vn-ft-links">GIAO HÀNG - THANH TOÁN </a></li>
-                                <li> <a href="#" class="vn-ft-links">BẢO HÀNH - ĐỔI TRẢ </a></li>
-                                <li> <a href="#" class="vn-ft-links">FAQs</a></li>
-                            </ul>
+                            <?php get_sidebar('footer-menu-3'); ?>
                         </div>
                         <div class="col-lg-3 col-xs-4 ">
+                            <?php get_sidebar('footer-menu-4'); ?>
+                            <!--
                             <ul style="margin-top: 68px;padding-left: 0px;">
                                 <li style="font-weight: bold;"> GỌI HỖ TRỢ - GIAO DỊCH </li>
                                 <li style="margin-bottom: 5px;font-size: 17px;color: rgb(255,255,255); font-weight: bold;"> 098 900 3339 - 08 6679 7779 </li>
@@ -663,7 +716,7 @@ class QdT_Layout_Root
                                     </a>
                             </ul>
                             </li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                     <div class="row logo-thanhtoan">
@@ -689,7 +742,7 @@ class QdT_Layout_Root
                     <hr style="margin-bottom: 0px; margin-top: 0px;border-top: 1px solid rgb(107,107,107);">
                     <div class="row">
                         <div class="col-xs-8">
-                            <?=$this->data['theme_root_setup']->bottomleft_footer_note?>
+                            <?= $this->data['theme_root_setup']->bottomleft_footer_note ?>
                             <!--
                             <p style="padding-top: 20px;font-size: 12px;color: black;">
                                 CÔNG TY TNHH FINEWAY<br>
@@ -729,6 +782,6 @@ class QdT_Layout_Root
                 interval: 5000 //changes the speed
             })
         </script>
-        <?php
+    <?php
     }
 }
