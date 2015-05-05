@@ -13,6 +13,10 @@ class QdT_Layout_Root
     function __construct()
     {
         $this->data['theme_root_setup'] = QdTRootSetup::GET();
+
+        $record = new QdWidgetNav();
+        $record->SETRANGE('group_id', $this->data['theme_root_setup']->social_icon, true);
+        $this->data['social_icon'] = $record->GETLIST();
     }
 
     protected function getBreadcrumbs()
@@ -696,16 +700,35 @@ class QdT_Layout_Root
                         </div>
                         <div class="col-lg-3 col-xs-4 ">
                             <?php get_sidebar('footer-menu-4'); ?>
-                            <!--
-                            <ul style="margin-top: 68px;padding-left: 0px;">
-                                <li style="font-weight: bold;"> GỌI HỖ TRỢ - GIAO DỊCH </li>
-                                <li style="margin-bottom: 5px;font-size: 17px;color: rgb(255,255,255); font-weight: bold;"> 098 900 3339 - 08 6679 7779 </li>
-                                <li style="font-size: 14px;color: rgb(231,231,232);">Từ 8:00 - 22:00 hằng ngày.</li>
-                                <li>
-                                    <a class="vn-icon" target="_blank" href="https://www.facebook.com/vietngancash">
-                                        <img class="footer-center-img"src="img/fa-1.png" onmouseover="this.src='img/fa-2.png'" onmouseout="this.src='img/fa-1.png'">
+                            <?php
+                            $social_icon_imgs = array(
+                                'facebook' => array(
+                                    'static' => 'img/fa-1.png',
+                                    'hover' => 'img/fa-2.png'
+                                ),
+                                'google' => array(
+                                    'static' => 'img/go-1.png',
+                                    'hover' => 'img/go-2.png'
+                                ),
+                                'twitter' => array(
+                                    'static' => 'img/tw-1.png',
+                                    'hover' => 'img/tw-2.png'
+                                ),
+                                'youtube' => array(
+                                    'static' => 'img/yo-1.png',
+                                    'hover' => 'img/yo-2.png'
+                                ),
+                            );
+                            ?>
+
+                            <div>
+                                <?php foreach($this->data['social_icon'] as $item) :?>
+                                    <a class="vn-icon" target="<?=$item->target?>" href="<?=$item->path?>">
+                                        <img class="footer-center-img" src="<?=$social_icon_imgs[$item->title]['static']?>" onmouseover="this.src='<?=$social_icon_imgs[$item->title]['hover']?>'" onmouseout="this.src='<?=$social_icon_imgs[$item->title]['static']?>'">
                                     </a>
-                                    <a class="vn-icon" target="_blank"  href="https://plus.google.com/">
+                                <?php endforeach; ?>
+                                <!--
+                                <a class="vn-icon" target="_blank"  href="https://plus.google.com/">
                                         <img class="footer-center-img"src="img/go-1.png" onmouseover="this.src='img/go-2.png'" onmouseout="this.src='img/go-1.png'">
                                     </a>
                                     <a class="vn-icon" target="_blank" href="https://twitter.com/">
@@ -713,10 +736,8 @@ class QdT_Layout_Root
                                     </a>
                                     <a class="vn-icon" target="_blank" href="https://www.youtube.com/">
                                         <img class="footer-center-img" src="img/yo-1.png" onmouseover="this.src='img/yo-2.png'" onmouseout="this.src='img/yo-1.png'">
-                                    </a>
-                            </ul>
-                            </li>
-                            </ul> -->
+                                    </a> -->
+                            </div>
                         </div>
                     </div>
                     <div class="row logo-thanhtoan">

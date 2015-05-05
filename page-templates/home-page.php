@@ -14,6 +14,11 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
         $record = new QdWidgetNav();
         $record->SETRANGE('group_id', $this->data['theme_root_setup']->widgetnavcat_id);
         $this->data['widget_nav_list'] = $record->GETLIST();
+
+        $pro_setup = QdProductSetup::GET();
+        $record = QdBigSaleCat::GET($pro_setup->bigsalecat_id);
+        $this->data['big_sale_cat'] = $record;
+        $this->data['big_sale_products'] = $record->getProducts2();
     }
 
     protected function getBreadcrumbs()
@@ -124,176 +129,56 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
             <!-- Title BIG SALE -->
             <div class="row">
                 <div class="col-lg-12" style="margin-top: 20px;">
-                    <h2 class="page-header">BIG SALE</h2>
+                    <h2 class="page-header">
+                        <?php
+                        echo $this->data['big_sale_cat']->name;
+                        ?>
+                    </h2>
                 </div>
             </div>
 
 
             <!-- San pham 1 -->
             <div class="row" style="margin-top: 20px;">
-                <div class="col-xs-3 vn-sanpham-size" style="padding-left: 15px;">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
+                <?php
+                $count = 1;
+                foreach ($this->data['big_sale_products'] as $item):
+                    ?>
+                    <div class="col-xs-3 vn-sanpham-size" style="padding-left: 15px;">
+                        <div class="vn-sanpham-box" style="background: url('<?= $item->avatar ?>');
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            background-position: center;">
+                        </div>
+                        <p class="p-edit-1">
+                            <?= $item->name ?>
+                        </p>
 
-                    <p class="p-edit-1">
-                        <b style="color: rgb(131,131,132);font-weight: normal;">5.000.000 VND</b><img
-                            src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                        <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
-                    </p>
-                </div>
-                <div class="col-xs-3 vn-sanpham-size">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
+                        <p class="p-edit-1">
+                            <b style="color: rgb(131,131,132);font-weight: normal;"><?= $item->price ?> VND</b><img
+                                src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                            <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
+                        </p>
                     </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
 
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-                <div class="col-xs-3 vn-sanpham-size">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
+                    <?php
+                    if ($count % 4 == 0) echo '<div class="col-xs-12" style="height: 20px"></div>';//trick to avoid using new row and not overlap with other item
+                    $count++;
+                endforeach;
+                ?>
 
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-                <div class="col-xs-3 vn-sanpham-size" style="padding-right: 15px;">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
             </div>
 
-            <!-- San pham 2 -->
-            <div class="row" style="margin-top: 20px;">
-                <div class="col-xs-3 vn-sanpham-size" style="padding-left: 15px;">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-
-                    <p class="p-edit-1">
-                        <b style="color: rgb(131,131,132);font-weight: normal;">5.000.000 VND</b><img
-                            src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                        <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
-                    </p>
-                </div>
-                <div class="col-xs-3 vn-sanpham-size">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-                <div class="col-xs-3 vn-sanpham-size">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-                <div class="col-xs-3 vn-sanpham-size" style="padding-right: 15px;">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-            </div>
-
-            <!-- San pham 3 -->
-            <div class="row" style="margin-top: 20px;" style="padding-left: 15px;">
-                <div class="col-xs-3 vn-sanpham-size">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-                <div class="col-xs-3 vn-sanpham-size">
-                    <div class="vn-sanpham-box" style="background: url('img/sanpham-index.png');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-            </div>
         </div>
         <!-- END BIG SALE -->
-        <?=$this->getWidgetNavsPart()?>
+        <?= $this->getWidgetNavsPart() ?>
     <?php
 
     }
+
     protected function getWidgetNavsPart()
     {
-        if($this->data['widget_nav_list']==null || empty($this->data['widget_nav_list']))
-        {
+        if ($this->data['widget_nav_list'] == null || empty($this->data['widget_nav_list'])) {
             return;
         }
         ?>
@@ -301,18 +186,19 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
 
             <div class="row">
                 <?php
-                foreach($this->data['widget_nav_list'] as $item):
-                ?>
+                foreach ($this->data['widget_nav_list'] as $item):
+                    ?>
                     <!-- Dịch vụ -->
                     <div class="col-xs-3">
-                        <div class="vn-dichvu-title"><?=$item->title?></div>
+                        <div class="vn-dichvu-title"><?= $item->title ?></div>
                         <p class="vn-dichvu">
-                            <?=$item->content?>
+                            <?= $item->content ?>
                         </p>
 
                         <div class="vn-dichvu-btn">
-                            <button class="btn btn-default" type="submit" style="width:120px;" onclick="location.href='<?=$item->path?>'">
-                                <?=$item->button_text?>
+                            <button class="btn btn-default" type="submit" style="width:120px;"
+                                    onclick="location.href='<?= $item->path ?>'">
+                                <?= $item->button_text ?>
                             </button>
                         </div>
                     </div>
@@ -331,7 +217,7 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
                 </div> -->
             </div>
         </div>
-<?php
+    <?php
     }
 }
 
