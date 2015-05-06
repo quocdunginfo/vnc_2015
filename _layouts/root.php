@@ -9,6 +9,7 @@
 class QdT_Layout_Root
 {
     protected $data = array();
+    protected $img_slider = array();
 
     function __construct()
     {
@@ -17,6 +18,15 @@ class QdT_Layout_Root
         $record = new QdWidgetNav();
         $record->SETRANGE('group_id', $this->data['theme_root_setup']->social_icon, true);
         $this->data['social_icon'] = $record->GETLIST();
+
+        $this->data['vnc_logo'] = $this->data['theme_root_setup']->vnc_logo;
+
+        $tmp = QdImgGrp::GET($this->data['theme_root_setup']->img_slider);
+        if($tmp!=null)
+        {
+            $tmp = $tmp->getImgs();
+            $this->img_slider = $tmp->GETLIST();
+        }
     }
 
     protected function getBreadcrumbs()
@@ -147,7 +157,7 @@ class QdT_Layout_Root
         <div class="vn-cas-logo">
             <div class="container-non-responsive">
                 <div class="logo">
-                    <img src="img/Logo.png" style="height:113px;width: 450px;">
+                    <img src="<?=$this->data['vnc_logo']?>" style="height:113px;width: 450px;">
                 </div>
             </div>
         </div>
@@ -532,28 +542,41 @@ class QdT_Layout_Root
 
     protected function getBannerPart()
     {
-        //$slider = Qdmvc_Helper::getSlider(ot_get_option('banner_meta_slider_shortcode', ''));
+        if($this->img_slider==null || empty($this->img_slider)) return;
         ?>
         <!-- Header Carousel -->
         <header id="myCarousel" class="carousel slide ibs-slider">
             <!-- Indicators -->
             <ol class="carousel-indicators ibs_list_slider">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <?php
+                $count = 0;
+                foreach($this->img_slider as $item): ?>
+                <li data-target="#myCarousel" data-slide-to="<?=$count?>" class="<?=$count==0?'active':''?>"></li>
+                <!-- <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li> -->
+                <?php
+                $count++;
+                endforeach; ?>
             </ol>
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" style="margin-top: 0px; ">
-                <div class="item active">
-                    <div class="fill" style="background-image:url('img/a.jpg');"></div>
+                <?php
+                $count = 0;
+                foreach($this->img_slider as $item): ?>
+                <div class="item <?=$count==0?'active':''?>">
+                    <div class="fill" style="background-image:url('<?=$item->path?>');"></div>
                 </div>
+                <?php
+                $count++;
+                endforeach; ?>
+                <!--
                 <div class="item">
                     <div class="fill" style="background-image:url('img/b.jpg');"></div>
                 </div>
                 <div class="item">
                     <div class="fill" style="background-image:url('img/c.jpg');"></div>
-                </div>
+                </div> -->
             </div>
 
         </header>
