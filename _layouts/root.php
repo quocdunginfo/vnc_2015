@@ -8,12 +8,15 @@
  */
 class QdT_Layout_Root
 {
-    protected $data = array();
+    protected $uri = null;
+	protected $data = array();
     protected $img_slider = array();
 
     function __construct()
     {
-        $this->data['theme_root_setup'] = QdTRootSetup::GET();
+        $this->uri = $_SERVER['REQUEST_URI'];
+
+	    $this->data['theme_root_setup'] = QdTRootSetup::GET();
 
         $record = new QdWidgetNav();
         $record->SETRANGE('group_id', $this->data['theme_root_setup']->social_icon, true);

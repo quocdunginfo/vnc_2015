@@ -31,6 +31,16 @@ class QdT_Library extends Qdmvc_Helper
         require_once(__DIR__ . '/' . self::$pageT_loc . $name . '.php');
     }
 
+    public static function loadPage($name)
+    {
+        require_once(__DIR__ . '/' . self::$pageT_loc . $name . '/controller.php');
+    }
+
+    public static function loadPageClass($name)
+    {
+        require_once(__DIR__ . '/' . self::$pageT_loc . $name . '/class.php');
+    }
+
     public static function getNotSetText()
     {
         return '[Not set]';
@@ -48,10 +58,100 @@ class QdT_Library extends Qdmvc_Helper
             html {
                 margin-top: 0px !important;
             }
+
             #wpadminbar {
                 display: none !important;
             }
         </style>
-        <?php
+    <?php
+    }
+
+    protected $mapping_sample = array(
+        'object_field' => 'pre_defined_tree_field',
+        'object_field_2' => 'pre_defined_tree_field_2',
+    );
+
+    public static function genObjectsToTreeArray($list = array(), $mapping = array())
+    {
+
+    }
+
+    protected $sample_tree = array(
+        Array
+        (
+            'id' => 1,
+            'title' => 'menu1',
+            'url' => 'http://google.com',
+            'active' => true,
+            'parent_id' => 0
+        ),
+        Array
+        (
+            'id' => 2,
+            'title' => 'menu11',
+            'url' => 'http://yahoo.com',
+            'active' => false,
+            'parent_id' => 1
+        ),
+        Array
+        (
+            'id' => 3,
+            'title' => 'menu111',
+            'url' => 'http://facebook.com',
+            'active' => false,
+            'parent_id' => 2
+        ),
+    );
+
+    public static function genMenuTree($items = array())
+    {
+        //index elements by id
+        foreach ($items as $item) {
+            $item['subs'] = array();
+            $indexedItems[$item['id']] = (object)$item;
+        }
+
+        //assign to parent
+        $topLevel = array();
+        foreach ($indexedItems as $item) {
+            if ($item->parent_id == 0) {
+                $topLevel[] = $item;
+            } else {
+                $indexedItems[$item->parent_id]->subs[] = $item;
+            }
+        }
+
+        return static::renderMenu($topLevel, 0);
+    }
+    //recursive function
+    private static function renderMenu($items, $ul_level)
+    {
+        $deep_class = array(
+            'ul' => array(
+                0 => 'product-list',
+                1 => 'product-list-sub',
+                2 => 'product'
+            ),
+            'li' => array(
+                0 => 'product-title',
+                1 => 'product-title-sub',
+            ),
+        );
+
+        $render = '<ul class="'.$deep_class['ul'][$ul_level].'">';
+
+	    $uri = $_SERVER['REQUEST_URI'];
+
+        foreach ($items as $item) {
+	        $link = add_query_arg(array('product-cat-id' => $item->id), $uri);
+
+            $render .= '<li class="'.$deep_class['li'][$item->deep].'"><a href="'.$link.'">' . $item->title;
+            if (!empty($item->subs)) {
+                $render .= static::renderMenu($item->subs, $ul_level+1);
+            }
+            $render .= '</a></li>';
+        }
+
+        return $render . '</ul>';
     }
 }
