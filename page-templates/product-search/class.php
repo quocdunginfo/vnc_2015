@@ -10,6 +10,7 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root {
     protected $manufactor_list = array();
 	protected $size_quanao_list = array();
 	protected $size_giaydep_list = array();
+
 	function __construct()
     {
         parent::__construct();
@@ -51,7 +52,7 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root {
         <!-- Product -->
         <div class="row">
         <div class="col-xs-9 ">
-            <!-- Product 1 -->
+            <!-- Product 1
             <div class="row">
                 <div class="col-xs-4">
                     <div class="vn-sanpham-box" style="background: url('img/current 3.jpg');
@@ -94,93 +95,28 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root {
                     </p>
                 </div>
             </div>
+            -->
+
+
 
             <!-- Product 2 -->
-            <div class="row" style="margin-top: 25px;">
-                <div class="col-xs-4">
-                    <div class="vn-sanpham-box" style="background: url('img/current 3.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-                    <p class="p-edit-1">
-                        <b style="color: rgb(131,131,132);font-weight: normal;">5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                        <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
-                    </p>
-                </div>
-                <div class="col-xs-4">
-                    <div class="vn-sanpham-box" style="background: url('img/current 3.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-                <div class="col-xs-4">
-                    <div class="vn-sanpham-box" style="background: url('img/current 3.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-            </div>
+            <div id="qd_list_sanpham" class="row" style="margin-top: 25px;" >
+                <script type="text/javascript" src="plugin/jquery.jscroll.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $('#qd_list_sanpham').jscroll({
+                            loadingHtml: '<div style="text-align: center; width: 100%; padding-bottom: 17px"><img style="width: 25px; height: 25px" src="img/loading.gif" alt="Loading" /> Đang tải...</div>',
+                            padding: 0,
+                            autoTrigger: false,
+                            nextSelector: '.qd_jscroll_next a:last',
+                            callback: function () {
+                                //alert("wtf");
+                            }
+                        });
+                    });
 
-            <!-- Product 2 -->
-            <div class="row" style="margin-top: 25px;">
-                <div class="col-xs-4">
-                    <div class="vn-sanpham-box" style="background: url('img/current 3.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-                    <p class="p-edit-1">
-                        <b style="color: rgb(131,131,132);font-weight: normal;">5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                        <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
-                    </p>
-                </div>
-                <div class="col-xs-4">
-                    <div class="vn-sanpham-box" style="background: url('img/current 3.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
-                <div class="col-xs-4">
-                    <div class="vn-sanpham-box" style="background: url('img/current 3.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
-                    <p class="p-edit-1">
-                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                    </p>
-                </div>
+                </script>
+                <?=QdT_Library::loadPageT('product-search-loadmore')?>
             </div>
         </div>
         <div class="col-xs-3 ">
@@ -424,11 +360,11 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root {
             <div class="col-xs-12">
                 <ul class="product-list">
                     <li class="title">MỨC GIÁ : </li>
-                    <li><a href="#" class="product-links">Dưới 1.000.000 vnđ</a></li>
-                    <li><a href="#" class="product-links">Từ 1.000.000 - 3.000.000</a></li>
-                    <li><a href="#" class="product-links">Từ 3.500.000 - 6.000.000</a></li>
-                    <li><a href="#" class="product-links">Từ  6.000.000 - 10.000.000</a></li>
-                    <li><a href="#" class="product-links">Trên 10.000.000</a></li>
+                    <li><a href="<?=add_query_arg(array('price-from' => 0, 'price-to' => 1000000), $this->uri)?>" class="product-links">Dưới 1.000.000 vnđ</a></li>
+                    <li><a href="<?=add_query_arg(array('price-from' => 1000000, 'price-to' => 3000000), $this->uri)?>" class="product-links">Từ 1.000.000 - 3.000.000</a></li>
+                    <li><a href="<?=add_query_arg(array('price-from' => 3000000, 'price-to' => 6000000), $this->uri)?>" class="product-links">Từ 3.500.000 - 6.000.000</a></li>
+                    <li><a href="<?=add_query_arg(array('price-from' => 6000000, 'price-to' => 10000000), $this->uri)?>" class="product-links">Từ  6.000.000 - 10.000.000</a></li>
+                    <li><a href="<?=add_query_arg(array('price-from' => 10000000, 'price-to' => -1), $this->uri)?>" class="product-links">Trên 10.000.000</a></li>
                 </ul>
             </div>
         </div>

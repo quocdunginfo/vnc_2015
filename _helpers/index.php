@@ -33,6 +33,7 @@ class QdT_Library extends Qdmvc_Helper
 
     public static function loadPage($name)
     {
+        static::loadPageClass($name);
         require_once(__DIR__ . '/' . self::$pageT_loc . $name . '/controller.php');
     }
 

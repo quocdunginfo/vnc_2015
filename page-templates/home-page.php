@@ -148,25 +148,8 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
                 <?php
                 $count = 1;
                 foreach ($this->big_sale_products as $item):
-                    ?>
-                    <div class="col-xs-3 vn-sanpham-size" style="padding-left: 15px;">
-                        <div class="vn-sanpham-box" style="background: url('<?= $item->avatar ?>');
-                            background-repeat: no-repeat;
-                            background-size: contain;
-                            background-position: center;">
-                        </div>
-                        <p class="p-edit-1">
-                            <?= $item->name ?>
-                        </p>
+                    $this->genProductWidget($item, 'col-xs-3 vn-sanpham-size', 'padding-left: 15px;');
 
-                        <p class="p-edit-1">
-                            <b style="color: rgb(131,131,132);font-weight: normal;"><?= $item->price ?> VND</b><img
-                                src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                            <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
-                        </p>
-                    </div>
-
-                    <?php
                     if ($count % 4 == 0) echo '<div class="col-xs-12" style="height: 20px"></div>';//trick to avoid using new row and not overlap with other item
                     $count++;
                 endforeach;

@@ -24,6 +24,7 @@ class QdT_Layout_Root
 
         $this->data['vnc_logo'] = $this->data['theme_root_setup']->vnc_logo;
 
+
         $tmp = QdImgGrp::GET($this->data['theme_root_setup']->img_slider);
         if($tmp!=null)
         {
@@ -814,12 +815,12 @@ class QdT_Layout_Root
         <!-- End Footer -->
         <a href="#0" class="cd-top cd-is-visible cd-fade-out">Top</a>
         <!-- jQuery -->
-        <script src="js/jquery.js"></script>
+        <!-- <script src="js/jquery.js"></script> -->
         <script type="text/javascript" src="js/text.js"></script>
         <script src="js/main.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        <!-- <script src="js/bootstrap.min.js"></script> -->
 
 
         <!-- Script to Activate the Carousel -->
@@ -830,5 +831,26 @@ class QdT_Layout_Root
             })
         </script>
     <?php
+    }
+    public static function genProductWidget($item, $wrapper_class, $wrapper_style)
+    {
+        ?>
+        <div class="<?=$wrapper_class?>" style="<?=$wrapper_style?>">
+            <div class="vn-sanpham-box" style="background: url('<?= $item->avatar ?>');
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;">
+            </div>
+            <p class="p-edit-1">
+                <?= $item->name ?>
+            </p>
+
+            <p class="p-edit-1">
+                <b style="color: rgb(131,131,132);font-weight: normal;"><?= $item->price ?> VND</b><img
+                    src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
+            </p>
+        </div>
+        <?php
     }
 }
