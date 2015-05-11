@@ -8,6 +8,7 @@
 QdT_Library::loadLayout('root');
 class QdT_PageT_ProductSearch extends QdT_Layout_Root {
     protected $manufactor_list = array();
+    protected $product_cat = null;
 	protected $size_quanao_list = array();
 	protected $size_giaydep_list = array();
 
@@ -18,11 +19,14 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root {
 	    $record = new QdManufactor();
 	    $this->manufactor_list = $record->GETLIST();
 
+        $this->product_cat = QdProductCat::GET(get_query_var('product-cat-id'), 0);
+
 	    $record = new QdSize();
 	    $record->SETRANGE('type', QdSize::$TYPE_QUANAO);
 	    $this->size_quanao_list = $record->GETLIST();
 
-	    $record->SETRANGE('type', QdSize::$TYPE_GIAYDEP);
+        $record->REMOVERANGE('type');
+        $record->SETRANGE('type', QdSize::$TYPE_GIAYDEP);
 	    $this->size_giaydep_list = $record->GETLIST();
     }
 
@@ -45,7 +49,9 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root {
                     <li class="active">Sản Phẩm</li>
                 </ol>
                 <h2 class="sanpham-header">
-                    <small>ĐIỆN THOẠI CAO CẤP</small>
+                    <small>
+                        <?=$this->product_cat!=null?$this->product_cat->name:''?>
+                    </small>
                 </h2>
             </div>
         </div>

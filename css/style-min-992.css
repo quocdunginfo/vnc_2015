@@ -11,6 +11,19 @@ and open the template in the editor.
 /* Begin Layout */
 @media screen and (min-width: 992px)
 {
+    .straight-full{
+        border-bottom: 1px solid #a8a8a8;
+    }
+    
+    .vn-symbol {
+        font-size: 13px;
+        float: left;                
+        color: #a8a8a8;
+        display: inline;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    
     .container-non-responsive {
       /* Margin/padding copied from Bootstrap */
       margin-left: auto;
@@ -165,7 +178,7 @@ and open the template in the editor.
         
     .vn-sanpham-box {
         width: 100%;
-        height: 156px;
+        height: 158px;
         margin-bottom: 15px;
         border: 2px solid #ebebeb;
     }
@@ -409,4 +422,237 @@ and open the template in the editor.
           margin-top: 5px;
           margin-bottom: 5px;
       }
+      
+      /* Product detail */
+      .product-detail-box {
+          height: 350px;
+          width: 100%;
+      }
+      
+      .vn-title{
+          color: black;
+          font-weight: bold;
+          font-size: 20px;
+      }
+      
+      .product-detail-right .vn-model {
+          float: left;
+          color: #a8a8a8;
+          font-size: 13px;
+      }
+      
+      .product-detail-right .vn-model .title {
+          float: left;          
+      }
+      
+      .product-detail-right .vn-model .id {
+          float: left;
+      }
+      
+      .product-detail-right .vn-hang {
+          color: #a8a8a8;
+          font-size: 13px;
+      }
+      
+      .product-detail-right .vn-hang .title {
+          float: left;
+      }
+      
+      .product-detail-right .vn-hang .id {
+          float: left;
+      }
+      
+      .price-tag {
+          padding-top: 25px;
+          font-size: 14px;
+      }
+      
+      .price-tag .price{
+          float: left;          
+          line-height: 1.42857143;
+          font-size: 14px;
+      }
+      
+      .price-tag .size{
+          float: left;
+          font-size: 14px;
+          font-weight: bold;
+      }
+      
+      .price-tag .off{
+          float: left;
+          font-size: 14px;
+          color: #C80815;
+      }
+      
+      .price-tag .state{
+          float: left;
+          font-size: 14px;
+          font-weight: bold;
+          color: black;
+      }
+            
+      
+      .vn-product-detail {
+          
+      }
+      
+      .order-online-button{
+          width: 100%;
+          background: #3C62B5;
+          color: white;
+      }
+      
+      .order-phone-button{
+          width: 100%;
+      }
+      
+      .dac-diem {
+          padding-bottom: 0px;
+      }
+      
+      .ps {
+          color: black;
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 10px;
+      }
+      
+      .product-detail-shop {
+          text-decoration: none;
+      }
+      
+      .product-detail-shop:hover {
+          text-decoration: none;
+      }
+      /* Limit */
+      
+      #bigPic{	
+        width: 100%;
+        height:384px;
+	padding:1px;
+	border:1px solid #CCC;
+	background-color:#FFF;
+	margin-bottom:10px;        
+        }
+        
+        #bigPic img{
+            max-width: 100%;
+            height: 380px;
+            margin-right: auto;
+            margin-left: auto;
+            width: 95%;
+        }        
+        #bigPic img{
+                position:absolute;                                              
+                display:none;                
+        }
+        ul#thumbs li.active{
+                border:2px solid #000;	
+                background:#fff;
+                padding:2px;
+        }
+        ul#thumbs, ul#thumbs li{
+                margin:0;
+                padding:0;
+                list-style:none;
+        }
+
+        ul#thumbs li{
+                float:left;
+                margin-right: 12.5px;
+                margin-bottom:7px;
+                border:1px solid #CCC;	
+                padding:3px;
+                cursor:pointer;
+        }
+        ul#thumbs img{
+                float:left;
+                width:110px;
+                height:100px;
+                line-height:80px;
+                overflow:hidden;
+                position:relative;
+                z-index:1;		
+        }
+                
+        /* limit */
+        
+        /* pupup */
+        
+        .vn-modal-title {
+            color: black;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        
+        .vn-sanpham-box-modal
+        {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 15px;
+            border: 2px solid #ebebeb;
+        }
+        
+        .vn-nhanvien-box-modal
+        {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 15px;            
+        }
+        
+        .vn-modal1-title {
+            border-bottom: 2px solid black;
+            font-weight: bold;
+        }
+        /* pupup */
+        
+        /* gioi thieu */
+        .size-gioithieu{
+            height: 500px;
+            position:relative;
+        }
+        
+        .vn-gioithieu-box {            
+            width: 500px;
+            height: 500px; 
+            margin: auto;
+            position:absolute;
+            top:0; 
+            left:0; 
+            right:0; 
+            bottom:0;
+        }
+        
+        .size-gioithieu .title-center {
+            font-weight: bold;
+            margin-top: 65px;
+            padding-bottom: 15px;
+            border-bottom: 5px solid rgb(74,102,178);
+            text-align: center;
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .size-gioithieu .option-text {
+            text-align: center;
+            font-size: 13px;
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .vn-gioithieu-box1 {            
+            width: 100%;
+            height: 500px; 
+            margin: auto;
+            position:absolute;
+            top:0; 
+            left:0; 
+            right:0; 
+            bottom:0;
+        }
+        /* gioi thieu */
+
 }
