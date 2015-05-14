@@ -21,7 +21,7 @@ class QdCPT_TrangLienHe extends QdT_Layout_Root
 
     function __construct()
     {
-        $this->loadScript();
+        parent::__construct();
         if (have_posts()) {
             the_post();
             $this->obj = get_post(get_the_ID());

@@ -31,6 +31,12 @@ class QdT_Layout_Root
             $tmp = $tmp->getImgs();
             $this->img_slider = $tmp->GETLIST();
         }
+
+        $this->loadScript();
+    }
+    protected function loadScript()
+    {
+
     }
 
     protected function getBreadcrumbs()

@@ -20,8 +20,6 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
             $this->product_imgs = $tmp->GETLIST();
             $this->size = QdSize::GET($this->product->size_id);
         }
-
-        $this->loadScript();
     }
 
     protected function loadScript()
