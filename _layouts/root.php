@@ -12,21 +12,23 @@ class QdT_Layout_Root
     protected $data = array();
     protected $img_slider = array();
     protected $widget_nav_list = array();
+    protected $partner_list = array();
+    protected $them_root_setup = null;
 
     function __construct()
     {
         $this->uri = $_SERVER['REQUEST_URI'];
 
-        $this->data['theme_root_setup'] = QdTRootSetup::GET();
+        $this->theme_root_setup = QdTRootSetup::GET();
 
         $record = new QdWidgetNav();
-        $record->SETRANGE('group_id', $this->data['theme_root_setup']->social_icon, true);
+        $record->SETRANGE('group_id', $this->theme_root_setup->social_icon, true);
         $this->data['social_icon'] = $record->GETLIST();
 
-        $this->data['vnc_logo'] = $this->data['theme_root_setup']->vnc_logo;
+        $this->data['vnc_logo'] = $this->theme_root_setup->vnc_logo;
 
 
-        $tmp = QdImgGrp::GET($this->data['theme_root_setup']->img_slider);
+        $tmp = QdImgGrp::GET($this->theme_root_setup->img_slider);
         if ($tmp != null) {
             $tmp = $tmp->getImgs();
             $this->img_slider = $tmp->GETLIST();
@@ -34,10 +36,17 @@ class QdT_Layout_Root
 
         //Widget NAV
         $record = new QdWidgetNav();
-        $record->SETRANGE('group_id', $this->data['theme_root_setup']->widgetnavcat_id);
+        $record->SETRANGE('group_id', $this->theme_root_setup->widgetnavcat_id, true);
         $this->widget_nav_list = $record->GETLIST();
         //END Widget NAV
 
+        //Partner
+        $record = new QdPartner();
+        $record->SETRANGE('group_id', $this->theme_root_setup->partnergrp_id, true);
+        $record->SETRANGE('active', true, true);
+        $record->SETORDERBY('order', 'asc');
+        $this->partner_list = $record->GETLIST();
+        //END Partner
         $this->loadScript();
     }
 
@@ -151,11 +160,11 @@ class QdT_Layout_Root
                 <div class="row">
                     <div class="col-xs-3 header-phonenumber">
                         <!-- Phone Number -->
-                        <?= $this->data['theme_root_setup']->topleft_tuvan ?>
+                        <?= $this->theme_root_setup->topleft_tuvan ?>
                     </div>
                     <div class="col-xs-5 header-info">
                         <!-- Content -->
-                        <?= $this->data['theme_root_setup']->topcenter_promotion ?>
+                        <?= $this->theme_root_setup->topcenter_promotion ?>
                     </div>
                     <div class="col-xs-4 header-links">
                         <!-- Content
@@ -164,7 +173,7 @@ class QdT_Layout_Root
                         <a href="#">HƯỚNG DẪN</a>
                         <img src="img/border-links.png">
                         <a href="#">LIÊN HỆ</a> -->
-                        <?= $this->data['theme_root_setup']->topright_navs ?>
+                        <?= $this->theme_root_setup->topright_navs ?>
                     </div>
                 </div>
             </div>
@@ -744,20 +753,7 @@ class QdT_Layout_Root
                             </div>
                         </div>
                     </div>
-                    <div class="row logo-thanhtoan">
-                        <a class="vn-icon" target="_blank" href="#">
-                            <img class="footer-center-img-tt" src="img/visa.jpg" alt="">
-                        </a>
-                        <a class="vn-icon" target="_blank" href="#">
-                            <img class="footer-center-img-tt" src="img/master.png" alt="">
-                        </a>
-                        <a class="vn-icon" target="_blank" href="#">
-                            <img class="footer-center-img-tt" src="img/paypal.jpg" alt="">
-                        </a>
-                        <a class="vn-icon" target="_blank" href="#">
-                            <img class="footer-center-img-tt" src="img/visa-e.jpg" alt="">
-                        </a>
-                    </div>
+                    <?=$this->getPartnerLogoPart()?>
                 </div>
             </div>
 
@@ -767,7 +763,7 @@ class QdT_Layout_Root
                     <hr style="margin-bottom: 0px; margin-top: 0px;border-top: 1px solid rgb(107,107,107);">
                     <div class="row">
                         <div class="col-xs-8">
-                            <?= $this->data['theme_root_setup']->bottomleft_footer_note ?>
+                            <?= $this->theme_root_setup->bottomleft_footer_note ?>
                             <!--
                             <p style="padding-top: 20px;font-size: 12px;color: black;">
                                 CÔNG TY TNHH FINEWAY<br>
@@ -781,7 +777,7 @@ class QdT_Layout_Root
                         </div>
                         <div class="col-xs-4">
                             <div class="copyright">
-                                <img src="img/ban-quyen.png">
+                                <img style="max-width: 90px; max-height: 60px" src="<?=$this->theme_root_setup->commercial_logo==''?'img/ban-quyen.png':$this->theme_root_setup->commercial_logo?>">
                             </div>
                         </div>
                     </div>
@@ -826,7 +822,7 @@ class QdT_Layout_Root
                 </p>
 
                 <p class="p-edit-1">
-                    <b style="color: rgb(131,131,132);font-weight: normal;"><?= $item->price ?> VND</b>
+                    <b style="color: rgb(131,131,132);font-weight: normal;"><?= number_format($item->price, 0, '.', ',') ?> VND</b>
                     <?php if($size_obj!=null): ?>
                         <img src="img/border-links.png" style="margin: 0px 5px;">
                         <b>
@@ -835,7 +831,9 @@ class QdT_Layout_Root
                     <?php endif; ?>
 
                     </br>
-                    <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
+                    <b style="color: #C80815;">
+                        <?=number_format($item->_price_discount, 0, '.', ',')?> VND (<?=$item->discount_percent * 100?>% OFF)
+                    </b>
                 </p>
             </div>
         </a>
@@ -883,5 +881,28 @@ class QdT_Layout_Root
             </div>
         </div>
     <?php
+    }
+    protected function getPartnerLogoPart()
+    {
+        if(QdT_Library::isNullOrEmpty($this->partner_list)) return;
+        ?>
+        <div class="row logo-thanhtoan">
+            <?php foreach($this->partner_list as $item): ?>
+            <a class="vn-icon" target="_blank" href="<?=$item->path?>">
+                <img class="footer-center-img-tt" src="<?=$item->avatar?>" alt="">
+            </a>
+                <!--
+            <a class="vn-icon" target="_blank" href="#">
+                <img class="footer-center-img-tt" src="img/master.png" alt="">
+            </a>
+            <a class="vn-icon" target="_blank" href="#">
+                <img class="footer-center-img-tt" src="img/paypal.jpg" alt="">
+            </a>
+            <a class="vn-icon" target="_blank" href="#">
+                <img class="footer-center-img-tt" src="img/visa-e.jpg" alt="">
+            </a> -->
+            <?php endforeach; ?>
+        </div>
+<?php
     }
 }

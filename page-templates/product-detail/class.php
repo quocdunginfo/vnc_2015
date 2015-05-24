@@ -158,7 +158,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
         <div class="row price-tag">
             <div class="col-xs-12">
                 <div class="price">
-                    <?= $this->product != null ? $this->product->price : '' ?> VND
+                    <?= $this->product != null ? number_format($this->product->price, 0, '.', ',') : '' ?> VND
                 </div>
 
                 <?php if(!QdT_Library::isNullOrEmpty($this->size) && $this->size->code != ''): ?>
@@ -171,7 +171,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                 <?php if(!QdT_Library::isNullOrEmpty($this->product) && $this->product->discount_percent > 0): ?>
                 <div class="vn-symbol">|</div>
                 <div class="off">
-                    <?=$this->product->_price_discount?> VND (OFF <?=$this->product->discount_percent * 100?>%)
+                    <?=number_format($this->product->_price_discount, 0, '.', ',')?> VND (<?=$this->product->discount_percent * 100?>% OFF)
                 </div>
                 <?php endif; ?>
 
@@ -238,19 +238,24 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                 <div class="row">
                                     <div class="col-xs-5" style="height:450px;">
                                         <div>
-                                            <div class="vn-sanpham-box-modal" style="background: url('img/curre99nt.jpg');
+                                            <div class="vn-sanpham-box-modal" style="background: url('<?=$this->product->avatar?>');
                                                           background-repeat: no-repeat;
                                                           background-size: contain;
                                                           background-position: center;">
                                             </div>
                                             <p class="p-edit-1">
-                                                IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                                                <?= $this->product != null ? $this->product->name : '' ?>
                                             </p>
 
                                             <p class="p-edit-1">
-                                                <b style="color: rgb(131,131,132);font-weight: normal;">5.000.000
-                                                    VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b><br>
-                                                <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
+                                                <b style="color: rgb(131,131,132);font-weight: normal;">
+                                                    <?= $this->product != null ? number_format($this->product->price, 0, '.', ',') : '' ?>
+                                                    VND</b>
+                                                <img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b>
+                                                <br>
+                                                <b style="color: #C80815;">
+                                                    <?=number_format($this->product->_price_discount, 0, '.', ',')?> VND (<?=$this->product->discount_percent * 100?>% OFF)
+                                                </b>
                                             </p>
                                         </div>
                                         <div style="position: absolute;bottom: 15px;left: 15px;font-size: 16px; ">Gọi hỗ
@@ -258,6 +263,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                     </div>
                                     <div class="col-xs-7">
                                         <form>
+                                            <input type="hidden" name="id" id="product_id" value="<?=$this->product->id?>">
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <input type="radio" name="sex" value="male" checked=""><label
