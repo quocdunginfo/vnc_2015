@@ -9,16 +9,11 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
 {
     protected $big_sale_cat = null;
     protected $big_sale_products = array();
-    protected $widget_nav_list = array();
     protected $bestchoicecat_list = array();
 
     function __construct()
     {
         parent::__construct();
-
-        $record = new QdWidgetNav();
-        $record->SETRANGE('group_id', $this->data['theme_root_setup']->widgetnavcat_id);
-        $this->widget_nav_list = $record->GETLIST();
 
         $pro_setup = QdProductSetup::GET();
         $record = QdBigSaleCat::GET($pro_setup->bigsalecat_id);
@@ -30,10 +25,8 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
 
     }
 
-    protected function getBreadcrumbs()
-    {
-        return array();
-    }
+
+
 
     protected function getContentTitle()
     {
@@ -159,54 +152,12 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
 
         </div>
         <!-- END BIG SALE -->
-        <?= $this->getWidgetNavsPart() ?>
+
     <?php
 
     }
 
-    protected function getWidgetNavsPart()
-    {
-        if ($this->widget_nav_list == null || empty($this->widget_nav_list)) {
-            return;
-        }
-        ?>
-        <div class="container-non-responsive" style="border-top: 1px solid rgb(203,203,203);margin-top: 20px;">
 
-            <div class="row">
-                <?php
-                foreach ($this->widget_nav_list as $item):
-                    ?>
-                    <!-- Dịch vụ -->
-                    <div class="col-xs-3">
-                        <div class="vn-dichvu-title"><?= $item->title ?></div>
-                        <p class="vn-dichvu">
-                            <?= $item->content ?>
-                        </p>
-
-                        <div class="vn-dichvu-btn">
-                            <button class="btn btn-default" type="submit" style="width:120px;"
-                                    onclick="location.href='<?= $item->path ?>'">
-                                <?= $item->button_text ?>
-                            </button>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-
-                <!-- Dịch vụ 4
-                <div class="col-xs-3">
-                    <div class="vn-dichvu-title">TÀI CHÍNH</div>
-                    <p class="vn-dichvu">
-                        Thu mua đồ hiệu, đồ qua sử dụng, đồ mới 100%.
-                    </p>
-
-                    <div class="vn-dichvu-btn">
-                        <button class="btn btn-default" type="submit" style="width:120px;">DỊCH VỤ</button>
-                    </div>
-                </div> -->
-            </div>
-        </div>
-    <?php
-    }
 }
 
 $obj = new QdT_PageT_HomePage();

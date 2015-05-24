@@ -9,14 +9,15 @@
 class QdT_Layout_Root
 {
     protected $uri = null;
-	protected $data = array();
+    protected $data = array();
     protected $img_slider = array();
+    protected $widget_nav_list = array();
 
     function __construct()
     {
         $this->uri = $_SERVER['REQUEST_URI'];
 
-	    $this->data['theme_root_setup'] = QdTRootSetup::GET();
+        $this->data['theme_root_setup'] = QdTRootSetup::GET();
 
         $record = new QdWidgetNav();
         $record->SETRANGE('group_id', $this->data['theme_root_setup']->social_icon, true);
@@ -26,14 +27,20 @@ class QdT_Layout_Root
 
 
         $tmp = QdImgGrp::GET($this->data['theme_root_setup']->img_slider);
-        if($tmp!=null)
-        {
+        if ($tmp != null) {
             $tmp = $tmp->getImgs();
             $this->img_slider = $tmp->GETLIST();
         }
 
+        //Widget NAV
+        $record = new QdWidgetNav();
+        $record->SETRANGE('group_id', $this->data['theme_root_setup']->widgetnavcat_id);
+        $this->widget_nav_list = $record->GETLIST();
+        //END Widget NAV
+
         $this->loadScript();
     }
+
     protected function loadScript()
     {
 
@@ -167,7 +174,7 @@ class QdT_Layout_Root
         <div class="vn-cas-logo">
             <div class="container-non-responsive">
                 <div class="logo">
-                    <img src="<?=$this->data['vnc_logo']?>" style="height:113px;width: 450px;">
+                    <img src="<?= $this->data['vnc_logo'] ?>" style="height:113px;width: 450px;">
                 </div>
             </div>
         </div>
@@ -552,7 +559,7 @@ class QdT_Layout_Root
 
     protected function getBannerPart()
     {
-        if($this->img_slider==null || empty($this->img_slider)) return;
+        if ($this->img_slider == null || empty($this->img_slider)) return;
         ?>
         <!-- Header Carousel -->
         <header id="myCarousel" class="carousel slide ibs-slider">
@@ -560,12 +567,13 @@ class QdT_Layout_Root
             <ol class="carousel-indicators ibs_list_slider">
                 <?php
                 $count = 0;
-                foreach($this->img_slider as $item): ?>
-                <li data-target="#myCarousel" data-slide-to="<?=$count?>" class="<?=$count==0?'active':''?>"></li>
-                <!-- <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li> -->
-                <?php
-                $count++;
+                foreach ($this->img_slider as $item): ?>
+                    <li data-target="#myCarousel" data-slide-to="<?= $count ?>"
+                        class="<?= $count == 0 ? 'active' : '' ?>"></li>
+                    <!-- <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li> -->
+                    <?php
+                    $count++;
                 endforeach; ?>
             </ol>
 
@@ -573,12 +581,12 @@ class QdT_Layout_Root
             <div class="carousel-inner" style="margin-top: 0px; ">
                 <?php
                 $count = 0;
-                foreach($this->img_slider as $item): ?>
-                <div class="item <?=$count==0?'active':''?>">
-                    <div class="fill" style="background-image:url('<?=$item->path?>');"></div>
-                </div>
-                <?php
-                $count++;
+                foreach ($this->img_slider as $item): ?>
+                    <div class="item <?= $count == 0 ? 'active' : '' ?>">
+                        <div class="fill" style="background-image:url('<?= $item->path ?>');"></div>
+                    </div>
+                    <?php
+                    $count++;
                 endforeach; ?>
                 <!--
                 <div class="item">
@@ -596,72 +604,28 @@ class QdT_Layout_Root
     protected function getBreadcrumbsPart()
     {
         ?>
-        <div class="container" id="qd_container_breadcrums">
-            <style>
-                #qd_container_breadcrums {
-                    margin-top: 25px;
-                }
+        <?php
+        //breadCrums
+        $bc = $this->getBreadcrumbs();
+        ?>
 
-                #qd_container_breadcrums .row {
-                    margin: 0 auto;
-                }
-            </style>
-            <div class="row clearfix" style="width: 960px;">
-                <!-- BreadCrums -->
-                <div class="col-xs-12 column">
-                    <style>
-                        .breadcrumb {
-                            font-size: 12px; /*14px fail!fuck*/
-                        }
+        <ol class="breadcrumb" style="">
+            <?php
 
-                        .breadcrumb li a {
-                            color: inherit;
-                            text-decoration: none;
-                            text-transform: lowercase;
-                        }
+            foreach ($bc as $item):
+                ?>
+                <li><a href="<?= $item['url'] ?>"><?= $item['name'] ?></a></li>
+            <?php
+            endforeach;
+            ?>
+        </ol>
 
-                        .breadcrumb > li.active, li {
-                            color: inherit;
-                        }
-
-
-                    </style>
-                    <?php
-                    //breadCrums
-                    $bc = $this->getBreadcrumbs();
-                    ?>
-                    <ol class="breadcrumb" style="background: none !important; padding: 0px; margin: 0px !important;">
-                        <?php
-
-                        foreach ($bc as $item):
-                            ?>
-                            <li><a href="<?= $item['url'] ?>"><?= $item['name'] ?></a></li>
-                        <?php
-                        endforeach;
-                        ?>
-                    </ol>
-                </div>
-                <!-- end BreadCrums -->
-            </div>
-            <!-- Content Title -->
-
-            <div class="row clearfix" style="width: 960px;">
-                <div class="col-xs-12 column">
-                    <?php
-                    if ($this->getContentTitle() != ''):
-                        ?>
-                        <h3 style="padding: 30px 0px 20px 0px; margin: 0px; font-weight: bold; font-size: 24px">
-                            <?= $this->getContentTitle() ?>
-                        </h3>
-                    <?php endif ?>
-                </div>
-            </div>
-        </div>
     <?php
     }
 
     protected function getFooterPart()
     {
+        $this->getWidgetNavsPart();
         ?>
         <!-- Begin Footer -->
         <div class="vn-cas-footer">
@@ -690,28 +654,32 @@ class QdT_Layout_Root
                         .qd-widget-navs {
                             padding-top: 68px;
                         }
-                        .qd-widget-navs h2
-                        {
+
+                        .qd-widget-navs h2 {
                             list-style: none;
                             margin-bottom: 10px;
                             font-size: 14px;
                             font-weight: bold;
                             margin-top: 0px;
                         }
+
                         .widget_advanced_menu li a {
                             margin-bottom: 20px;
                             font-size: 13px;
                             color: rgb(255, 255, 255);
                         }
+
                         .widget_advanced_menu li a:hover {
-                            color: rgb(82,82,82);
+                            color: rgb(82, 82, 82);
                             text-decoration: none;
                             font-size: 14px;
                             font-weight: bold;
-                         }
+                        }
+
                         .widget_advanced_menu ul.menu {
                             padding-left: 0px;
                         }
+
                         /*END quocdunginfo*/
                     </style>
                     <div class="row qd-widget-navs">
@@ -755,9 +723,12 @@ class QdT_Layout_Root
                             ?>
 
                             <div>
-                                <?php foreach($this->data['social_icon'] as $item) :?>
-                                    <a class="vn-icon" target="<?=$item->target?>" href="<?=$item->path?>">
-                                        <img class="footer-center-img" src="<?=$social_icon_imgs[$item->title]['static']?>" onmouseover="this.src='<?=$social_icon_imgs[$item->title]['hover']?>'" onmouseout="this.src='<?=$social_icon_imgs[$item->title]['static']?>'">
+                                <?php foreach ($this->data['social_icon'] as $item) : ?>
+                                    <a class="vn-icon" target="<?= $item->target ?>" href="<?= $item->path ?>">
+                                        <img class="footer-center-img"
+                                             src="<?= $social_icon_imgs[$item->title]['static'] ?>"
+                                             onmouseover="this.src='<?= $social_icon_imgs[$item->title]['hover'] ?>'"
+                                             onmouseout="this.src='<?= $social_icon_imgs[$item->title]['static'] ?>'">
                                     </a>
                                 <?php endforeach; ?>
                                 <!--
@@ -838,25 +809,79 @@ class QdT_Layout_Root
         </script>
     <?php
     }
+
     public static function genProductWidget($item, $wrapper_class, $wrapper_style)
     {
+        $size_obj = QdSize::GET($item->size_id);
         ?>
-        <div class="<?=$wrapper_class?>" style="<?=$wrapper_style?>">
-            <div class="vn-sanpham-box" style="background: url('<?= $item->avatar ?>');
-                background-repeat: no-repeat;
-                background-size: contain;
-                background-position: center;">
-            </div>
-            <p class="p-edit-1">
-                <?= $item->name ?>
-            </p>
+        <a href="<?= $item->getPermalink() ?>" style="color: inherit">
+            <div class="<?= $wrapper_class ?>" style="<?= $wrapper_style ?>">
+                <div class="vn-sanpham-box" style="background: url('<?= $item->avatar ?>');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;">
+                </div>
+                <p class="p-edit-1">
+                    <?= $item->name ?>
+                </p>
 
-            <p class="p-edit-1">
-                <b style="color: rgb(131,131,132);font-weight: normal;"><?= $item->price ?> VND</b><img
-                    src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
-                <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
-            </p>
+                <p class="p-edit-1">
+                    <b style="color: rgb(131,131,132);font-weight: normal;"><?= $item->price ?> VND</b>
+                    <?php if($size_obj!=null): ?>
+                        <img src="img/border-links.png" style="margin: 0px 5px;">
+                        <b>
+                            <?=$size_obj->code?>
+                        </b>
+                    <?php endif; ?>
+
+                    </br>
+                    <b style="color: #C80815;">1.000 USD ( Giá Shock !!! )</b>
+                </p>
+            </div>
+        </a>
+    <?php
+    }
+    protected function getWidgetNavsPart()
+    {
+        if ($this->widget_nav_list == null || empty($this->widget_nav_list)) {
+            return;
+        }
+        ?>
+        <div class="container-non-responsive" style="border-top: 1px solid rgb(203,203,203);margin-top: 20px;">
+
+            <div class="row">
+                <?php
+                foreach ($this->widget_nav_list as $item):
+                    ?>
+                    <!-- Dịch vụ -->
+                    <div class="col-xs-3">
+                        <div class="vn-dichvu-title"><?= $item->title ?></div>
+                        <p class="vn-dichvu">
+                            <?= $item->content ?>
+                        </p>
+
+                        <div class="vn-dichvu-btn">
+                            <button class="btn btn-default" type="submit" style="width:120px;"
+                                    onclick="location.href='<?= $item->path ?>'">
+                                <?= $item->button_text ?>
+                            </button>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
+                <!-- Dịch vụ 4
+                <div class="col-xs-3">
+                    <div class="vn-dichvu-title">TÀI CHÍNH</div>
+                    <p class="vn-dichvu">
+                        Thu mua đồ hiệu, đồ qua sử dụng, đồ mới 100%.
+                    </p>
+
+                    <div class="vn-dichvu-btn">
+                        <button class="btn btn-default" type="submit" style="width:120px;">DỊCH VỤ</button>
+                    </div>
+                </div> -->
+            </div>
         </div>
-        <?php
+    <?php
     }
 }

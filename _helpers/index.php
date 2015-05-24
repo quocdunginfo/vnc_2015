@@ -104,7 +104,7 @@ class QdT_Library extends Qdmvc_Helper
         ),
     );
 
-    public static function genMenuTree($items = array())
+    public static function genMenuTree($items = array(), $root_uri)
     {
         //index elements by id
         foreach ($items as $item) {
@@ -122,10 +122,10 @@ class QdT_Library extends Qdmvc_Helper
             }
         }
 
-        return static::renderMenu($topLevel, 0);
+        return static::renderMenu($topLevel, 0, $root_uri);
     }
     //recursive function
-    private static function renderMenu($items, $ul_level)
+    private static function renderMenu($items, $ul_level, $root_uri)
     {
         $deep_class = array(
             'ul' => array(
@@ -141,14 +141,12 @@ class QdT_Library extends Qdmvc_Helper
 
         $render = '<ul class="'.$deep_class['ul'][$ul_level].'">';
 
-	    $uri = $_SERVER['REQUEST_URI'];
-
         foreach ($items as $item) {
-	        $link = add_query_arg(array('product-cat-id' => $item->id), $uri);
+	        $link = add_query_arg(array('product-cat-id' => $item->id), $root_uri);
 
             $render .= '<li class="'.$deep_class['li'][$item->deep].'"><a href="'.$link.'">' . $item->title;
             if (!empty($item->subs)) {
-                $render .= static::renderMenu($item->subs, $ul_level+1);
+                $render .= static::renderMenu($item->subs, $ul_level+1, $root_uri);
             }
             $render .= '</a></li>';
         }

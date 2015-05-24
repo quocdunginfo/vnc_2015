@@ -13,6 +13,16 @@ class QdT_PageT_About extends QdT_Layout_Root
         $this->about_list = $record->GETLIST();
     }
 
+    protected function getBannerPart()
+    {
+        //HIDE
+    }
+    protected function getBreadcrumbsPart()
+    {
+        //HIDE
+    }
+
+
     protected function loadScript()
     {
         //QdJqwidgets::loadSinglePluginJS("form2js.js");
