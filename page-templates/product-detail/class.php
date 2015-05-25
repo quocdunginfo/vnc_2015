@@ -14,27 +14,28 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
         parent::__construct();
 
         $this->product = QdProduct::GET(get_query_var('id', 0));
-        if ($this->product != null) {
-            $this->manufactor = QdManufactor::GET($this->product->manufacturer_id);
+        if ($this->product == null) static::redirectPageError404();//check resource
 
-            //IMGS
-            $tmp = $this->product->getImages();
-            $tmp->SETRANGE('active', true);
-            $tmp->SETORDERBY('order', 'asc');
-            $this->product_imgs = $tmp->GETLIST();
-            if(empty($this->product_imgs))
-            {
-                $img_tmp = new QdImage();
-                $img_tmp->path = $this->product->avatar;
-                $img_tmp->active = true;
-                array_push($this->product_imgs, $img_tmp);
-            }
-            //END IMGS
 
-            $this->size = QdSize::GET($this->product->size_id);
+        $this->manufactor = QdManufactor::GET($this->product->manufacturer_id);
 
-            $this->r_products = $this->product->getRProducts2();
+        //IMGS
+        $tmp = $this->product->getImages();
+        $tmp->SETRANGE('active', true);
+        $tmp->SETORDERBY('order', 'asc');
+        $this->product_imgs = $tmp->GETLIST();
+        if (empty($this->product_imgs)) {
+            $img_tmp = new QdImage();
+            $img_tmp->path = $this->product->avatar;
+            $img_tmp->active = true;
+            array_push($this->product_imgs, $img_tmp);
         }
+        //END IMGS
+
+        $this->size = QdSize::GET($this->product->size_id);
+
+        $this->r_products = $this->product->getRProducts2();
+
     }
 
     protected function getBannerPart()
@@ -122,7 +123,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
         <div class="row">
             <div class="col-xs-12">
                 <div class="vn-title">
-                    <?= $this->product != null ? $this->product->name : '' ?>
+                    <?= $this->product->name ?>
                 </div>
             </div>
         </div>
@@ -130,26 +131,26 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
         <!-- detail product 1-->
         <div class="row">
             <div class="col-xs-12">
-                <?php if(!QdT_Library::isNullOrEmpty($this->product) && $this->product->code != ''): ?>
-                <div class="vn-model">
-                    <div class="title">
-                        No.
+                <?php if (!QdT_Library::isNullOrEmpty($this->product) && $this->product->code != ''): ?>
+                    <div class="vn-model">
+                        <div class="title">
+                            No.
+                        </div>
+                        <div class="id">
+                            <?= $this->product->code ?>
+                        </div>
                     </div>
-                    <div class="id">
-                        <?= $this->product->code ?>
-                    </div>
-                </div>
                 <?php endif; ?>
-                <?php if(!QdT_Library::isNullOrEmpty($this->manufactor) && $this->manufactor->name != ''): ?>
-                <div class="vn-symbol">|</div>
-                <div class="vn-hang">
-                    <div class="title">
-                        Hãng :
+                <?php if (!QdT_Library::isNullOrEmpty($this->manufactor) && $this->manufactor->name != ''): ?>
+                    <div class="vn-symbol">|</div>
+                    <div class="vn-hang">
+                        <div class="title">
+                            Hãng :
+                        </div>
+                        <div class="id">
+                            <?= $this->manufactor->name ?>
+                        </div>
                     </div>
-                    <div class="id">
-                        <?=$this->manufactor->name ?>
-                    </div>
-                </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -158,28 +159,29 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
         <div class="row price-tag">
             <div class="col-xs-12">
                 <div class="price">
-                    <?= $this->product != null ? number_format($this->product->price, 0, '.', ',') : '' ?> VND
+                    <?= number_format($this->product->price, 0, '.', ',') ?> VND
                 </div>
 
-                <?php if(!QdT_Library::isNullOrEmpty($this->size) && $this->size->code != ''): ?>
-                <div class="vn-symbol">|</div>
-                <div class="size">
-                    <?= $this->size->code ?>
-                </div>
+                <?php if (!QdT_Library::isNullOrEmpty($this->size) && $this->size->code != ''): ?>
+                    <div class="vn-symbol">|</div>
+                    <div class="size">
+                        <?= $this->size->code ?>
+                    </div>
                 <?php endif; ?>
 
-                <?php if(!QdT_Library::isNullOrEmpty($this->product) && $this->product->discount_percent > 0): ?>
-                <div class="vn-symbol">|</div>
-                <div class="off">
-                    <?=number_format($this->product->_price_discount, 0, '.', ',')?> VND (<?=$this->product->discount_percent * 100?>% OFF)
-                </div>
+                <?php if (!QdT_Library::isNullOrEmpty($this->product) && $this->product->discount_percent > 0): ?>
+                    <div class="vn-symbol">|</div>
+                    <div class="off">
+                        <?= number_format($this->product->_price_discount, 0, '.', ',') ?> VND
+                        (<?= $this->product->discount_percent * 100 ?>% OFF)
+                    </div>
                 <?php endif; ?>
 
-                <?php if(!QdT_Library::isNullOrEmpty($this->product) && ($this->product->temp_out_of_stock==true)): ?>
-                <div class="vn-symbol">|</div>
-                <div class="state">
-                    Tạm hết hàng
-                </div>
+                <?php if (!QdT_Library::isNullOrEmpty($this->product) && ($this->product->temp_out_of_stock == true)): ?>
+                    <div class="vn-symbol">|</div>
+                    <div class="state">
+                        Tạm hết hàng
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -204,14 +206,14 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                 </div>
                 <div class="tab-content">
                     <div id="mo-ta" class="tab-pane fade in active" style="margin-top: 15px;">
-                        <?= $this->product != null ? $this->product->description : '' ?>
+                        <?= $this->product->description ?>
                         <!-- <div class="ps"> ĐẶT MUA TẶNG: bAO DA KAKA TRỊ GIÁ 300K !</div> -->
                     </div>
                     <div id="bao-hanh" class="tab-pane fade" style="margin-top: 15px;">
-                        <?= $this->product != null ? $this->product->doitra_baohanh : '' ?>
+                        <?= $this->product->doitra_baohanh ?>
                     </div>
                     <div id="giao-hang" class="tab-pane fade" style="margin-top: 15px;">
-                        <?= $this->product != null ? $this->product->giaohang_thanhtoan : '' ?>
+                        <?= $this->product->giaohang_thanhtoan ?>
                     </div>
                 </div>
             </div>
@@ -238,32 +240,37 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                 <div class="row">
                                     <div class="col-xs-5" style="height:450px;">
                                         <div>
-                                            <div class="vn-sanpham-box-modal" style="background: url('<?=$this->product->avatar?>');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
+                                            <div class="vn-sanpham-box-modal"
+                                                 style="background: url('<?= $this->product->avatar ?>');
+                                                     background-repeat: no-repeat;
+                                                     background-size: contain;
+                                                     background-position: center;">
                                             </div>
                                             <p class="p-edit-1">
-                                                <?= $this->product != null ? $this->product->name : '' ?>
+                                                <?= $this->product->name ?>
                                             </p>
 
                                             <p class="p-edit-1">
                                                 <b style="color: rgb(131,131,132);font-weight: normal;">
-                                                    <?= $this->product != null ? number_format($this->product->price, 0, '.', ',') : '' ?>
+                                                    <?= number_format($this->product->price, 0, '.', ',') ?>
                                                     VND</b>
                                                 <img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b>
                                                 <br>
                                                 <b style="color: #C80815;">
-                                                    <?=number_format($this->product->_price_discount, 0, '.', ',')?> VND (<?=$this->product->discount_percent * 100?>% OFF)
+                                                    <?= number_format($this->product->_price_discount, 0, '.', ',') ?>
+                                                    VND (<?= $this->product->discount_percent * 100 ?>% OFF)
                                                 </b>
                                             </p>
                                         </div>
-                                        <div style="position: absolute;bottom: 15px;left: 15px;font-size: 16px; ">Gọi hỗ
-                                            trợ <b>098 900 3338</b></div>
+                                        <div style="position: absolute;bottom: 15px;left: 15px;font-size: 16px; ">
+                                            <?=$this->product_setup->support_phone?>
+                                        </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <form>
-                                            <input type="hidden" name="id" id="product_id" value="<?=$this->product->id?>">
+                                            <input type="hidden" name="id" id="product_id"
+                                                   value="<?= $this->product->id ?>">
+
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <input type="radio" name="sex" value="male" checked=""><label
@@ -479,4 +486,10 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
     <?php
     }
 
+    protected function getBreadcrumbs()
+    {
+        $tmp = parent::getBreadcrumbs();
+        $tmp = array_merge($tmp, $this->product->getBreadcrumbs());
+        return $tmp;
+    }
 }

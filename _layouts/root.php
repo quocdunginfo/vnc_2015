@@ -13,13 +13,15 @@ class QdT_Layout_Root
     protected $img_slider = array();
     protected $widget_nav_list = array();
     protected $partner_list = array();
-    protected $them_root_setup = null;
+    protected $theme_root_setup = null;
+    protected $product_setup = null;
 
     function __construct()
     {
         $this->uri = $_SERVER['REQUEST_URI'];
 
         $this->theme_root_setup = QdTRootSetup::GET();
+        $this->product_setup = QdProductSetup::GET();
 
         $record = new QdWidgetNav();
         $record->SETRANGE('group_id', $this->theme_root_setup->social_icon, true);
@@ -904,5 +906,11 @@ class QdT_Layout_Root
             <?php endforeach; ?>
         </div>
 <?php
+    }
+    protected static function redirectPageError404()
+    {
+        $tmp_url = get_permalink(Qdmvc_Helper::getPageIdByTemplate('page-templates/error-404.php'));
+        wp_redirect($tmp_url);
+        exit;
     }
 }

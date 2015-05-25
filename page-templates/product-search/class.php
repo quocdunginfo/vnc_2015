@@ -25,9 +25,35 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
         //reset uri, filter side by side not INCLUDED query
         $this->uri = get_permalink(Qdmvc_Helper::getPageIdByTemplate('page-templates/product-search.php'));
 
-        $this->product_cat = QdProductCat::GET(get_query_var('product-cat-id'), 0);
-        $this->size = QdSize::GET(get_query_var('size-id'), 0);
-        $this->manufactor = QdManufactor::GET(get_query_var('manufactor-id'), 0);
+        $tmp_product_cat_id = get_query_var('product-cat-id', null);
+        if($tmp_product_cat_id!=null)
+        {
+            $this->product_cat = QdProductCat::GET($tmp_product_cat_id);
+            if($this->product_cat==null)
+            {
+                static::redirectPageError404();
+            }
+        }
+
+        $tmp_size_id = get_query_var('size-id', null);
+        if($tmp_size_id!=null)
+        {
+            $this->size = QdSize::GET($tmp_size_id);
+            if($this->size==null)
+            {
+                static::redirectPageError404();
+            }
+        }
+
+        $tmp_manu_id = get_query_var('manufactor-id', null);
+        if($tmp_manu_id!=null)
+        {
+            $this->manufactor = QdManufactor::GET($tmp_manu_id);
+            if($this->manufactor==null)
+            {
+                static::redirectPageError404();
+            }
+        }
 
         if ($this->product_cat != null) {
             $record = new QdManufactor();
@@ -392,7 +418,7 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
                            class="product-links">Từ 1.000.000 - 3.000.000</a></li>
                     <li>
                         <a href="<?= add_query_arg(array('price-from' => 3000000, 'price-to' => 6000000), $this->uri) ?>"
-                           class="product-links">Từ 3.500.000 - 6.000.000</a></li>
+                           class="product-links">Từ 3.000.000 - 6.000.000</a></li>
                     <li>
                         <a href="<?= add_query_arg(array('price-from' => 6000000, 'price-to' => 10000000), $this->uri) ?>"
                            class="product-links">Từ 6.000.000 - 10.000.000</a></li>
