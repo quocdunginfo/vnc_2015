@@ -88,7 +88,7 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
 
         ?>
         <!-- Begin Content -->
-        <div class="container-non-responsive carousel content">
+        <div class="container-non-responsive carousel content" style="margin-top: 0px">
         <!-- Title Product -->
         <div class="row">
             <div class="col-xs-12">
@@ -570,4 +570,19 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
         <?php
         endif;
     }
+
+    protected function getBreadcrumbs()
+    {
+        $obj = parent::getBreadcrumbs();
+        array_push($obj, array('name' => 'Sản phẩm', 'url' => $this->uri));
+        if($this->product_cat!=null)
+        {
+            array_push($obj, array('name' => $this->product_cat->name, 'url' => $this->product_cat->getPermalink()));
+        }else if($this->manufactor!=null)
+        {
+            array_push($obj, array('name' => $this->manufactor->name, 'url' => $this->manufactor->getPermalink()));
+        }
+        return $obj;
+    }
+
 }

@@ -15,7 +15,7 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
     {
         parent::__construct();
 
-        $pro_setup = QdProductSetup::GET();
+        $pro_setup = QdSetupProduct::GET();
         $record = QdBigSaleCat::GET($pro_setup->bigsalecat_id);
         $this->big_sale_cat = $record;
         $this->big_sale_products = $record->getProducts2();

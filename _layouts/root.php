@@ -21,7 +21,7 @@ class QdT_Layout_Root
         $this->uri = $_SERVER['REQUEST_URI'];
 
         $this->theme_root_setup = QdTRootSetup::GET();
-        $this->product_setup = QdProductSetup::GET();
+        $this->product_setup = QdSetupProduct::GET();
 
         $record = new QdWidgetNav();
         $record->SETRANGE('group_id', $this->theme_root_setup->social_icon, true);
