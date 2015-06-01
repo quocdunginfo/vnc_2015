@@ -56,6 +56,24 @@ class QdT_Layout_Root
     {
 
     }
+    protected function setPageInfoToClient()
+    {
+        ?>
+        <script>
+            var MYAPP = MYAPP || {};
+            MYAPP.PageInfo = {};
+            MYAPP.TplReplace = function(replace_from, replace_to, tpl){
+                var i = 0;
+                var re = tpl;
+                for(i=0;i<replace_from.length;i++)
+                {
+                    re = re.replace(replace_from[i], replace_to[i], re);
+                }
+                return re;
+            };
+        </script>
+        <?php
+    }
 
     protected function getBreadcrumbs()
     {
@@ -134,6 +152,7 @@ class QdT_Layout_Root
             <![endif]-->
 
             <?= QdT_Library::FERequestCompactLayout() ?>
+            <?=$this->setPageInfoToClient()?>
         </head>
 
         <body <?php body_class(); ?> style="/*background: rgba(0,0,0,0.1);*/">
