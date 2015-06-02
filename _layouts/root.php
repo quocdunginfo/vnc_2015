@@ -131,7 +131,7 @@ class QdT_Layout_Root
             <!-- USE WP instead -->
             <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
             <script type="text/javascript" src="js/bootstrap.min.js"></script>
-            <script type="text/javascript" src="js/scripts.js"></script>
+            <!-- <script type="text/javascript" src="js/scripts.js"></script>-->
 
             <!-- Custom CSS -->
             <link href="css/modern-business.css" rel="stylesheet">

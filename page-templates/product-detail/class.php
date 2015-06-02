@@ -8,12 +8,26 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
     private $r_products = array();
     private $product_imgs = array();
     private $size = null;
+    private $cookie_customer = array();
 
     private $product_order_setup = null;
 
     function __construct()
     {
         parent::__construct();
+
+        //get cookie
+        if(isset($_COOKIE["customer"]))
+        {
+            $tmp = $_COOKIE["customer"];
+            $tmp = str_replace('\\"', '"', $tmp);
+            $this->cookie_customer = json_decode($tmp, true);
+        }
+        else
+        {
+            $this->cookie_customer = array();
+        }
+
 
         $this->product_order_setup = QdSetupProductOrder::GET();
         $this->product = QdProduct::GET(get_query_var('id', 0));
@@ -48,7 +62,8 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
 
     protected function loadScript()
     {
-        //QdJqwidgets::loadSinglePluginJS("form2js.js");
+        QdJqwidgets::loadSinglePluginJS("form2js.js");
+        QdJqwidgets::loadSinglePluginJS("js.cookie.js");
         //QdJqwidgets::loadSinglePluginJS("ajax-loader.js");
     }
 
@@ -281,55 +296,86 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
-                                        <form id="formOrder">
-                                            <input type="hidden" name="id" id="product_id"
+                                        <form id="formOrder" onsubmit="return false">
+                                            <input type="hidden" name="product_id"
                                                    value="<?= $this->product->id ?>">
+                                            <input type="hidden" name="count"
+                                                   value="1">
 
                                             <div class="row">
+                                                <?php
+                                                if(QdT_Library::isNullOrEmpty($this->cookie_customer['sex']))
+                                                {
+                                                    $this->cookie_customer['sex'] = "1";
+                                                }
+                                                ?>
+
                                                 <div class="col-xs-6">
-                                                    <input type="radio" name="sex" value="male" checked=""><label
+                                                    <input type="radio" name="sex" value="1" <?=$this->cookie_customer['sex']=="1"?"checked":""?>><label
                                                         style="margin-left: 5px;">Anh</label>
                                                 </div>
                                                 <div class="col-xs-6">
-                                                    <input type="radio" name="sex" value="female"><label
+                                                    <input type="radio" name="sex" value="0" <?=$this->cookie_customer['sex']=="0"?"checked":""?>><label
                                                         style="margin-left: 5px;">Chị</label>
                                                 </div>
                                             </div>
                                             <div class="control-group form-group">
                                                 <div class="controls">
-                                                    <input type="text" class="form-control" id="name" required=""
+                                                    <input type="text" class="form-control" name="customer_name"
                                                            placeholder="Vui lòng nhập họ tên"
-                                                           data-validation-required-message="Please enter your name."
-                                                           aria-invalid="false">
+                                                           aria-invalid="false"
+                                                           oninvalid="this.setCustomValidity('Họ tên bắt buộc nhập')"
+                                                           oninput="this.setCustomValidity('')"
+                                                           value="<?php
+                                                           if(!QdT_Library::isNullOrEmpty($this->cookie_customer['customer_name']))
+                                                           {
+                                                               echo $this->cookie_customer['customer_name'];
+                                                           }
+                                                           ?>"
+                                                           required autofocus>
 
                                                     <p class="help-block"></p>
                                                 </div>
                                             </div>
                                             <div class="control-group form-group">
                                                 <div class="controls">
-                                                    <input type="text" class="form-control" id="name" required=""
+                                                    <input type="text" class="form-control" name="customer_phone"
                                                            placeholder="Vui lòng nhập số điện thoại"
-                                                           data-validation-required-message="Please enter your name."
-                                                           aria-invalid="false">
+                                                           oninvalid="this.setCustomValidity('Số điện thoại bắt buộc nhập')"
+                                                           oninput="this.setCustomValidity('')"
+                                                           aria-invalid="false"
+                                                           value="<?php
+                                                           if(!QdT_Library::isNullOrEmpty($this->cookie_customer['customer_phone']))
+                                                           {
+                                                               echo $this->cookie_customer['customer_phone'];
+                                                           }
+                                                           ?>"
+                                                           required>
 
                                                     <p class="help-block"></p>
                                                 </div>
                                             </div>
                                             <div class="control-group form-group">
                                                 <div class="controls">
-                                                    <input type="text" class="form-control" id="name" required=""
+                                                    <input type="text" class="form-control" name="customer_email"
                                                            placeholder="Vui lòng nhập Email (nếu có)"
-                                                           data-validation-required-message="Please enter your name."
-                                                           aria-invalid="false">
+                                                           oninvalid="this.setCustomValidity('Email bắt buộc nhập')"
+                                                           oninput="this.setCustomValidity('')"
+                                                           value="<?php
+                                                           if(!QdT_Library::isNullOrEmpty($this->cookie_customer['customer_email']))
+                                                           {
+                                                               echo $this->cookie_customer['customer_email'];
+                                                           }
+                                                           ?>"
+                                                           aria-invalid="false" required>
 
                                                     <p class="help-block"></p>
                                                 </div>
                                             </div>
                                             <div class="control-group form-group">
                                                 <div class="controls">
-                                                    <textarea rows="10" cols="100" class="form-control" id="message"
-                                                              required="" placeholder="Vui lòng ghi yêu cầu (nếu có)"
-                                                              data-validation-required-message="Please enter your message"
+                                                    <textarea rows="10" cols="100" class="form-control" name="mota"
+                                                              placeholder="Vui lòng ghi yêu cầu (nếu có)"
                                                               maxlength="999" style="resize:none"
                                                               aria-invalid="false"></textarea>
 
@@ -340,24 +386,54 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                             <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#myModal1">XÁC NHẬN
                                             </button> -->
-                                            <button id="formOrderDoneConfirm" type="button" class="btn btn-primary">XÁC NHẬN
+                                            <button id="formOrderDoneConfirm" type="submit" class="btn btn-primary">XÁC NHẬN
                                             </button>
                                             <script>
+                                                MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/product_order_port')?>';
                                                 (function($){
                                                     $(document).ready(function(){
                                                         $('#formOrderDoneConfirm').click(function(){
                                                             //send data to DataPort
-                                                            var customer_sex = $("#formOrder input:radio[name=sex]:checked" ).val();
+                                                            var json = form2js("formOrder", ".", false, null, true);
+                                                            //validate
+                                                            if(json.customer_name=='') return;
+                                                            if(json.customer_phone=='') return;
+                                                            if(json.customer_email=='') return;
+                                                            if(json.sex=='') return;
 
-                                                            customer_sex = customer_sex == "male" ? "Anh" : (customer_sex == "female"?"Chị":"");
-                                                            var customer_name = $("#name").val();
+                                                            console.log(json);
+                                                            //save to cookie
+                                                            Cookies.set('customer', json, { expires: 7 });
+                                                            //lock button
+                                                            $("#formOrderDoneConfirm").attr("disabled", true);
+
+                                                            //show progress bar
                                                             //...
-                                                            //if OK
-                                                            var tpl = MYAPP.TplReplace(["{customer_title}","{customer_name}","{product_name}"], [customer_sex, customer_name, MYAPP.PageInfo.product_obj[0].name], MYAPP.PageInfo.product_order_setup[0].form_order_done_tpl);
+                                                            $.post(MYAPP.PageInfo.DataPort, {submit: "submit", action: "insert", data: json})
+                                                                .done(function (data) {
+                                                                    //data JSON
+                                                                    console.log(data);
+                                                                    //var obj = data;//"ok";//jQuery.parseJSON( data );//may throw error if data aldreay JSON format
+                                                                    var customer_sex = $("#formOrder input:radio[name=sex]:checked" ).val();
+
+                                                                    customer_sex = customer_sex == 1 ? "Anh" : (customer_sex == 0?"Chị":"");
+                                                                    var customer_name = $("#formOrder input[name=customer_name]" ).val();
+                                                                    //...
+                                                                    //if OK
+                                                                    var tpl = MYAPP.TplReplace(["{customer_title}","{customer_name}","{product_name}"], [customer_sex, customer_name, MYAPP.PageInfo.product_obj[0].name], MYAPP.PageInfo.product_order_setup[0].form_order_done_tpl);
 
 
-                                                            $("#formOrderDoneTpl").html(tpl);
-                                                            $("#myModal1").modal('show');
+                                                                    $("#formOrderDoneTpl").html(tpl);
+                                                                    $("#myModal1").modal('show');
+
+                                                                })
+                                                                .fail(function (data) {
+                                                                    console.log(data);
+                                                                })
+                                                                .always(function () {
+                                                                    //release lock
+                                                                    $("#formOrderDoneConfirm").removeAttr("disabled");
+                                                                });
                                                         });
                                                     });
                                                 })(jQuery);
