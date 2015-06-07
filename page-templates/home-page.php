@@ -3,6 +3,9 @@
 /*
 Template Name: Trang chủ
 */
+/*
+ * Version: 150607
+ * */
 QdT_Library::loadLayout('root');
 
 class QdT_PageT_HomePage extends QdT_Layout_Root
@@ -46,9 +49,9 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
         <div class="container-non-responsive">
             <div class="row">
                 <div class="col-lg-12" style="margin-top: 20px;">
-                    <h2 class="page-header">
+                    <h3 class="page-header">
                         <?= $item->title ?>
-                    </h2>
+                    </h3>
                 </div>
             </div>
             <div class="row">
@@ -127,11 +130,11 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
             <!-- Title BIG SALE -->
             <div class="row">
                 <div class="col-lg-12" style="margin-top: 20px;">
-                    <h2 class="page-header">
+                    <h3 class="page-header">
                         <?php
                         echo $this->big_sale_cat->name;
                         ?>
-                    </h2>
+                    </h3>
                 </div>
             </div>
 

@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Version: 150607
+ * */
 QdT_Library::loadLayout('root');
 
 class QdT_PageT_About extends QdT_Layout_Root
@@ -53,7 +55,6 @@ class QdT_PageT_About extends QdT_Layout_Root
     {
         ?>
         <!--Begin -->
-        <div class="straight-full"></div> <!-- Border full màn hình-->
         <div class="container-non-responsive">
             <div class="row">
                 <div class="col-xs-5 size-gioithieu">
@@ -75,7 +76,6 @@ class QdT_PageT_About extends QdT_Layout_Root
     {
         ?>
         <!--Begin -->
-        <div class="straight-full"></div> <!-- Border full màn hình-->
         <div class="container-non-responsive">
             <div class="row">
                 <div class="col-xs-7 size-gioithieu">
@@ -97,7 +97,6 @@ class QdT_PageT_About extends QdT_Layout_Root
     {
         ?>
         <!--Begin -->
-        <div class="straight-full"></div> <!-- Border full màn hình-->
         <div class="container-non-responsive">
             <div class="row">
                 <div class="col-xs-12 size-gioithieu">
@@ -116,7 +115,6 @@ class QdT_PageT_About extends QdT_Layout_Root
     {
         ?>
         <!--Begin -->
-        <div class="straight-full"></div> <!-- Border full màn hình-->
         <div class="container-non-responsive">
             <div class="row">
                 <div class="col-xs-12 size-gioithieu">
