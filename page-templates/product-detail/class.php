@@ -8,26 +8,12 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
     private $r_products = array();
     private $product_imgs = array();
     private $size = null;
-    private $cookie_customer = array();
 
     private $product_order_setup = null;
 
     function __construct()
     {
         parent::__construct();
-
-        //get cookie
-        if(isset($_COOKIE["customer"]))
-        {
-            $tmp = $_COOKIE["customer"];
-            $tmp = str_replace('\\"', '"', $tmp);
-            $this->cookie_customer = json_decode($tmp, true);
-        }
-        else
-        {
-            $this->cookie_customer = array();
-        }
-
 
         $this->product_order_setup = QdSetupProductOrder::GET();
         $this->product = QdProduct::GET(get_query_var('id', 0));
@@ -64,7 +50,6 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
     {
         QdJqwidgets::loadSinglePluginJS("form2js.js");
         QdJqwidgets::loadSinglePluginJS("js.cookie.js");
-        //QdJqwidgets::loadSinglePluginJS("ajax-loader.js");
     }
 
     protected function setPageInfoToClient()
@@ -392,7 +377,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                                 MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/product_order_port')?>';
                                                 (function($){
                                                     $(document).ready(function(){
-                                                        $('#formOrderDoneConfirm').click(function(){
+                                                        $('#formContactSubmit').click(function(){
                                                             //send data to DataPort
                                                             var json = form2js("formOrder", ".", false, null, true);
                                                             //validate
@@ -405,7 +390,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                                             //save to cookie
                                                             Cookies.set('customer', json, { expires: 7 });
                                                             //lock button
-                                                            $("#formOrderDoneConfirm").attr("disabled", true);
+                                                            $("#formContactSubmit").attr("disabled", true);
 
                                                             //show progress bar
                                                             //...
@@ -432,7 +417,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                                                 })
                                                                 .always(function () {
                                                                     //release lock
-                                                                    $("#formOrderDoneConfirm").removeAttr("disabled");
+                                                                    $("#formContactSubmit").removeAttr("disabled");
                                                                 });
                                                         });
                                                     });

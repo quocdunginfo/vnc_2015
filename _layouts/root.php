@@ -15,9 +15,22 @@ class QdT_Layout_Root
     protected $partner_list = array();
     protected $theme_root_setup = null;
     protected $product_setup = null;
+    protected $cookie_customer = array();
 
     function __construct()
     {
+        //get cookie
+        if(isset($_COOKIE["customer"]))
+        {
+            $tmp = $_COOKIE["customer"];
+            $tmp = str_replace('\\"', '"', $tmp);
+            $this->cookie_customer = json_decode($tmp, true);
+        }
+        else
+        {
+            $this->cookie_customer = array();
+        }
+
         $this->uri = $_SERVER['REQUEST_URI'];
 
         $this->theme_root_setup = QdTRootSetup::GET();
@@ -48,6 +61,7 @@ class QdT_Layout_Root
         $record->SETRANGE('active', true, true);
         $record->SETORDERBY('order', 'asc');
         $this->partner_list = $record->GETLIST();
+
         //END Partner
         $this->loadScript();
     }

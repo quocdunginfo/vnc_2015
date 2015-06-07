@@ -66,11 +66,11 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
         }
 
         $record = new QdSize();
-        $record->SETRANGE('type', QdSize::$TYPE_QUANAO);
+        $record->SETRANGE('type', QdManufactor::$TYPE2_MANUFACTOR_QUANAO);
         $this->size_quanao_list = $record->GETLIST();
 
         $record->REMOVERANGE('type');
-        $record->SETRANGE('type', QdSize::$TYPE_GIAYDEP);
+        $record->SETRANGE('type', QdManufactor::$TYPE2_MANUFACTOR_GIAYDEP);
         $this->size_giaydep_list = $record->GETLIST();
     }
 
@@ -470,11 +470,11 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     protected function getSizeQuanAoPart()
     {
         if (
-            (!QdT_Library::isNullOrEmpty($this->product_cat) && $this->product_cat->type2 == QdManufactorQA::$TYPE2_MANUFACTOR_QUANAO)
+            (!QdT_Library::isNullOrEmpty($this->product_cat) && $this->product_cat->type2 == QdManufactor::$TYPE2_MANUFACTOR_QUANAO)
             ||
-            (!QdT_Library::isNullOrEmpty($this->manufactor) && $this->manufactor->type == QdManufactorQA::$TYPE2_MANUFACTOR_QUANAO)
+            (!QdT_Library::isNullOrEmpty($this->manufactor) && $this->manufactor->type == QdManufactor::$TYPE2_MANUFACTOR_QUANAO)
             ||
-            (!QdT_Library::isNullOrEmpty($this->size) && $this->size->type == QdSize::$TYPE_QUANAO)
+            (!QdT_Library::isNullOrEmpty($this->size) && $this->size->type == QdManufactor::$TYPE2_MANUFACTOR_QUANAO)
         ):
             ?>
             <!-- Size quan ao -->
@@ -529,11 +529,11 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     protected function getSizeGiayDepPart()
     {
         if (
-            (!QdT_Library::isNullOrEmpty($this->product_cat) && $this->product_cat->type2 == QdManufactorQA::$TYPE2_MANUFACTOR_GIAYDEP)
+            (!QdT_Library::isNullOrEmpty($this->product_cat) && $this->product_cat->type2 == QdManufactor::$TYPE2_MANUFACTOR_GIAYDEP)
             ||
-            (!QdT_Library::isNullOrEmpty($this->manufactor) && $this->manufactor->type == QdManufactorQA::$TYPE2_MANUFACTOR_GIAYDEP)
+            (!QdT_Library::isNullOrEmpty($this->manufactor) && $this->manufactor->type == QdManufactor::$TYPE2_MANUFACTOR_GIAYDEP)
             ||
-            (!QdT_Library::isNullOrEmpty($this->size) && $this->size->type == QdSize::$TYPE_GIAYDEP)
+            (!QdT_Library::isNullOrEmpty($this->size) && $this->size->type == QdManufactor::$TYPE2_MANUFACTOR_GIAYDEP)
         ):
             ?>
             <!-- Size giay dep -->
