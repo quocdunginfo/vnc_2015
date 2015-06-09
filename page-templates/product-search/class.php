@@ -432,6 +432,18 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
 
         <?= $this->getSizeGiayDepPart() ?>
 
+        <?=$this->getManufactorPart()?>
+
+        </div>
+        </div>
+        </div>
+        <!-- End Content -->
+    <?php
+    }
+    protected function getManufactorPart()
+    {
+        if(QdT_Library::isNullOrEmpty($this->manufactor_list)) return;
+        ?>
         <!-- Tìm theo hãng -->
         <div class="row">
             <div class="col-xs-12">
@@ -445,28 +457,11 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
                     <?php
                     endforeach;
                     ?>
-                    <!--
-                    <li><a href="#" class="product-links">Samsung</a></li>
-                    <li><a href="#" class="product-links">hTC</a></li>
-                    <li><a href="#" class="product-links">BB</a></li>
-                    <li><a href="#" class="product-links">Nokia</a></li>
-                    <li><a href="#" class="product-links">Hãng 6</a></li>
-                    <li><a href="#" class="product-links">Hãng 6</a></li>
-                    <li><a href="#" class="product-links">Hãng 6</a></li>
-                    <li><a href="#" class="product-links">Hãng 6</a></li>
-                    <li><a href="#" class="product-links">Hãng 6</a></li>
-                    -->
                 </ul>
             </div>
         </div>
-
-        </div>
-        </div>
-        </div>
-        <!-- End Content -->
-    <?php
+        <?php
     }
-
     protected function getSizeQuanAoPart()
     {
         if (

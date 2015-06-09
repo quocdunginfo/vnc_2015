@@ -167,6 +167,11 @@ class QdT_Layout_Root
 
             <?= QdT_Library::FERequestCompactLayout() ?>
             <?=$this->setPageInfoToClient()?>
+            <style>
+                b, strong {
+                    font-weight: bold;
+                }
+            </style>
         </head>
 
         <body <?php body_class(); ?> style="/*background: rgba(0,0,0,0.1);*/">
@@ -214,7 +219,7 @@ class QdT_Layout_Root
         <div class="vn-cas-logo">
             <div class="container-non-responsive">
                 <div class="logo">
-                    <img src="<?= $this->data['vnc_logo'] ?>" style="height: 92px;width: 344px;">
+                    <a href="<?=get_home_url()?>"><img src="<?= $this->data['vnc_logo'] ?>" style="height: 92px;width: 344px;"></a>
                 </div>
             </div>
         </div>

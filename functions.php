@@ -51,20 +51,6 @@ function mpd2015_widgets_init()
 
     register_sidebar(
         array(
-            'name' => __('Right menu - Gioi thieu', 'twentyfourteen3'),
-            'id' => 'sidebar-right-menu',
-            'description' => __('Introduction layout - Right menu - Gioi thieu', 'twentyfourteen3')
-        )
-    );
-    register_sidebar(
-        array(
-            'name' => __('Right menu - Tuyen dung', 'twentyfourteen4'),
-            'id' => 'sidebar-right-menu-tuyendung',
-            'description' => __('Introduction layout - Right menu - Tuyen dung', 'twentyfourteen4'),
-        )
-    );
-    register_sidebar(
-        array(
             'name' => __('Right menu - Dich vu', 'twentyfourteen5'),
             'id' => 'sidebar-right-menu-dichvu',
             'description' => __('Introduction layout - Right menu - Dich vu', 'twentyfourteen5'),
@@ -103,13 +89,6 @@ function mpd2015_widgets_init()
             'name' => __('Footer bottom', 'twentyfourteen9'),
             'id' => 'sidebar-footer-bottom',
             'description' => __('Footer bottom', 'twentyfourteen9'),
-        )
-    );
-    register_sidebar(
-        array(
-            'name' => __('Right menu - Product Cat', 'twentyfourteen10'),
-            'id' => 'sidebar-right-menu-productcat',
-            'description' => __('Right menu - Product Cat', 'twentyfourteen10'),
         )
     );
 }

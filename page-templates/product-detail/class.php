@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Version: 150607
+ * */
 QdT_Library::loadLayout('root');
 
 class QdT_PageT_ProductDetail extends QdT_Layout_Root
@@ -60,7 +62,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
             MYAPP.PageInfo.product_order_setup = <?=json_encode(QdSetupProductOrder::toJSON(array($this->product_order_setup)))?>;
             MYAPP.PageInfo.product_obj = <?=json_encode(QdProduct::toJSON(array($this->product)))?>;
         </script>
-        <?php
+    <?php
     }
 
     private function dialog()
@@ -83,30 +85,53 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
         <div class="row">
 
         <!--Left-->
-        <div class="col-xs-7">
+        <div class="col-xs-6 edit-slider-768">
             <!-- Limited -->
-            <div id="bigPic">
-                <?php
-                $count = 0;
-                foreach ($this->product_imgs as $item):
-                    ?>
-                    <img src="<?= $item->path ?>" alt=""
-                         style="display: <?= $count == 0 ? 'block' : 'none' ?>; opacity: 1; z-index: 1;">
+                <div id="bigPic">
                     <?php
-                    $count++;
-                endforeach; ?>
-                <!--
-                <img src="imgs/2.jpg" alt="" style="display: block; opacity: 1; z-index: 1;">
-                <img src="imgs/3.jpg" alt="" style="display: none; opacity: 1; z-index: 1;">
-                <img src="imgs/4.jpg" alt="" style="display: none; opacity: 1; z-index: 1;">
-                <img src="imgs/5.jpg" alt="" style="display: none; opacity: 1; z-index: 1;">
-                <img src="imgs/6.jpg" alt="" style="display: none; opacity: 1; z-index: 1;">
-                <img src="imgs/7.jpg" alt="" style="display: none; opacity: 1; z-index: 1;">
-                <img src="imgs/8.jpg" alt="" style="display: none; opacity: 1; z-index: 1;">
-                <img src="imgs/9.jpg" alt="" style="display: none; opacity: 1; z-index: 1;">
-                <img src="imgs/10.jpg" alt="" style="display: none; opacity: 1; z-index: 1;"> -->
+                    $count = 0;
+                    foreach ($this->product_imgs as $item):
+                        ?>
+                        <img src="<?= $item->path ?>" alt=""
+                             style="border:1px solid #CCC;padding: 1px;">
+                        <?php
+                        $count++;
+                    endforeach; ?>
+                </div>
+            <script>
+                (function ($) {
+                    $(document).ready(function () {
+                        $('#bigPic img').click(function(){
+                            $('#picture-Popup .vn-popup-slide-sanpham').css('background-image', "url('"+$(this).attr('src')+"')");
+                            $('#picture-Popup').modal('show');
+                        });
+                    });
+                })(jQuery);
+            </script>
+            <!-- Modal 3 -->
+            <div class="modal fade" id="picture-Popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content" style="">
+                        <div class="modal-header" style="border-bottom: 0px;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="vn-popup-slide-sanpham" style="background-image: url('img/current 3.jpg');
+                                                                                        background-repeat: no-repeat;
+                                                                                        background-size: contain;
+                                                                                        background-position: center;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
+            <!-- Modal -->
 
             <ul id="thumbs">
                 <?php
@@ -117,23 +142,13 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                     <?php
                     $count++;
                 endforeach; ?>
-                <!--
-                <li rel="2" class="active"><img src="imgs/3_thumb.jpg" alt=""></li>
-                <li rel="3" class=""><img src="imgs/4_thumb.jpg" alt=""></li>
-                <li rel="4" class=""><img src="imgs/5_thumb.jpg" alt=""></li>
-                <li rel="5" class=""><img src="imgs/6_thumb.jpg" alt=""></li>
-                <li rel="6" class=""><img src="imgs/7_thumb.jpg" alt=""></li>
-                <li rel="7" class=""><img src="imgs/8_thumb.jpg" alt=""></li>
-                <li rel="8" class=""><img src="imgs/9_thumb.jpg" alt=""></li>
-                <li rel="9" class=""><img src="imgs/10_thumb.jpg" alt=""></li>
-                <li rel="10" class=""><img src="imgs/2_thumb.jpg" alt=""></li> -->
             </ul>
 
             <!-- Limited -->
         </div>
 
         <!--Right-->
-        <div class="col-xs-5 product-detail-right">
+        <div class="col-xs-6 product-detail-right">
         <div class="row">
             <div class="col-xs-12">
                 <div class="vn-title">
@@ -150,7 +165,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                         <div class="title">
                             No.
                         </div>
-                        <div class="id">
+                        <div class="id" style="padding-left: 5px;">
                             <?= $this->product->code ?>
                         </div>
                     </div>
@@ -200,13 +215,13 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
             </div>
         </div>
 
-        <hr style="margin-top: 5px; margin-bottom: 10px;">
+        <hr style="margin-top: 10px; margin-bottom: 10px;">
 
         <!-- Detail -->
         <div class="row">
             <div class="col-xs-12">
                 <div class="vn-product-detail">
-                    <ul class="nav nav-tabs">
+                    <ul class="nav nav-tabs" style="white-space: nowrap !important;">
                         <li class="active"><a data-toggle="tab" href="#mo-ta">MÔ TẢ SẢN PHẨM</a></li>
                         <li>
                             <div class="vn-symbol">|</div>
@@ -215,18 +230,18 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                         <li>
                             <div class="vn-symbol">|</div>
                         </li>
-                        <li><a data-toggle="tab" href="#giao-hang">GIAO HÀNG VÀ THANH TOÁN</a></li>
+                        <li><a data-toggle="tab" href="#giao-hang">GIAO HÀNG</a></li>
                     </ul>
                 </div>
                 <div class="tab-content">
-                    <div id="mo-ta" class="tab-pane fade in active" style="margin-top: 15px;">
+                    <div id="mo-ta" class="tab-pane fade in active product-list2  edit-font-size"
+                         style="margin-top: 15px;">
                         <?= $this->product->description ?>
-                        <!-- <div class="ps"> ĐẶT MUA TẶNG: bAO DA KAKA TRỊ GIÁ 300K !</div> -->
                     </div>
-                    <div id="bao-hanh" class="tab-pane fade" style="margin-top: 15px;">
+                    <div id="bao-hanh" class="tab-pane fade product-list2  edit-font-size" style="margin-top: 15px;">
                         <?= $this->product->doitra_baohanh ?>
                     </div>
-                    <div id="giao-hang" class="tab-pane fade" style="margin-top: 15px;">
+                    <div id="giao-hang" class="tab-pane fade product-list2  edit-font-size" style="margin-top: 15px;">
                         <?= $this->product->giaohang_thanhtoan ?>
                     </div>
                 </div>
@@ -235,254 +250,266 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
 
         <!-- Button đặt hàng -->
         <div class="row">
-            <div class="col-xs-6" data-role="main">
-                <button type="button" class="btn btn-primary order-online-button" data-toggle="modal"
-                        data-target="#myModal"> <?=$this->product_order_setup->btn_dathang?>
-                </button>
+        <div class="col-xs-12">
+            <div class="ps"> ĐẶT MUA TẶNG: BAO DA KAKA TRỊ GIÁ 300K !</div>
+        </div>
+        <div class="col-xs-5" data-role="main" style="padding-right: 0px;">
+        <button type="button" class="btn btn-primary order-online-button" data-toggle="modal"
+                data-target="#myModal"> <?= $this->product_order_setup->btn_dathang ?>
+        </button>
 
-                <!-- Modal -->
-                <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog"
-                     aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">×</span></button>
-                                <div class="vn-modal-title"><?=$this->product_order_setup->order_form_title?></div>
+        <!-- Modal -->
+        <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header vn-modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">X</span></button>
+                        <div class="vn-modal-title"><?= $this->product_order_setup->order_form_title ?></div>
+                    </div>
+                    <div class="modal-body vn-modal-body">
+                        <div class="row">
+                            <div class="col-xs-5 column" style="height:330px; margin-left: 25px;">
+                                <div>
+                                    <div class="vn-sanpham-box-modal edit-size-sanpham-popup"
+                                         style="background: url('<?= $this->product->avatar ?>');
+                                             background-repeat: no-repeat;
+                                             background-size: contain;
+                                             background-position: center;">
+                                    </div>
+                                    <p class="p-edit-1">
+                                        <?= $this->product->name ?>
+                                    </p>
+
+                                    <p class="p-edit-1">
+                                        <b style="color: rgb(131,131,132);font-weight: normal;">
+                                            <?= number_format($this->product->price, 0, '.', ',') ?>
+                                            VND</b>
+                                        <img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b>
+                                        <br>
+                                        <b style="color: #C80815;">
+                                            <?= number_format($this->product->_price_discount, 0, '.', ',') ?>
+                                            VND (OFF <?= $this->product->discount_percent * 100 ?>%)
+                                        </b>
+                                    </p>
+                                </div>
+                                <div style="position: absolute;bottom: 5px;font-size: 16px; ">
+                                    <?= $this->product_order_setup->support_phone ?>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-xs-5" style="height:450px;">
-                                        <div>
-                                            <div class="vn-sanpham-box-modal"
-                                                 style="background: url('<?= $this->product->avatar ?>');
-                                                     background-repeat: no-repeat;
-                                                     background-size: contain;
-                                                     background-position: center;">
-                                            </div>
-                                            <p class="p-edit-1">
-                                                <?= $this->product->name ?>
-                                            </p>
+                            <div class="col-xs-6" style="height:330px; padding-left: 0px; padding-right: 0px; ">
+                                <form id="formOrder" onsubmit="return false">
+                                    <input type="hidden" name="product_id"
+                                           value="<?= $this->product->id ?>">
+                                    <input type="hidden" name="count"
+                                           value="1">
 
-                                            <p class="p-edit-1">
-                                                <b style="color: rgb(131,131,132);font-weight: normal;">
-                                                    <?= number_format($this->product->price, 0, '.', ',') ?>
-                                                    VND</b>
-                                                <img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b>
-                                                <br>
-                                                <b style="color: #C80815;">
-                                                    <?= number_format($this->product->_price_discount, 0, '.', ',') ?>
-                                                    VND (<?= $this->product->discount_percent * 100 ?>% OFF)
-                                                </b>
-                                            </p>
-                                        </div>
-                                        <div style="position: absolute;bottom: 15px;left: 15px;font-size: 16px; ">
-                                            <?=$this->product_order_setup->support_phone?>
+                                    <div class="row">
+                                        <?php
+                                        if (QdT_Library::isNullOrEmpty($this->cookie_customer['sex'])) {
+                                            $this->cookie_customer['sex'] = "1";
+                                        }
+                                        ?>
+
+                                        <div class="col-xs-12">
+                                            <input type="radio" name="sex"
+                                                   value="1" <?= $this->cookie_customer['sex'] == "1" ? "checked" : "" ?>><label
+                                                style="margin-left: 5px; margin-bottom: 10px;">Anh</label>
+                                            <input type="radio" name="sex"
+                                                   value="0" <?= $this->cookie_customer['sex'] == "0" ? "checked" : "" ?>
+                                                   style="margin-left: 15px;"><label
+                                                style="margin-left: 5px;">Chị</label>
                                         </div>
                                     </div>
-                                    <div class="col-xs-7">
-                                        <form id="formOrder" onsubmit="return false">
-                                            <input type="hidden" name="product_id"
-                                                   value="<?= $this->product->id ?>">
-                                            <input type="hidden" name="count"
-                                                   value="1">
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            <input type="text" class="form-control" name="customer_name"
+                                                   placeholder="Vui lòng nhập họ tên"
+                                                   aria-invalid="false"
+                                                   oninvalid="this.setCustomValidity('Họ tên bắt buộc nhập')"
+                                                   oninput="this.setCustomValidity('')"
+                                                   value="<?php
+                                                   if (!QdT_Library::isNullOrEmpty($this->cookie_customer['customer_name'])) {
+                                                       echo $this->cookie_customer['customer_name'];
+                                                   }
+                                                   ?>"
+                                                   required autofocus>
 
-                                            <div class="row">
-                                                <?php
-                                                if(QdT_Library::isNullOrEmpty($this->cookie_customer['sex']))
-                                                {
-                                                    $this->cookie_customer['sex'] = "1";
-                                                }
-                                                ?>
+                                            <p class="help-block"></p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            <input type="text" class="form-control" name="customer_phone"
+                                                   placeholder="Vui lòng nhập số điện thoại"
+                                                   oninvalid="this.setCustomValidity('Số điện thoại bắt buộc nhập')"
+                                                   oninput="this.setCustomValidity('')"
+                                                   aria-invalid="false"
+                                                   value="<?php
+                                                   if (!QdT_Library::isNullOrEmpty($this->cookie_customer['customer_phone'])) {
+                                                       echo $this->cookie_customer['customer_phone'];
+                                                   }
+                                                   ?>"
+                                                   required>
 
-                                                <div class="col-xs-6">
-                                                    <input type="radio" name="sex" value="1" <?=$this->cookie_customer['sex']=="1"?"checked":""?>><label
-                                                        style="margin-left: 5px;">Anh</label>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <input type="radio" name="sex" value="0" <?=$this->cookie_customer['sex']=="0"?"checked":""?>><label
-                                                        style="margin-left: 5px;">Chị</label>
-                                                </div>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <div class="controls">
-                                                    <input type="text" class="form-control" name="customer_name"
-                                                           placeholder="Vui lòng nhập họ tên"
-                                                           aria-invalid="false"
-                                                           oninvalid="this.setCustomValidity('Họ tên bắt buộc nhập')"
-                                                           oninput="this.setCustomValidity('')"
-                                                           value="<?php
-                                                           if(!QdT_Library::isNullOrEmpty($this->cookie_customer['customer_name']))
-                                                           {
-                                                               echo $this->cookie_customer['customer_name'];
-                                                           }
-                                                           ?>"
-                                                           required autofocus>
+                                            <p class="help-block"></p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            <input type="text" class="form-control" name="customer_email"
+                                                   placeholder="Vui lòng nhập Email (nếu có)"
+                                                   oninvalid="this.setCustomValidity('Email bắt buộc nhập')"
+                                                   oninput="this.setCustomValidity('')"
+                                                   value="<?php
+                                                   if (!QdT_Library::isNullOrEmpty($this->cookie_customer['customer_email'])) {
+                                                       echo $this->cookie_customer['customer_email'];
+                                                   }
+                                                   ?>"
+                                                   aria-invalid="false" required>
 
-                                                    <p class="help-block"></p>
-                                                </div>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <div class="controls">
-                                                    <input type="text" class="form-control" name="customer_phone"
-                                                           placeholder="Vui lòng nhập số điện thoại"
-                                                           oninvalid="this.setCustomValidity('Số điện thoại bắt buộc nhập')"
-                                                           oninput="this.setCustomValidity('')"
-                                                           aria-invalid="false"
-                                                           value="<?php
-                                                           if(!QdT_Library::isNullOrEmpty($this->cookie_customer['customer_phone']))
-                                                           {
-                                                               echo $this->cookie_customer['customer_phone'];
-                                                           }
-                                                           ?>"
-                                                           required>
+                                            <p class="help-block"></p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group form-group">
+                                        <div class="controls">
+                                            <textarea rows="10" cols="100" class="form-control" name="mota"
+                                                      placeholder="Vui lòng ghi yêu cầu (nếu có)"
+                                                      maxlength="999" style="resize:none"
+                                                      aria-invalid="false"></textarea>
 
-                                                    <p class="help-block"></p>
-                                                </div>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <div class="controls">
-                                                    <input type="text" class="form-control" name="customer_email"
-                                                           placeholder="Vui lòng nhập Email (nếu có)"
-                                                           oninvalid="this.setCustomValidity('Email bắt buộc nhập')"
-                                                           oninput="this.setCustomValidity('')"
-                                                           value="<?php
-                                                           if(!QdT_Library::isNullOrEmpty($this->cookie_customer['customer_email']))
-                                                           {
-                                                               echo $this->cookie_customer['customer_email'];
-                                                           }
-                                                           ?>"
-                                                           aria-invalid="false" required>
+                                            <p class="help-block"></p>
+                                        </div>
+                                    </div>
 
-                                                    <p class="help-block"></p>
-                                                </div>
-                                            </div>
-                                            <div class="control-group form-group">
-                                                <div class="controls">
-                                                    <textarea rows="10" cols="100" class="form-control" name="mota"
-                                                              placeholder="Vui lòng ghi yêu cầu (nếu có)"
-                                                              maxlength="999" style="resize:none"
-                                                              aria-invalid="false"></textarea>
+                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#myModal1">XÁC NHẬN
+                                    </button> -->
+                                    <button id="formOrderDoneConfirm" type="submit" class="btn btn-primary"
+                                            style="width:150px;">XÁC NHẬN
+                                    </button>
+                                    <script>
+                                        MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/product_order_port')?>';
+                                        (function ($) {
+                                            $(document).ready(function () {
+                                                $('#formOrderDoneConfirm').click(function () {
+                                                    //send data to DataPort
+                                                    var json = form2js("formOrder", ".", false, null, true);
+                                                    //validate
+                                                    if (json.customer_name == '') return;
+                                                    if (json.customer_phone == '') return;
+                                                    if (json.customer_email == '') return;
+                                                    if (json.sex == '') return;
 
-                                                    <p class="help-block"></p>
-                                                </div>
-                                            </div>
+                                                    console.log(json);
+                                                    //save to cookie
+                                                    Cookies.set('customer', json, {expires: 7});
+                                                    //lock button
+                                                    $("#formOrderDoneConfirm").attr("disabled", true);
 
-                                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#myModal1">XÁC NHẬN
-                                            </button> -->
-                                            <button id="formOrderDoneConfirm" type="submit" class="btn btn-primary">XÁC NHẬN
-                                            </button>
-                                            <script>
-                                                MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/product_order_port')?>';
-                                                (function($){
-                                                    $(document).ready(function(){
-                                                        $('#formContactSubmit').click(function(){
-                                                            //send data to DataPort
-                                                            var json = form2js("formOrder", ".", false, null, true);
-                                                            //validate
-                                                            if(json.customer_name=='') return;
-                                                            if(json.customer_phone=='') return;
-                                                            if(json.customer_email=='') return;
-                                                            if(json.sex=='') return;
+                                                    //show progress bar
+                                                    //...
+                                                    $.post(MYAPP.PageInfo.DataPort, {
+                                                        submit: "submit",
+                                                        action: "insert",
+                                                        data: json
+                                                    })
+                                                        .done(function (data) {
+                                                            //data JSON
+                                                            console.log(data);
+                                                            //var obj = data;//"ok";//jQuery.parseJSON( data );//may throw error if data aldreay JSON format
+                                                            var customer_sex = $("#formOrder input:radio[name=sex]:checked").val();
 
-                                                            console.log(json);
-                                                            //save to cookie
-                                                            Cookies.set('customer', json, { expires: 7 });
-                                                            //lock button
-                                                            $("#formContactSubmit").attr("disabled", true);
-
-                                                            //show progress bar
+                                                            customer_sex = customer_sex == 1 ? "Anh" : (customer_sex == 0 ? "Chị" : "");
+                                                            var customer_name = $("#formOrder input[name=customer_name]").val();
                                                             //...
-                                                            $.post(MYAPP.PageInfo.DataPort, {submit: "submit", action: "insert", data: json})
-                                                                .done(function (data) {
-                                                                    //data JSON
-                                                                    console.log(data);
-                                                                    //var obj = data;//"ok";//jQuery.parseJSON( data );//may throw error if data aldreay JSON format
-                                                                    var customer_sex = $("#formOrder input:radio[name=sex]:checked" ).val();
-
-                                                                    customer_sex = customer_sex == 1 ? "Anh" : (customer_sex == 0?"Chị":"");
-                                                                    var customer_name = $("#formOrder input[name=customer_name]" ).val();
-                                                                    //...
-                                                                    //if OK
-                                                                    var tpl = MYAPP.TplReplace(["{customer_title}","{customer_name}","{product_name}"], [customer_sex, customer_name, MYAPP.PageInfo.product_obj[0].name], MYAPP.PageInfo.product_order_setup[0].form_order_done_tpl);
+                                                            //if OK
+                                                            var tpl = MYAPP.TplReplace(["{customer_title}", "{customer_name}", "{product_name}"], [customer_sex, customer_name, MYAPP.PageInfo.product_obj[0].name], MYAPP.PageInfo.product_order_setup[0].form_order_done_tpl);
 
 
-                                                                    $("#formOrderDoneTpl").html(tpl);
-                                                                    $("#myModal1").modal('show');
+                                                            $("#formOrderDoneTpl").html(tpl);
+                                                            $("#myModal1").modal('show');
 
-                                                                })
-                                                                .fail(function (data) {
-                                                                    console.log(data);
-                                                                })
-                                                                .always(function () {
-                                                                    //release lock
-                                                                    $("#formContactSubmit").removeAttr("disabled");
-                                                                });
+                                                        })
+                                                        .fail(function (data) {
+                                                            console.log(data);
+                                                        })
+                                                        .always(function () {
+                                                            //release lock
+                                                            $("#formOrderDoneConfirm").removeAttr("disabled");
                                                         });
-                                                    });
-                                                })(jQuery);
-                                            </script>
-                                        </form>
-                                    </div>
+                                                });
+                                            });
+                                        })(jQuery);
+                                    </script>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+
+        <!-- Modal 2 -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="height:275px;">
+                    <div class="modal-header" style="border-bottom: 0px;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">X</span></button>
+                    </div>
+                    <div class="modal-body vn-modal-a">
+                        <div class="row">
+                            <div class="col-xs-7" style="height:232px;">
+                                <div
+                                    class="vn-modal1-title"><?= $this->product_order_setup->form_order_done_title ?></div>
+                                <div id="formOrderDoneTpl" class="col-xs-12" style="margin-top: 10px;">
+
+                                </div>
+                            </div>
+                            <div class="col-xs-5" style="padding-left: 0px;">
+                                <div class="vn-nhanvien-box-modal"
+                                     style="background: url('<?= $this->product_order_setup->form_order_done_avatar ?>');
+                                         background-position: center;
+                                         background-repeat: no-repeat;
+                                         background-size: contain;
+                                         height: 215px;">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Modal -->
-
-                <!-- Modal 2 -->
-                <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">×</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-xs-7">
-                                        <div class="vn-modal1-title"><?=$this->product_order_setup->form_order_done_title	?></div>
-                                        <div id="formOrderDoneTpl" class="col-xs-12 column" style="margin-top: 15px;">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <div class="vn-nhanvien-box-modal" style="background: url('<?=$this->product_order_setup->form_order_done_avatar?>');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Modal -->
-
             </div>
-            <div class="col-xs-6">
-                <a class="btn btn-default order-phone-button" href="#myPopup" data-rel="popup">
-                    <?=$this->product_order_setup->btn_goidathang?>
-                </a>
-            </div>
+        </div>
+        <!-- Modal -->
 
         </div>
-        <hr style="margin-top: 5px; margin-bottom: 10px;">
+        <div class="col-xs-7 vn-chitiet-922">
+            <button class="btn btn-default order-phone-button" href="#myPopup" data-rel="popup">
+                <?= $this->product_order_setup->btn_goidathang ?>
+            </button>
+        </div>
+
+        </div>
+        <hr style="margin-top: 20px; margin-bottom: 10px;">
 
         <!-- Shop hàng -->
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-8" style="font-weight: bold;">
                 MUA HÀNG TẠI SHOP
                 <br>
                 <a href="#" class="product-detail-shop">( xem Shop có hàng )</a>
 
             </div>
-            <div class="col-xs-4">
-                Share +
+            <div class="col-xs-3 edit-768">
+                <?php
+                $tmp = site_url($_SERVER["REQUEST_URI"]);
+                $tmp = "[addtoany url='{$tmp}' title='Some Example Page']";
+                echo do_shortcode($tmp);
+                ?>
             </div>
         </div>
         </div>

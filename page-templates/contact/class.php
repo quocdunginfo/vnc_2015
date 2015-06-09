@@ -187,9 +187,9 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
         <div class="row">
             <div class="col-xs-12">
                 <h5 style="margin-bottom: 0px;">
-                    <b>
+
                         <?= $this->contacts[0]->name ?>
-                    </b>
+
                 </h5>
 
                 <p>
@@ -210,9 +210,9 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
                 ?>
                 <div class="col-xs-6">
                     <h5 style="margin-bottom: 0px;">
-                        <b>
+
                             <?= $this->contacts[$i]->name ?>
-                        </b>
+
                     </h5>
 
                     <p>
