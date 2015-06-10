@@ -129,7 +129,7 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
                         <script>
                             MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/feedback_port')?>';
                             (function($){
-                                $(document).ready(function(){
+
                                     $('#formContactSubmit').click(function(){
                                         //send data to DataPort
                                         var json = form2js("formContact", ".", false, null, true);
@@ -161,7 +161,7 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
                                                 $("#formContactSubmit").removeAttr("disabled");
                                             });
                                     });
-                                });
+
                             })(jQuery);
                         </script>
                     </div>
@@ -231,4 +231,10 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
         </div>
     <?php
     }
+
+    protected function isContactPage()
+    {
+        return true;
+    }
+
 }

@@ -23,4 +23,10 @@ class QdT_PageT_FAQS extends QdCPT_IntroductionLayout
         global $post;
         return $post->post_title;
     }
+
+    protected function isFAQsPage()
+    {
+        return true;
+    }
+
 }

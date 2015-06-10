@@ -21,14 +21,13 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
         $pro_setup = QdSetupProduct::GET();
         $record = QdBigSaleCat::GET($pro_setup->bigsalecat_id);
         $this->big_sale_cat = $record;
-        $this->big_sale_products = $record->getProducts2();
+        if (!QdT_Library::isNullOrEmpty($this->big_sale_cat)) {
+            $this->big_sale_products = $record->getProducts2();
+        }
 
         $record = new QdBestChoiceCat();
         $this->bestchoicecat_list = $record->GETLIST();
-
     }
-
-
 
 
     protected function getContentTitle()
@@ -36,104 +35,81 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
         return '';
     }
 
-    protected function getContentPart()
+    private function getBestChoicePart()
     {
-        ?>
+        if (QdT_Library::isNullOrEmpty($this->bestchoicecat_list)) return;
 
-        <?php foreach ($this->bestchoicecat_list as $item):
-        $bci_record = $item->getBestChoiceItems();
-        $list2 = $bci_record->GETLIST();
-        if(count($list2)==0) continue;
-        ?>
-        <!-- BEST CHOICE 1 -->
-        <div class="container-non-responsive">
-            <div class="row">
-                <div class="col-lg-12" style="margin-top: 20px;">
-                    <h3 class="page-header">
-                        <?= $item->title ?>
-                    </h3>
+        foreach ($this->bestchoicecat_list as $item):
+            $bci_record = $item->getBestChoiceItems();
+            $list2 = $bci_record->GETLIST();
+            if (QdT_Library::isNullOrEmpty($list2)) continue;
+            ?>
+            <!-- BEST CHOICE 1 -->
+            <div class="container-non-responsive">
+                <div class="row">
+                    <div class="col-lg-12" style="margin-top: 20px;">
+                        <h3 class="page-header">
+                            <?= $item->title ?>
+                        </h3>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <?php
-                $count = 1;
-                foreach ($list2 as $item2): ?>
-                    <div class="col-xs-6 edit-right-7_5">
-                        <div class="vn-choise-box" style="background: url('<?= $item2->avatar ?>');
-                            background-repeat: no-repeat;
-                            background-size: contain;
-                            background-position: center;">
-                            <div class="vn-pic-title">
-                                <p>
-                                    <?= $item2->title ?>
-                                </p>
+                <div class="row">
+                    <?php
+                    $count = 1;
+                    foreach ($list2 as $item2): ?>
+
+                        <?php
+                        if (!QdT_Library::isNullOrEmpty($item2->link)):
+                            ?>
+                            <a href="<?= $item2->link ?>">
+                        <?php endif; ?>
+
+                        <div class="col-xs-6 edit-right-7_5">
+                            <div class="vn-choise-box" style="background: url('<?= $item2->avatar ?>');
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                background-position: center;">
+                                <div class="vn-pic-title">
+                                    <p <?php if ($item2->title_color != '') echo "style='color: {$item2->title_color}'"; ?>>
+
+                                        <?= $item2->title ?>
+
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?php
-                    if ($count % 2 == 0) echo '<div class="col-xs-12" style="height: 25px"></div>';//trick to avoid using new row and not overlap with other item
-                    $count++;
-                endforeach;
-                ?>
-            </div>
-        </div>
-        <!-- END BEST CHOICE 1 -->
-    <?php endforeach; ?>
 
-        <!-- BEST CHOICE 2
-        <div class="container-non-responsive">
-            <div class="row">
-                <div class="col-lg-12" style="margin-top: 20px;">
-                    <h2 class="page-header">BEST CHOICE</h2>
+                        <?php
+                        if (!QdT_Library::isNullOrEmpty($item2->link)):
+                            ?>
+                            </a>
+                        <?php endif; ?>
+                        <?php
+                        if ($count % 2 == 0) echo '<div class="col-xs-12" style="height: 25px"></div>';//trick to avoid using new row and not overlap with other item
+                        $count++;
+                    endforeach;
+                    ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-6 edit-right-7_5">
-                    <div class="vn-choise-box" style="background: url('img/current 3.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                        <div class="vn-pic-title">
-                            <p>ĐIỆN THOẠI VÀ PHỤ KIỆN</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 edit-left-7_5">
-                    <div class="vn-choise-box" style="background: url('img/current 3.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                        <div class="vn-pic-title">
-                            <p>THỜI TRANG</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- END BEST CHOICE 1 -->
 
-            <div class="row" style="margin-top: 25px;">
-                <div class="col-xs-6 edit-right-7_5">
-                    <div class="vn-choise-box" style="background: url('img/current 3.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                        <div class="vn-pic-title">
-                            <p>TRANG SỨC CAO CẤP</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        END BEST CHOICE 2 -->
+        <?php
 
+        endforeach;
+    }
+
+    private function getBigSalePart()
+    {
+        if (QdT_Library::isNullOrEmpty($this->big_sale_cat)) return;
+        if (QdT_Library::isNullOrEmpty($this->big_sale_products)) return;
+        ?>
         <!-- BIG SALE -->
         <div class="container-non-responsive">
             <!-- Title BIG SALE -->
             <div class="row">
                 <div class="col-lg-12" style="margin-top: 20px;">
                     <h3 class="page-header">
-                        <?php
-                        echo $this->big_sale_cat->name;
-                        ?>
+                        <?= $this->big_sale_cat->name; ?>
                     </h3>
                 </div>
             </div>
@@ -155,8 +131,12 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
 
         </div>
         <!-- END BIG SALE -->
-
     <?php
+    }
 
+    protected function getContentPart()
+    {
+        $this->getBestChoicePart();
+        $this->getBigSalePart();
     }
 }

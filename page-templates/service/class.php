@@ -28,4 +28,10 @@ class QdT_PageT_Service extends QdCPT_IntroductionLayout
     {
         return $this->obj->title;
     }
+
+    protected function isServicePage()
+    {
+        return true;
+    }
+
 }

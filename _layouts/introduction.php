@@ -11,6 +11,7 @@ QdT_Library::loadLayout('root');
 class QdCPT_IntroductionLayout extends QdT_Layout_Root
 {
     private $post_cats = array();
+    private $service_id = null;
 
     function __construct()
     {
@@ -20,6 +21,22 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
         $tmp->SETRANGE('type', QdPost::$TYPE_POST);
         $tmp->SETORDERBY('order', 'asc');
         $this->post_cats = $tmp->GETLIST();
+
+        if($this->isServicePage())
+            $this->service_id = get_query_var('id');
+    }
+
+    protected function isServicePage()
+    {
+        return false;
+    }
+    protected function isFAQsPage()
+    {
+        return false;
+    }
+    protected function isContactPage()
+    {
+        return false;
     }
 
     protected function getContentMain()
@@ -69,80 +86,6 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
                             //get_sidebar('right-menu-dichvu');
                             $this->genRightMenu();
                             ?>
-                            <!--
-                            <ul class="menu-list">
-                                <li id="vn-menu-dichvu"><a class="vn-menu-list-a" href="javascript:void(0)">DỊCH VỤ</a>
-                                </li>
-                                <ul id="sub-menu-dichvu" class="sub-menu">
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ thu mua và thanh lý</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ ký gửi</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ tài chính</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ bán sỉ và lẻ</li>
-                                    </a>
-                                </ul>
-                                <li id="vn-menu-huongdan"><a class="vn-menu-list-a" href="javascript:void(0)">HƯỚNG
-                                        DẪN</a></li>
-                                <ul id="sub-menu-huongdan" class="sub-menu">
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ thu mua và thanh lý</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ ký gửi</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ tài chính</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ bán sỉ và lẻ</li>
-                                    </a>
-                                </ul>
-                                <li id="vn-menu-giaohang"><a class="vn-menu-list-a" href="javascript:void(0)">GIAO HÀNG
-                                        - THANH TOÁN</a></li>
-                                <ul id="sub-menu-giaohang" class="sub-menu">
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ thu mua và thanh lý</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ ký gửi</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ tài chính</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ bán sỉ và lẻ</li>
-                                    </a>
-                                </ul>
-                                <li id="vn-menu-baohanh"><a class="vn-menu-list-a" href="javascript:void(0)">BẢO HÀNH -
-                                        ĐỔI TRẢ</a></li>
-                                <ul id="sub-menu-baohanh" class="sub-menu">
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ thu mua và thanh lý</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ ký gửi</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ tài chính</li>
-                                    </a>
-                                    <a class="vn-menu-list-sub-a" href="#">
-                                        <li>Dịch vụ bán sỉ và lẻ</li>
-                                    </a>
-                                </ul>
-                                <li id="sub-menu-faqs"><a class="vn-menu-list-a" href="javascript:void(0)">CÂU HỎI
-                                        THƯỜNG GẶP</a></li>
-                                <li id="sub-menu-lienhe"><a class="vn-menu-list-a" href="javascript:void(0)">LIÊN HỆ</a>
-                                </li>
-                                <li id="sub-menu-timshop"><a class="vn-menu-list-a" href="javascript:void(0)">TÌM
-                                        SHOP</a></li>
-                            </ul>
-                            -->
                         </div>
                         <div class="col-xs-12" style="margin-top: 25px;">
                             <img src="img/Arithry_Flex_SP.gif" alt="Smiley face" width="70%" style="margin-left: 40px;">
@@ -172,22 +115,40 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
     private function genRightMenu()
     {
         ?>
+        <style>
+            /*Cloned from JohnChuong: .vn-menu-list-sub-a:focus*/
+            .vn-menu-list-sub-a-active,
+            .vn-menu-list-a-active {
+                color: #4C4A4A;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        </style>
         <ul class="menu-list">
             <?php
             foreach ($this->post_cats as $item) :
+                $childs = $item->getChilds();
+                $childs = $childs->GETLIST();
+                $p_active = false;
+                foreach ($childs as $check_active) {
+                    if ($check_active->id == $this->service_id) {
+                        $p_active = true;
+                        break;
+                    }
+                }
+
                 ?>
                 <li id="vn-menu-<?= $item->id ?>">
-                    <a class="vn-menu-list-a" href="javascript:void(0)">
+                    <a class="vn-menu-list-a <?= $p_active ? 'vn-menu-list-a-active' : '' ?>" href="javascript:void(0)">
                         <?= $item->title ?>
                     </a>
                 </li>
-                <ul id="sub-menu-<?= $item->id ?>" class="sub-menu">
+                <ul id="sub-menu-<?= $item->id ?>" class="sub-menu <?= $p_active ? 'sub-menu-active' : '' ?>">
                     <?php
-                    $childs = $item->getChilds();
-                    $childs = $childs->GETLIST();
                     foreach ($childs as $child):
                         ?>
-                        <a class="vn-menu-list-sub-a" href="<?= $child->getPermalink() ?>">
+                        <a class="vn-menu-list-sub-a <?= ($this->service_id == $child->id) ? 'vn-menu-list-sub-a-active' : '' ?>"
+                           href="<?= $child->getPermalink() ?>">
                             <li>
                                 <?= $child->title ?>
                             </li>
@@ -197,12 +158,10 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
                     ?>
                 </ul>
                 <script>
-                    (function($){
-                        $(document).ready(function(){
-                            $('#vn-menu-<?=$item->id?>').click(function(){
-                                $('.sub-menu').hide();
-                                $('#sub-menu-<?=$item->id?>').show();
-                            });
+                    (function ($) {
+                        $('#vn-menu-<?=$item->id?>').click(function () {
+                            $('.sub-menu').hide();
+                            $('#sub-menu-<?=$item->id?>').show();
                         });
                     })(jQuery);
                 </script>
@@ -210,17 +169,25 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
             endforeach;
             ?>
 
+            <script>
+                (function ($) {
+                    $('.sub-menu-active').show();
+                })(jQuery);
+            </script>
 
             <?php
+            global $post;
             $tmp = wp_get_nav_menu_items('right-menu-dichvu');
-            foreach($tmp as $item):
-            ?>
+            foreach ($tmp as $item):
+                $url1 = $item->url;
+                $url2 = $this->uri;
+                ?>
 
-            <li>
-                <a class="vn-menu-list-a" href="<?=$item->url?>" target="<?=$item->target?>">
-                    <?= $item->title ?>
-                </a>
-            </li>
+                <li>
+                    <a class="vn-menu-list-a <?=strstr($url1, $url2)!=false?'vn-menu-list-a-active':''?>" href="<?= $item->url ?>" target="<?= $item->target ?>">
+                        <?= $item->title ?>
+                    </a>
+                </li>
 
             <?php
             endforeach;
