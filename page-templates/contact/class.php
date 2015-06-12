@@ -126,6 +126,7 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
                     <div class="row col-xs-12">
                         <button id="formContactSubmit" type="submit" class="btn btn-primary" style="width:180px; height: 36px; font-size: 18px;">GỬI
                         </button>
+                        <img id="qd-loading" src="img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
                         <script>
                             MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/feedback_port')?>';
                             (function($){
@@ -144,7 +145,8 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
                                         $("#formContactSubmit").attr("disabled", true);
 
                                         //show progress bar
-                                        //...
+                                        $('#qd-loading').css('display', 'inline-block');
+
                                         $.post(MYAPP.PageInfo.DataPort, {submit: "submit", action: "insert", data: json})
                                             .done(function (data) {
                                                 //data JSON
@@ -159,6 +161,7 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
                                             .always(function () {
                                                 //release lock
                                                 $("#formContactSubmit").removeAttr("disabled");
+                                                $('#qd-loading').css('display', 'none');
                                             });
                                     });
 

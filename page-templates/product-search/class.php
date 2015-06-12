@@ -25,6 +25,8 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
         //reset uri, filter side by side not INCLUDED query
         $this->uri = get_permalink(Qdmvc_Helper::getPageIdByTemplate('page-templates/product-search.php'));
 
+        $this->key_word = get_query_var('key-word', '');
+
         $tmp_product_cat_id = get_query_var('product-cat-id', null);
         if($tmp_product_cat_id!=null)
         {

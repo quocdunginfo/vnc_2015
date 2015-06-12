@@ -41,6 +41,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
 
         $this->r_products = $this->product->getRProducts2();
 
+
     }
 
     protected function getBannerPart()
@@ -383,12 +384,10 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                         </div>
                                     </div>
 
-                                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#myModal1">XÁC NHẬN
-                                    </button> -->
                                     <button id="formOrderDoneConfirm" type="submit" class="btn btn-primary"
                                             style="width:150px;">XÁC NHẬN
                                     </button>
+                                    <img id="qd-loading" src="img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
                                     <script>
                                         MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/product_order_port')?>';
                                         (function ($) {
@@ -409,7 +408,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                                     $("#formOrderDoneConfirm").attr("disabled", true);
 
                                                     //show progress bar
-                                                    //...
+                                                    $('#qd-loading').css('display', 'inline-block');
                                                     $.post(MYAPP.PageInfo.DataPort, {
                                                         submit: "submit",
                                                         action: "insert",
@@ -438,6 +437,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                                         .always(function () {
                                                             //release lock
                                                             $("#formOrderDoneConfirm").removeAttr("disabled");
+                                                            $('#qd-loading').css('display', 'none');
                                                         });
                                                 });
                                             });

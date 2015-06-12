@@ -12,28 +12,39 @@ $price_from = get_query_var('price-from', -1);
 $price_to = get_query_var('price-to', -1);
 $size_id = get_query_var('size-id', 0);
 $offset = get_query_var('offset', 0);
-
+$key_word = get_query_var('key-word', '');
 $item_per_segment = 3;
 
 $obj = new QdProduct();
-if ($product_cat_id > 0)
-    $obj->SETRANGE('product_cat_id', $product_cat_id, true);
-if ($manufactor_id > 0)
-    $obj->SETRANGE('manufacturer_id', $manufactor_id, true);
-if ($size_id > 0)
-    $obj->SETRANGE('size_id', $size_id, true);
+if($key_word!='')
+{
+    $obj->SETRANGE('name', $key_word, false);
+    $obj->SETRANGE('description', $key_word, false);
+    $obj->SETRANGE('doitra_baohanh', $key_word, false);
+    $obj->SETRANGE('giaohang_thanhtoan', $key_word, false);
+    $obj->SETRANGE('code', $key_word, false);
+    $obj->SETFILTERRELATION('OR');
+}
+else {
+    if ($product_cat_id > 0)
+        $obj->SETRANGE('product_cat_id', $product_cat_id, true);
+    if ($manufactor_id > 0)
+        $obj->SETRANGE('manufacturer_id', $manufactor_id, true);
+    if ($size_id > 0)
+        $obj->SETRANGE('size_id', $size_id, true);
 
-if ($price_from > 0)
-    $obj->SETRANGE('price', $price_from, true, '>=');
-if ($price_to > 0)
-    $obj->SETRANGE('price', $price_to, true, '<=');
+    if ($price_from > 0)
+        $obj->SETRANGE('price', $price_from, true, '>=');
+    if ($price_to > 0)
+        $obj->SETRANGE('price', $price_to, true, '<=');
 //Framework not supported yet
 
+    $obj->SETFILTERRELATION('AND');
+}
 $obj->SETLIMIT($item_per_segment);
 $obj->SETORDERBY('id', 'desc');
 $obj->SETOFFSET($offset);
 
-$obj->SETFILTERRELATION('AND');
 $products = $obj->GETLIST();
 
 //$products_segment = $obj->getProductsSegment($item_per_segment, $_GET['product-offset']);

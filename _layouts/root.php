@@ -226,8 +226,13 @@ class QdT_Layout_Root
         <div class="vn-cas-nav" id="nav-fix">
         <div class="container-non-responsive">
         <div class="navMenu expander">
-        <form action="">
-        <input type="search" placeholder="Tìm kiếm...">
+        <?php
+        $search_url = get_permalink(QdT_Library::getPageIdByTemplate('page-templates/product-search.php'));
+
+        ?>
+        <form action="<?=$search_url?>" method="get">
+        <input type="search" placeholder="Tìm kiếm..." class="form-control" name="key-word" value="<?=get_query_var('key-word', '')?>">
+        </form>
         <ul style="padding-left: 0px;">
         <li>
             <a href="#" class="nav-links">ĐIỆN THOẠI/ĐIỆN TỬ</a>
@@ -540,7 +545,6 @@ class QdT_Layout_Root
             <!-- end -->
         </li>
         </ul>
-        </form>
         </div>
         <div style="display: none; width: 980px; height: 40px; float: left;"></div>
         </div>
