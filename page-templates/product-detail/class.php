@@ -498,16 +498,17 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
 
         <!-- Shop hàng -->
         <div class="row">
-            <div class="col-xs-8" style="font-weight: bold;">
+            <div class="col-xs-5" style="font-weight: bold;">
                 MUA HÀNG TẠI SHOP
                 <br>
                 <a href="#" class="product-detail-shop">( xem Shop có hàng )</a>
 
             </div>
-            <div class="col-xs-3 edit-768">
+            <div class="col-xs-5 edit-768">
                 <?php
                 $tmp = site_url($_SERVER["REQUEST_URI"]);
-                $tmp = "[addtoany url='{$tmp}' title='Some Example Page']";
+                //$tmp = "[addtoany url='{$tmp}' title='Some Example Page']";
+                $tmp = "[feather_share url='{$tmp}']";
                 echo do_shortcode($tmp);
                 ?>
             </div>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: quocd_000
@@ -20,14 +21,11 @@ class QdT_Layout_Root
     function __construct()
     {
         //get cookie
-        if(isset($_COOKIE["customer"]))
-        {
+        if (isset($_COOKIE["customer"])) {
             $tmp = $_COOKIE["customer"];
             $tmp = str_replace('\\"', '"', $tmp);
             $this->cookie_customer = json_decode($tmp, true);
-        }
-        else
-        {
+        } else {
             $this->cookie_customer = array();
         }
 
@@ -68,25 +66,25 @@ class QdT_Layout_Root
 
     protected function loadScript()
     {
-
+        QdJqwidgets::loadSinglePluginJS("form2js.js");
     }
+
     protected function setPageInfoToClient()
     {
         ?>
         <script>
             var MYAPP = MYAPP || {};
             MYAPP.PageInfo = {};
-            MYAPP.TplReplace = function(replace_from, replace_to, tpl){
+            MYAPP.TplReplace = function (replace_from, replace_to, tpl) {
                 var i = 0;
                 var re = tpl;
-                for(i=0;i<replace_from.length;i++)
-                {
+                for (i = 0; i < replace_from.length; i++) {
                     re = re.replace(replace_from[i], replace_to[i], re);
                 }
                 return re;
             };
         </script>
-        <?php
+    <?php
     }
 
     protected function getBreadcrumbs()
@@ -166,7 +164,7 @@ class QdT_Layout_Root
             <![endif]-->
 
             <?= QdT_Library::FERequestCompactLayout() ?>
-            <?=$this->setPageInfoToClient()?>
+            <?= $this->setPageInfoToClient() ?>
             <style>
                 b, strong {
                     font-weight: bold;
@@ -175,7 +173,7 @@ class QdT_Layout_Root
         </head>
 
         <body <?php body_class(); ?> style="/*background: rgba(0,0,0,0.1);*/">
-
+        <?=$this->getDefaultMaterial()?>
         <?= $this->getHeaderPart() ?>
 
         <?php
@@ -189,11 +187,38 @@ class QdT_Layout_Root
         </html>
     <?php
     }
+    private function getDefaultMaterial()
+    {
+        ?>
+        <!-- Modal 1 -->
+        <div class="modal fade" id="qd-root-progressing-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="">
+                    <div class="modal-header" style="border-bottom: 0px;">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <div class="vn-modal-title">Progressing...</div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12" style="text-align: center">
+                                <img src="img/loading-bar.gif">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <?php
+    }
 
     protected function getHeaderPart()
     {
         //$logo_url = ot_get_option('header_logo', 'img/logo.jpg');
         ?>
+
         <!-- Cash Header -->
         <div class="vn-cas-header">
             <div class="container-non-responsive">
@@ -219,7 +244,8 @@ class QdT_Layout_Root
         <div class="vn-cas-logo">
             <div class="container-non-responsive">
                 <div class="logo">
-                    <a href="<?=get_home_url()?>"><img src="<?= $this->data['vnc_logo'] ?>" style="height: 92px;width: 344px;"></a>
+                    <a href="<?= get_home_url() ?>"><img src="<?= $this->data['vnc_logo'] ?>"
+                                                         style="height: 92px;width: 344px;"></a>
                 </div>
             </div>
         </div>
@@ -230,8 +256,20 @@ class QdT_Layout_Root
         $search_url = get_permalink(QdT_Library::getPageIdByTemplate('page-templates/product-search.php'));
 
         ?>
-        <form action="<?=$search_url?>" method="get">
-        <input type="search" placeholder="Tìm kiếm..." class="form-control" name="key-word" value="<?=get_query_var('key-word', '')?>">
+        <form action="<?= $search_url ?>" method="get" onsubmit="MYAPP.RootProgressBar(true)">
+            <script>
+                MYAPP.RootProgressBar = function(show) {
+                    if(show)
+                    {
+                        $('#qd-root-progressing-modal').modal('show');
+                    }else {
+                        $('#qd-root-progressing-modal').modal('hide');
+                    }
+                };
+
+            </script>
+            <input type="search" placeholder="Tìm kiếm..." class="form-control" name="key-word"
+                   value="<?= get_query_var('key-word', '') ?>">
         </form>
         <ul style="padding-left: 0px;">
         <li>
@@ -244,7 +282,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -259,7 +298,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -272,19 +312,22 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
                             <div class="sub-image" style="background: url('img/current 3.jpg');
                                                                                     background-repeat: no-repeat;
                                                                                     background-size: contain;
@@ -306,7 +349,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -321,7 +365,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -334,19 +379,22 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
                             <div class="sub-image" style="background: url('img/current 3.jpg');
                                                                                     background-repeat: no-repeat;
                                                                                     background-size: contain;
@@ -368,7 +416,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -383,7 +432,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -396,19 +446,22 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
                             <div class="sub-image" style="background: url('img/current 3.jpg');
                                                                                     background-repeat: no-repeat;
                                                                                     background-size: contain;
@@ -420,7 +473,7 @@ class QdT_Layout_Root
             </ul>
             <!-- end -->
         </li>
-        <li >
+        <li>
             <a href="#" class="nav-links">XE/PHỤ KIỆN</a>
             <!-- begin -->
             <ul class="vn-sub">
@@ -430,7 +483,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -445,7 +499,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -458,19 +513,22 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
                             <div class="sub-image" style="background: url('img/current 3.jpg');
                                                                                     background-repeat: no-repeat;
                                                                                     background-size: contain;
@@ -492,7 +550,8 @@ class QdT_Layout_Root
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao
+                                                cấp</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
@@ -507,7 +566,8 @@ class QdT_Layout_Root
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
                                     <div class="sub-info">
-                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
@@ -520,19 +580,22 @@ class QdT_Layout_Root
                                     </div>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <div class="sub-info" >
+                                    <div class="sub-info">
                                         <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a>
+                                        </div>
                                         <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
-                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                        <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
                             <div class="sub-image" style="background: url('img/current 3.jpg');
                                                                                     background-repeat: no-repeat;
                                                                                     background-size: contain;
@@ -637,7 +700,67 @@ class QdT_Layout_Root
                     </div>
                     <div class="row">
                         <div class="form-email">
-                            <button class="email-button"></button>
+                            <form action="" onsubmit="return false" id="formSubscriber">
+                                <style>
+                                    input.qd-trans-input,
+                                    input.qd-trans-input:focus {
+                                        border:none;
+                                        box-shadow: none;
+                                        -webkit-box-shadow: none;
+                                        -moz-box-shadow: none;
+                                        -moz-transition: none;
+                                        -webkit-transition: none;
+                                        outline: none;
+                                    }
+                                </style>
+                                <input type="hidden" name="id" value="0">
+                                <input name="email" class="qd-trans-input" type="text" style="position: absolute; width: 80%; height: 100%; background-color: rgba(0, 0, 0, 0); border:none; padding-left: 20px; padding-right: 20px; text-align: center; font-size: 24px; ">
+                                <button type="submit" class="email-button qd-trans-input" id="formSubscriberBtn"></button>
+                                <script>
+                                    MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/subscriber_port')?>';
+                                    (function ($) {
+                                        $(document).ready(function () {
+                                            $('#formSubscriberBtn').click(function () {
+                                                //send data to DataPort
+                                                var json = form2js("formSubscriber", ".", false, null, true);
+                                                //validate
+                                                if (json.email == '')
+                                                {
+                                                    alert('Email bắt buộc nhập');
+                                                    return;
+                                                }
+
+                                                console.log(json);
+                                                //lock button
+                                                $("#formSubscriberBtn").attr("disabled", true);
+
+                                                //show progress bar
+                                                MYAPP.RootProgressBar(true);
+                                                $.post(MYAPP.PageInfo.DataPort, {
+                                                    submit: "submit",
+                                                    action: "insert",
+                                                    data: json
+                                                })
+                                                    .done(function (data) {
+                                                        //data JSON
+                                                        console.log(data);
+
+                                                        alert('Đăng ký nhận tin thành công');
+
+                                                    })
+                                                    .fail(function (data) {
+                                                        console.log(data);
+                                                    })
+                                                    .always(function () {
+                                                        //release lock
+                                                        $("#formSubscriberBtn").removeAttr("disabled");
+                                                        MYAPP.RootProgressBar(false);
+                                                    });
+                                            });
+                                        });
+                                    })(jQuery);
+                                </script>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -728,20 +851,10 @@ class QdT_Layout_Root
                                              onmouseout="this.src='<?= $social_icon_imgs[$item->title]['static'] ?>'">
                                     </a>
                                 <?php endforeach; ?>
-                                <!--
-                                <a class="vn-icon" target="_blank"  href="https://plus.google.com/">
-                                        <img class="footer-center-img"src="img/go-1.png" onmouseover="this.src='img/go-2.png'" onmouseout="this.src='img/go-1.png'">
-                                    </a>
-                                    <a class="vn-icon" target="_blank" href="https://twitter.com/">
-                                        <img class="footer-center-img" src="img/tw-1.png" onmouseover="this.src='img/tw-2.png'" onmouseout="this.src='img/tw-1.png'">
-                                    </a>
-                                    <a class="vn-icon" target="_blank" href="https://www.youtube.com/">
-                                        <img class="footer-center-img" src="img/yo-1.png" onmouseover="this.src='img/yo-2.png'" onmouseout="this.src='img/yo-1.png'">
-                                    </a> -->
                             </div>
                         </div>
                     </div>
-                    <?=$this->getPartnerLogoPart()?>
+                    <?= $this->getPartnerLogoPart() ?>
                 </div>
             </div>
 
@@ -765,7 +878,8 @@ class QdT_Layout_Root
                         </div>
                         <div class="col-xs-4">
                             <div class="copyright">
-                                <img style="max-width: 90px; max-height: 60px" src="<?=$this->theme_root_setup->commercial_logo==''?'img/ban-quyen.png':$this->theme_root_setup->commercial_logo?>">
+                                <img style="max-width: 90px; max-height: 60px"
+                                     src="<?= $this->theme_root_setup->commercial_logo == '' ? 'img/ban-quyen.png' : $this->theme_root_setup->commercial_logo ?>">
                             </div>
                         </div>
                     </div>
@@ -776,7 +890,6 @@ class QdT_Layout_Root
         <!-- End Footer -->
         <a href="#0" class="cd-top cd-is-visible cd-fade-out">Top</a>
         <!-- jQuery -->
-        <!-- <script src="js/jquery.js"></script> -->
         <script type="text/javascript" src="js/text.js"></script>
         <script src="js/main.js"></script>
 
@@ -810,23 +923,26 @@ class QdT_Layout_Root
                 </p>
 
                 <p class="p-edit-1">
-                    <b style="color: rgb(131,131,132);font-weight: normal;"><?= number_format($item->price, 0, '.', ',') ?> VND</b>
-                    <?php if($size_obj!=null): ?>
+                    <b style="color: rgb(131,131,132);font-weight: normal;"><?= number_format($item->price, 0, '.', ',') ?>
+                        VND</b>
+                    <?php if ($size_obj != null): ?>
                         <img src="img/border-links.png" style="margin: 0px 5px;">
                         <b>
-                            <?=$size_obj->code?>
+                            <?= $size_obj->code ?>
                         </b>
                     <?php endif; ?>
 
                     </br>
                     <b style="color: #C80815;">
-                        <?=number_format($item->_price_discount, 0, '.', ',')?> VND (<?=$item->discount_percent * 100?>% OFF)
+                        <?= number_format($item->_price_discount, 0, '.', ',') ?> VND
+                        (<?= $item->discount_percent * 100 ?>% OFF)
                     </b>
                 </p>
             </div>
         </a>
     <?php
     }
+
     protected function getWidgetNavsPart()
     {
         if ($this->widget_nav_list == null || empty($this->widget_nav_list)) {
@@ -869,15 +985,16 @@ class QdT_Layout_Root
         </div>
     <?php
     }
+
     protected function getPartnerLogoPart()
     {
-        if(QdT_Library::isNullOrEmpty($this->partner_list)) return;
+        if (QdT_Library::isNullOrEmpty($this->partner_list)) return;
         ?>
         <div class="row logo-thanhtoan">
-            <?php foreach($this->partner_list as $item): ?>
-            <a class="vn-icon" target="_blank" href="<?=$item->path?>">
-                <img class="footer-center-img-tt" src="<?=$item->avatar?>" alt="">
-            </a>
+            <?php foreach ($this->partner_list as $item): ?>
+                <a class="vn-icon" target="_blank" href="<?= $item->path ?>">
+                    <img class="footer-center-img-tt" src="<?= $item->avatar ?>" alt="">
+                </a>
                 <!--
             <a class="vn-icon" target="_blank" href="#">
                 <img class="footer-center-img-tt" src="img/master.png" alt="">
@@ -890,8 +1007,9 @@ class QdT_Layout_Root
             </a> -->
             <?php endforeach; ?>
         </div>
-<?php
+    <?php
     }
+
     protected static function redirectPageError404()
     {
         $tmp_url = get_permalink(Qdmvc_Helper::getPageIdByTemplate('page-templates/error-404.php'));
