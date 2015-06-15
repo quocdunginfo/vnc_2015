@@ -819,7 +819,7 @@ class QdT_Layout_Root
                         <div class="col-xs-3">
                             <?php get_sidebar('footer-menu-3'); ?>
                         </div>
-                        <div class="col-lg-3 col-xs-4 ">
+                        <div class="col-xs-3">
                             <?php get_sidebar('footer-menu-4'); ?>
                             <?php
                             $social_icon_imgs = array(
