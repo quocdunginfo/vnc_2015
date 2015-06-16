@@ -803,7 +803,7 @@ class QdT_Layout_Root
                         /*END quocdunginfo*/
                     </style>
                     <div class="row qd-widget-navs">
-                        <div class="col-xs-3 edit-768">
+                        <div class="col-xs-3">
                             <?php get_sidebar('footer-menu-1'); ?>
                             <!--
                             <ul style="margin-top: 68px;padding-left: 0px;">
