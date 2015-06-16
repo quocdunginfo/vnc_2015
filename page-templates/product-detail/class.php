@@ -166,7 +166,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                         <div class="title">
                             No.
                         </div>
-                        <div class="id" style="padding-left: 5px;">
+                        <div class="id" style="padding-left: 5px; white-space: nowrap">
                             <?= $this->product->code ?>
                         </div>
                     </div>
@@ -177,7 +177,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                         <div class="title">
                             Hãng :
                         </div>
-                        <div class="id">
+                        <div class="id" style="white-space: nowrap">
                             <?= $this->manufactor->name ?>
                         </div>
                     </div>
