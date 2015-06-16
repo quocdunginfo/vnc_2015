@@ -717,7 +717,7 @@ class QdT_Layout_Root
                                 <input name="email" class="qd-trans-input" type="text" style="position: absolute; width: 80%; height: 100%; background-color: rgba(0, 0, 0, 0); border:none; padding-left: 20px; padding-right: 20px; text-align: center; font-size: 24px; ">
                                 <button type="submit" class="email-button qd-trans-input" id="formSubscriberBtn"></button>
                                 <script>
-                                    MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/subscriber_port')?>';
+                                    MYAPP.PageInfo.DataPort_front_subscriber_port = '<?=Qdmvc_Helper::getDataPortPath('front/subscriber_port')?>';
                                     (function ($) {
                                         $(document).ready(function () {
                                             $('#formSubscriberBtn').click(function () {
@@ -736,7 +736,7 @@ class QdT_Layout_Root
 
                                                 //show progress bar
                                                 MYAPP.RootProgressBar(true);
-                                                $.post(MYAPP.PageInfo.DataPort, {
+                                                $.post(MYAPP.PageInfo.DataPort_front_subscriber_port, {
                                                     submit: "submit",
                                                     action: "insert",
                                                     data: json

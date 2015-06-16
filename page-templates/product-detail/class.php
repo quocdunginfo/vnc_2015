@@ -389,7 +389,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
                                     </button>
                                     <img id="qd-loading" src="img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
                                     <script>
-                                        MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/product_order_port')?>';
+                                        MYAPP.PageInfo.DataPort_front_product_order_port = '<?=Qdmvc_Helper::getDataPortPath('front/product_order_port')?>';
                                         (function ($) {
                                             $(document).ready(function () {
                                                 $('#formOrderDoneConfirm').click(function () {
@@ -409,7 +409,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
 
                                                     //show progress bar
                                                     $('#qd-loading').css('display', 'inline-block');
-                                                    $.post(MYAPP.PageInfo.DataPort, {
+                                                    $.post(MYAPP.PageInfo.DataPort_front_product_order_port, {
                                                         submit: "submit",
                                                         action: "insert",
                                                         data: json

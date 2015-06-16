@@ -128,7 +128,7 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
                         </button>
                         <img id="qd-loading" src="img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
                         <script>
-                            MYAPP.PageInfo.DataPort = '<?=Qdmvc_Helper::getDataPortPath('front/feedback_port')?>';
+                            MYAPP.PageInfo.DataPort_front_feedback_port = '<?=Qdmvc_Helper::getDataPortPath('front/feedback_port')?>';
                             (function($){
 
                                     $('#formContactSubmit').click(function(){
@@ -147,7 +147,7 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
                                         //show progress bar
                                         $('#qd-loading').css('display', 'inline-block');
 
-                                        $.post(MYAPP.PageInfo.DataPort, {submit: "submit", action: "insert", data: json})
+                                        $.post(MYAPP.PageInfo.DataPort_front_feedback_port, {submit: "submit", action: "insert", data: json})
                                             .done(function (data) {
                                                 //data JSON
                                                 console.log(data);
