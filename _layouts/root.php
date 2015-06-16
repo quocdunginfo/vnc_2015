@@ -1012,8 +1012,6 @@ class QdT_Layout_Root
 
     protected static function redirectPageError404()
     {
-        $tmp_url = get_permalink(Qdmvc_Helper::getPageIdByTemplate('page-templates/error-404.php'));
-        wp_redirect($tmp_url);
-        exit;
+        QdT_Library::redirectPageError404();
     }
 }

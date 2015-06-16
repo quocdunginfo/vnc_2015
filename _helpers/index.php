@@ -153,4 +153,10 @@ class QdT_Library extends Qdmvc_Helper
 
         return $render . '</ul>';
     }
+    public static function redirectPageError404()
+    {
+        $tmp_url = get_permalink(static::getPageIdByTemplate('page-templates/error-404.php'));
+        wp_redirect($tmp_url);
+        exit;
+    }
 }

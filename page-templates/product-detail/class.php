@@ -506,7 +506,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
             </div>
             <div class="col-xs-5 edit-768">
                 <?php
-                $tmp = site_url($_SERVER["REQUEST_URI"]);
+                $tmp = QdT_Library::getFullURLFromAbsPath($_SERVER["REQUEST_URI"]);
                 //$tmp = "[addtoany url='{$tmp}' title='Some Example Page']";
                 $tmp = "[feather_share url='{$tmp}']";
                 echo do_shortcode($tmp);
