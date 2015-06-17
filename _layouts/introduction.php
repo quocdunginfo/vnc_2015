@@ -12,6 +12,7 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
 {
     private $post_cats = array();
     private $service_id = null;
+    private $banner_service_page_list = array();
 
     function __construct()
     {
@@ -22,18 +23,26 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
         $tmp->SETORDERBY('order', 'asc');
         $this->post_cats = $tmp->GETLIST();
 
-        if($this->isServicePage())
+        if ($this->isServicePage())
             $this->service_id = get_query_var('id');
+
+        $tmp = new QdWidgetNav();
+        $tmp->SETRANGE('active', true);
+        $tmp->SETRANGE('group_id', $this->theme_root_setup->banner_service_page);
+        $this->banner_service_page_list = $tmp->GETLIST();
+
     }
 
     protected function isServicePage()
     {
         return false;
     }
+
     protected function isFAQsPage()
     {
         return false;
     }
+
     protected function isContactPage()
     {
         return false;
@@ -87,19 +96,28 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
                             $this->genRightMenu();
                             ?>
                         </div>
-                        <div class="col-xs-12" style="margin-top: 25px;">
-                            <img src="img/Arithry_Flex_SP.gif" alt="Smiley face" width="70%" style="margin-left: 40px;">
-                        </div>
-                        <div class="col-xs-12" style="margin-top: 20px;">
-                            <img src="img/Vien_uong_Fairen_SP1.gif" alt="Smiley face" width="70%"
-                                 style="margin-left: 40px;">
-                        </div>
+                        <?= $this->getBannerServicePage() ?>
                     </div>
                 </div>
             </div>
         </div>
 
     <?php
+    }
+
+    protected function getBannerServicePage()
+    {
+        if (QdT_Library::isNullOrEmpty($this->banner_service_page_list)) return;
+        foreach ($this->banner_service_page_list as $item):
+            ?>
+            <div class="col-xs-12" style="margin-top: 25px;">
+                <a href="<?=QdT_Library::isNullOrEmpty($item->path)?QdT_Library::getNoneLink():$item->path?>" target="<?=$item->target?>">
+                    <img src="<?=$item->avatar?>" alt="<?=$item->title?>" width="70%" style="margin-left: 40px;">
+                </a>
+            </div>
+        <?php
+        endforeach;
+
     }
 
     protected function getContentTitle()
@@ -139,7 +157,8 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
 
                 ?>
                 <li id="vn-menu-<?= $item->id ?>">
-                    <a class="vn-menu-list-a <?= $p_active ? 'vn-menu-list-a-active' : '' ?>" href="javascript:void(0)">
+                    <a class="vn-menu-list-a <?= $p_active ? 'vn-menu-list-a-active' : '' ?>"
+                       href="<?= QdT_Library::getNoneLink() ?>">
                         <?= $item->title ?>
                     </a>
                 </li>
@@ -184,7 +203,8 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
                 ?>
 
                 <li>
-                    <a class="vn-menu-list-a <?=strstr($url1, $url2)!=false?'vn-menu-list-a-active':''?>" href="<?= $item->url ?>" target="<?= $item->target ?>">
+                    <a class="vn-menu-list-a <?= strstr($url1, $url2) != false ? 'vn-menu-list-a-active' : '' ?>"
+                       href="<?= $item->url ?>" target="<?= $item->target ?>">
                         <?= $item->title ?>
                     </a>
                 </li>

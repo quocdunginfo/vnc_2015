@@ -19,6 +19,8 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
 
     protected $size_giaydep_list = array();
 
+    protected $vnc_shops = array();
+
     function __construct()
     {
         parent::__construct();
@@ -69,6 +71,10 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
         $record->REMOVERANGE('type');
         $record->SETRANGE('type', QdManufactor::$TYPE2_MANUFACTOR_GIAYDEP);
         $this->size_giaydep_list = $record->GETLIST();
+
+        $record = new QdShop();
+        $record->SETRANGE('active', true);
+        $this->vnc_shops = $record->GETLIST();
     }
 
     protected function getBannerPart()
@@ -204,7 +210,7 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
 
                     <?= $this->getManufactorPart() ?>
 
-                    <?=$this->getShopPart()?>
+                    <?= $this->getShopPart() ?>
 
                 </div>
             </div>
@@ -212,8 +218,10 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
         <!-- End Content -->
     <?php
     }
+
     protected function getShopPart()
     {
+        if (QdT_Library::isNullOrEmpty($this->vnc_shops)) return;
         ?>
         <!-- Tìm theo shop -->
         <div class="row">
@@ -225,20 +233,17 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
             </div>
             <div class="col-xs-12">
                 <ul class="product-list1">
-                    <li><a href="#" class="product-links">Sài Gòn</a></li>
-                    <li><a href="#" class="product-links">Trà Vinh</a></li>
-                    <li><a href="#" class="product-links">Bến Tre</a></li>
-                    <li><a href="#" class="product-links">Vĩnh Long</a></li>
-                    <li><a href="#" class="product-links">Kiên Giang</a></li>
-                    <li><a href="#" class="product-links">Hậu Giang</a></li>
-                    <li><a href="#" class="product-links">Cần Thơ</a></li>
-                    <li><a href="#" class="product-links">Long An</a></li>
-                    <li><a href="#" class="product-links">Vũng Tàu</a></li>
-                    <li><a href="#" class="product-links">Cà Mau</a></li>
+                    <?php
+                    foreach ($this->vnc_shops as $item):
+                        ?>
+                        <li><a href="<?= add_query_arg(array('shop-id' => $item->id), $this->uri) ?>" class="product-links">
+                                <?=$item->name?>
+                        </a></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
-        <?php
+    <?php
     }
 
     protected function getManufactorPart()
@@ -290,16 +295,16 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
                         </div>
                         <div class="row" style="">
                             <div class="col-xs-12" style="">
-                            <?php
-                            foreach ($this->size_quanao_list as $item):
-                                ?>
-                                <span style="display: inline-block; margin-top: 15px; margin-bottom: 15px">
+                                <?php
+                                foreach ($this->size_quanao_list as $item):
+                                    ?>
+                                    <span style="display: inline-block; margin-top: 15px; margin-bottom: 15px">
                                 <a href="<?= add_query_arg(array('size-id' => $item->id), $this->uri) ?>"
-                                       class="product-links product-quanao">
-                                        <?= $item->code ?>
-                                    </a>
+                                   class="product-links product-quanao">
+                                    <?= $item->code ?>
+                                </a>
                                     </span>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </ul>

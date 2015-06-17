@@ -83,6 +83,10 @@ class QdT_Layout_Root
                 }
                 return re;
             };
+            MYAPP.isValidEmail = function (emailAddress) {
+                var pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+                return pattern.test(emailAddress);
+            };
         </script>
     <?php
     }
@@ -729,6 +733,11 @@ class QdT_Layout_Root
                                                     alert('Email bắt buộc nhập');
                                                     return;
                                                 }
+                                                else if (!MYAPP.isValidEmail(json.email))
+                                                {
+                                                    alert('Email không đúng định dạng');
+                                                    return;
+                                                }
 
                                                 console.log(json);
                                                 //lock button
@@ -962,10 +971,10 @@ class QdT_Layout_Root
                         </p>
 
                         <div class="vn-dichvu-btn">
-                            <button class="btn btn-default" type="submit" style="width:120px;"
-                                    onclick="location.href='<?= $item->path ?>'">
+                            <a class="btn btn-default" type="submit" style="width:120px;"
+                               target="<?=$item->target?>" href="<?= QdT_Library::isNullOrEmpty($item->path)?QdT_Library::getNoneLink():$item->path ?>">
                                 <?= $item->button_text ?>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -992,7 +1001,7 @@ class QdT_Layout_Root
         ?>
         <div class="row logo-thanhtoan">
             <?php foreach ($this->partner_list as $item): ?>
-                <a class="vn-icon" target="_blank" href="<?= $item->path ?>">
+                <a class="vn-icon" target="<?=$item->target?>" href="<?= QdT_Library::isNullOrEmpty($item->path)?QdT_Library::getNoneLink():$item->path ?>">
                     <img class="footer-center-img-tt" src="<?= $item->avatar ?>" alt="">
                 </a>
                 <!--

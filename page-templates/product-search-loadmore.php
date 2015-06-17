@@ -11,43 +11,63 @@ $manufactor_id = get_query_var('manufactor-id', 0);
 $price_from = get_query_var('price-from', -1);
 $price_to = get_query_var('price-to', -1);
 $size_id = get_query_var('size-id', 0);
+$shop_id = get_query_var('shop-id', 0);
 $offset = get_query_var('offset', 0);
 $key_word = get_query_var('key-word', '');
 $item_per_segment = 3;
 
-$obj = new QdProduct();
-if($key_word!='')
+$products = array();
+
+//Testing
+if($shop_id>0)
 {
-    $obj->SETRANGE('name', $key_word, false);
-    $obj->SETRANGE('description', $key_word, false);
-    $obj->SETRANGE('doitra_baohanh', $key_word, false);
-    $obj->SETRANGE('giaohang_thanhtoan', $key_word, false);
-    $obj->SETRANGE('code', $key_word, false);
-    $obj->SETFILTERRELATION('OR');
+    $tmp = new QdPro2Shop();
+    $tmp->SETRANGE('shop_id', $shop_id);
+
+    $tmp->SETLIMIT($item_per_segment);
+    $tmp->SETORDERBY('id', 'desc');
+    $tmp->SETOFFSET($offset);
+    $tmp = $tmp->GETLIST();
+    foreach($tmp as $item)
+    {
+        $tmp2 = QdProduct::GET($item->product_id);
+        array_push($products, $tmp2);
+    }
+}else
+{
+    $obj = new QdProduct();
+    if($key_word!='')
+    {
+        $obj->SETRANGE('name', $key_word, false);
+        $obj->SETRANGE('description', $key_word, false);
+        $obj->SETRANGE('doitra_baohanh', $key_word, false);
+        $obj->SETRANGE('giaohang_thanhtoan', $key_word, false);
+        $obj->SETRANGE('code', $key_word, false);
+        $obj->SETFILTERRELATION('OR');
+    }
+    else {
+        if ($product_cat_id > 0)
+            $obj->SETRANGE('product_cat_id', $product_cat_id, true);
+        if ($manufactor_id > 0)
+            $obj->SETRANGE('manufacturer_id', $manufactor_id, true);
+        if ($size_id > 0)
+            $obj->SETRANGE('size_id', $size_id, true);
+
+        if ($price_from > 0)
+            $obj->SETRANGE('price', $price_from, true, '>=');
+        if ($price_to > 0)
+            $obj->SETRANGE('price', $price_to, true, '<=');
+
+        $obj->SETFILTERRELATION('AND');
+    }
+    $obj->SETLIMIT($item_per_segment);
+    $obj->SETORDERBY('id', 'desc');
+    $obj->SETOFFSET($offset);
+
+    //FINAL action
+    $products = $obj->GETLIST();
 }
-else {
-    if ($product_cat_id > 0)
-        $obj->SETRANGE('product_cat_id', $product_cat_id, true);
-    if ($manufactor_id > 0)
-        $obj->SETRANGE('manufacturer_id', $manufactor_id, true);
-    if ($size_id > 0)
-        $obj->SETRANGE('size_id', $size_id, true);
 
-    if ($price_from > 0)
-        $obj->SETRANGE('price', $price_from, true, '>=');
-    if ($price_to > 0)
-        $obj->SETRANGE('price', $price_to, true, '<=');
-//Framework not supported yet
-
-    $obj->SETFILTERRELATION('AND');
-}
-$obj->SETLIMIT($item_per_segment);
-$obj->SETORDERBY('id', 'desc');
-$obj->SETOFFSET($offset);
-
-$products = $obj->GETLIST();
-
-//$products_segment = $obj->getProductsSegment($item_per_segment, $_GET['product-offset']);
 $count = 1;
 foreach ($products as $item):
     QdT_PageT_ProductSearch::genProductWidget($item, 'col-xs-4', '');
