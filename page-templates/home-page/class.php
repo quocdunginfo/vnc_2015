@@ -24,7 +24,6 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
         if (!QdT_Library::isNullOrEmpty($this->big_sale_cat)) {
             $this->big_sale_products = $record->getProducts2();
         }
-
         $record = new QdBestChoiceCat();
         $this->bestchoicecat_list = $record->GETLIST();
     }

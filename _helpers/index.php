@@ -21,9 +21,17 @@ class QdT_Library extends Qdmvc_Helper
     private static $layout_loc = '../_layouts/';
     private static $pageT_loc = '../page-templates/';
 
-    public static function loadLayout($name)
+    public static function loadLayoutView($name)
     {
-        require_once(__DIR__ . '/' . self::$layout_loc . $name . '.php');
+        require_once(__DIR__ . '/' . self::$layout_loc . $name . '/view.php');
+    }
+    public static function loadLayoutViewMobile($name)
+    {
+        require_once(__DIR__ . '/' . self::$layout_loc . $name . '/view_mobile.php');
+    }
+    public static function loadLayoutClass($name)
+    {
+        require_once(__DIR__ . '/' . self::$layout_loc . $name . '/class.php');
     }
 
     public static function loadPageT($name)
@@ -40,6 +48,14 @@ class QdT_Library extends Qdmvc_Helper
     public static function loadPageClass($name)
     {
         require_once(__DIR__ . '/' . self::$pageT_loc . $name . '/class.php');
+    }
+    public static function loadPageView($name)
+    {
+        require_once(__DIR__ . '/' . self::$pageT_loc . $name . '/view.php');
+    }
+    public static function loadPageViewMobile($name)
+    {
+        require_once(__DIR__ . '/' . self::$pageT_loc . $name . '/view_mobile.php');
     }
 
     public static function getNotSetText()

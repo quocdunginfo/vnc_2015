@@ -2,51 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: quocd_000
- * Date: 23/02/2015
- * Time: 11:30 AM
- * Version: 150607
+ * Date: 23/06/2015
+ * Time: 10:27 PM
  */
-QdT_Library::loadLayout('root');
-
-class QdCPT_IntroductionLayout extends QdT_Layout_Root
-{
-    private $post_cats = array();
-    private $service_id = null;
-    private $banner_service_page_list = array();
-
-    function __construct()
-    {
-        parent::__construct();
-        $tmp = new QdPostCat();
-        $tmp->SETRANGE('active', true);
-        $tmp->SETRANGE('type', QdPost::$TYPE_POST);
-        $tmp->SETORDERBY('order', 'asc');
-        $this->post_cats = $tmp->GETLIST();
-
-        if ($this->isServicePage())
-            $this->service_id = get_query_var('id');
-
-        $tmp = new QdWidgetNav();
-        $tmp->SETRANGE('active', true);
-        $tmp->SETRANGE('group_id', $this->theme_root_setup->banner_service_page);
-        $this->banner_service_page_list = $tmp->GETLIST();
-
-    }
-
-    protected function isServicePage()
-    {
-        return false;
-    }
-
-    protected function isFAQsPage()
-    {
-        return false;
-    }
-
-    protected function isContactPage()
-    {
-        return false;
-    }
+QdT_Library::loadLayoutView('root');
+class QdCPT_IntroductionLayout_View extends QdT_Layout_Root_View {
 
     protected function getContentMain()
     {
@@ -107,8 +67,8 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
 
     protected function getBannerServicePage()
     {
-        if (QdT_Library::isNullOrEmpty($this->banner_service_page_list)) return;
-        foreach ($this->banner_service_page_list as $item):
+        if (QdT_Library::isNullOrEmpty($this->page->banner_service_page_list)) return;
+        foreach ($this->page->banner_service_page_list as $item):
             ?>
             <div class="col-xs-12" style="margin-top: 25px;">
                 <a href="<?=QdT_Library::isNullOrEmpty($item->path)?QdT_Library::getNoneLink():$item->path?>" target="<?=$item->target?>">
@@ -144,12 +104,12 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
         </style>
         <ul class="menu-list">
             <?php
-            foreach ($this->post_cats as $item) :
+            foreach ($this->page->post_cats as $item) :
                 $childs = $item->getChilds();
                 $childs = $childs->GETLIST();
                 $p_active = false;
                 foreach ($childs as $check_active) {
-                    if ($check_active->id == $this->service_id) {
+                    if ($check_active->id == $this->page->service_id) {
                         $p_active = true;
                         break;
                     }
@@ -166,7 +126,7 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
                     <?php
                     foreach ($childs as $child):
                         ?>
-                        <a class="vn-menu-list-sub-a <?= ($this->service_id == $child->id) ? 'vn-menu-list-sub-a-active' : '' ?>"
+                        <a class="vn-menu-list-sub-a <?= ($this->page->service_id == $child->id) ? 'vn-menu-list-sub-a-active' : '' ?>"
                            href="<?= $child->getPermalink() ?>">
                             <li>
                                 <?= $child->title ?>
