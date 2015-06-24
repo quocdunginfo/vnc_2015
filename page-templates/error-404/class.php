@@ -1,6 +1,6 @@
 <?php
 
-QdT_Library::loadLayout('root');
+QdT_Library::loadLayoutClass('root');
 
 class QdT_PageT_Error404 extends QdT_Layout_Root
 {
@@ -9,36 +9,20 @@ class QdT_PageT_Error404 extends QdT_Layout_Root
         parent::__construct();
     }
 
-    protected function getBannerPart()
+    public static function getPageName()
     {
-        //HIDE
+        return 'error-404';
     }
 
-    protected function getBreadcrumbsPart()
+    public static function getPageViewClass()
     {
-        //HIDE
+        return 'QdT_PageT_Error404_View';
     }
 
-
-    protected function loadScript()
+    public static function getPageViewMobileClass()
     {
-        //QdJqwidgets::loadSinglePluginJS("form2js.js");
-        //QdJqwidgets::loadSinglePluginJS("ajax-loader.js");
+        return 'QdT_PageT_Error404_ViewMobile';
     }
 
-
-    protected function getContentPart()
-    {
-        ?>
-        <div class="container-non-responsive carousel content">
-            <div class="row">
-                <!--Left-->
-                <div class="col-xs-12" style="color: red; font-size: 24px">
-                    ERROR 404 - Resource not found
-                </div>
-            </div>
-        </div>
-    <?php
-    }
 
 }

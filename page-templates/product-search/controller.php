@@ -8,7 +8,7 @@
 //require_once('class.php');
 
 if (isset($_GET['offset'])) {
-    QdT_Library::loadPageT('product-search-loadmore');
+    QdT_Library::loadPageT('product-search/partial/products-loadmore');
     exit(0);
 }
 

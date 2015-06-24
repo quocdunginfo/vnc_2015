@@ -66,6 +66,11 @@ class QdT_Layout_Root
     public function setPageInfoToClient()
     {
         ?>
+        <style>
+            .breadcrumb>li {
+                white-space: nowrap;/*Fix breadcrumbs new line broken*/
+            }
+        </style>
         <script>
             var MYAPP = MYAPP || {};
             MYAPP.PageInfo = {};
@@ -118,5 +123,9 @@ class QdT_Layout_Root
     public static function getPageName()
     {
         return '';
+    }
+    public static function redirectPageError404()
+    {
+        QdT_Library::redirectPageError404();
     }
 }

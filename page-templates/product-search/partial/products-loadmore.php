@@ -70,7 +70,7 @@ if($shop_id>0)
 
 $count = 1;
 foreach ($products as $item):
-    QdT_PageT_ProductSearch::genProductWidget($item, 'col-xs-4', '');
+    QdT_PageT_ProductSearch_View::genProductWidget($item, 'col-xs-4', '');
     if ($count % 3 == 0) echo '<div class="col-xs-12" style="height: 20px"></div>';//trick to avoid using new row and not overlap with other item
     $count++;
 endforeach;

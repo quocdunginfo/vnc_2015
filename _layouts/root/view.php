@@ -938,9 +938,4 @@ class QdT_Layout_Root_View {
         </div>
     <?php
     }
-
-    protected static function redirectPageError404()
-    {
-        QdT_Library::redirectPageError404();
-    }
 }

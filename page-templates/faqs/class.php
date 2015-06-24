@@ -6,27 +6,32 @@
  * Time: 9:57 PM
  * Version: 150607
  */
-QdT_Library::loadLayout('introduction');
+QdT_Library::loadLayoutClass('introduction');
 class QdT_PageT_FAQS extends QdCPT_IntroductionLayout
 {
     function __construct()
     {
         parent::__construct();
     }
-    protected function getContentMain()
+
+    public static function getPageName()
     {
-        global $post;
-        return $post->post_content;
-    }
-    protected function getContentTitle()
-    {
-        global $post;
-        return $post->post_title;
+        return 'faqs';
     }
 
-    protected function isFAQsPage()
+    public static function getPageViewClass()
+    {
+        return 'QdT_PageT_FAQS_View';
+    }
+
+    public static function getPageViewMobileClass()
+    {
+        return 'QdT_PageT_FAQS_ViewMobile';
+    }
+    public function isFAQsPage()
     {
         return true;
     }
+
 
 }

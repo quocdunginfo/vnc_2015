@@ -6,10 +6,10 @@
  * Time: 9:57 PM
  * Version: 150607
  */
-QdT_Library::loadLayout('introduction');
+QdT_Library::loadLayoutClass('introduction');
 class QdT_PageT_Service extends QdCPT_IntroductionLayout
 {
-    private $obj = null;
+    public $obj = null;
     function __construct()
     {
         parent::__construct();
@@ -20,18 +20,18 @@ class QdT_PageT_Service extends QdCPT_IntroductionLayout
             static::redirectPageError404();
         }
     }
-    protected function getContentMain()
+
+    public static function getPageName()
     {
-        return $this->obj->content;
-    }
-    protected function getContentTitle()
-    {
-        return $this->obj->title;
+        return 'service';
     }
 
-    protected function isServicePage()
+    public static function getPageViewClass()
+    {
+        return 'QdT_PageT_Service_View';
+    }
+    public function isServicePage()
     {
         return true;
     }
-
 }

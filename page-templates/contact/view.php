@@ -215,8 +215,12 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
     <?php
     }
 
-    public function isContactPage()
+    protected function getBreadcrumbs()
     {
-        return true;
+        global $post;
+        $tmp = parent::getBreadcrumbs();
+        array_push($tmp, array('name' => $post->post_title, 'url' => $this->page->uri));
+        return $tmp;
     }
+
 }
