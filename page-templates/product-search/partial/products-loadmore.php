@@ -6,6 +6,8 @@
  * Time: 10:29 PM
  */
 
+QdT_Library::loadPageView('product-search');
+
 $product_cat_id = get_query_var('product-cat-id', 0);
 $manufactor_id = get_query_var('manufactor-id', 0);
 $price_from = get_query_var('price-from', -1);
