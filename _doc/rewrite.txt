@@ -1,0 +1,5 @@
+//lien-he.html => index.php?pagename=contact
+//gioi-thieu.html => index.php?pagename=about
+([^/]+)-([0-9]{1,}).html => index.php?pagename=product-detail&id=$matches[2]
+dich-vu/([^/]+)-([0-9]{1,}).html => index.php?pagename=service&id=$matches[2]
+
