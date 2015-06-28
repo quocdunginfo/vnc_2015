@@ -93,7 +93,7 @@ class QdT_Layout_Root
     {
         $tmp = null;
         $c = '';
-        if(wp_is_mobile())
+        if(QdT_Library::isMobile())
         {
             //load view
             $c = static::getPageViewMobileClass();
@@ -111,6 +111,7 @@ class QdT_Layout_Root
     public function loadScript()
     {
         QdJqwidgets::loadSinglePluginJS("form2js.js");
+        QdJqwidgets::loadSinglePluginJS("js.cookie.js");
     }
     public static function getPageViewClass()
     {

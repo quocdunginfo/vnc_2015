@@ -175,4 +175,27 @@ class QdT_Library extends Qdmvc_Helper
         wp_redirect($tmp_url);
         exit;
     }
+    public static function isMobile()
+    {
+        static $is_mobile;
+
+        if ( isset($is_mobile) )
+            return $is_mobile;
+
+        if ( strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') !== false // many mobile devices (all iPhone, iPad, etc.)
+            || strpos($_SERVER['HTTP_USER_AGENT'], 'Kindle') !== false
+            || strpos($_SERVER['HTTP_USER_AGENT'], 'Silk/') !== false //Kindle
+            || strpos($_SERVER['HTTP_USER_AGENT'], 'PlayBook') !== false
+            || strpos($_SERVER['HTTP_USER_AGENT'], 'Nexus 10') !== false
+            //|| strpos($_SERVER['HTTP_USER_AGENT'], 'DROID RAZR') !== false//Motorola pad
+            || strpos($_SERVER['HTTP_USER_AGENT'], 'SCH-I800') !== false//Samsung Galaxy Tab
+            || strpos($_SERVER['HTTP_USER_AGENT'], 'Xoom') !== false//
+        ) {
+            $is_mobile = false;
+        } else {
+            $is_mobile = wp_is_mobile();
+        }
+
+        return $is_mobile;
+    }
 }
