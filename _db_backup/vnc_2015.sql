@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2015 at 07:23 AM
+-- Generation Time: Jul 04, 2015 at 07:38 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -56,7 +56,7 @@ INSERT INTO `mpd_contact` (`id`, `type`, `name`, `description`, `phone`, `email`
 (2, 0, 'Bộ phận Chăm Sóc Khách Hàng', '', '(08) 6679 7779', 'cskh@vietngancash.com', '', '', '2015-06-07 16:59:08', '2015-06-07 16:44:36', 1, 1, 1, 20, '', '', ''),
 (3, 0, 'Bộ phận Thu mua lẻ', '', '(08) 6679 7779', 'cskh@vietngancash.com', '', '', '2015-06-07 16:45:17', '2015-06-07 16:45:02', 1, 1, 1, 30, '', '', ''),
 (4, 0, 'Bộ phận Ký gửi', '', '(08) 6679 7779', 'cskh@vietngancash.com', '', '', '2015-06-07 16:59:50', '2015-06-07 16:45:28', 1, 1, 1, 40, '', '', ''),
-(5, 0, 'Bộ phận Bảo hành', '', '(08) 6679 7779', 'cskh@vietngancash.com', '', '', '2015-06-13 16:15:44', '2015-06-07 16:45:56', 1, 1, 1, 60, '', '', ''),
+(5, 0, 'Bộ phận Bảo hành', '', '(08) 6679 7779', 'cskh@vietngancash.com', '', '', '2015-07-04 05:34:40', '2015-06-07 16:45:56', 1, 1, 1, 60, '84', '844', '29302'),
 (15, 10, 'vd', '', '', 'quocdunginfo@gmail.com', '', '', '2015-06-14 07:37:35', '2015-06-13 16:07:19', 1, 1, 1, 0, '', '', ''),
 (16, 10, '', '', '', 'quocdunginfo@gmail.com', '', '', '2015-06-13 16:41:47', '2015-06-13 16:41:47', 1, 0, 1, 0, '', '', ''),
 (17, 10, '', '', '', '', '', '', '2015-06-16 14:14:36', '2015-06-16 14:14:36', 0, 0, 1, 0, '', '', ''),
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `mpd_log` (
   `lasteditor_id` bigint(20) NOT NULL,
   `ip` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=773 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=777 ;
 
 --
 -- Dumping data for table `mpd_log`
@@ -949,7 +949,11 @@ INSERT INTO `mpd_log` (`id`, `model`, `action`, `location`, `content`, `model_id
 (769, 'QdShop', 2, '|Qdmvc_DataPort_Shop|update|QdShop|save|writeLog', '', 24, 0, '2015-07-04 05:05:25', '2015-07-04 05:05:25', 1, 0, '127.0.0.1'),
 (770, 'QdShop', 2, '|Qdmvc_DataPort_Shop|update|QdShop|save|writeLog', '', 24, 0, '2015-07-04 05:05:38', '2015-07-04 05:05:38', 1, 0, '127.0.0.1'),
 (771, 'QdShop', 2, '|Qdmvc_DataPort_Shop|update|QdShop|save|writeLog', '', 24, 0, '2015-07-04 05:07:18', '2015-07-04 05:07:18', 1, 0, '127.0.0.1'),
-(772, 'QdShop', 2, '|Qdmvc_DataPort_Shop|update|QdShop|save|writeLog', '', 23, 0, '2015-07-04 05:09:52', '2015-07-04 05:09:52', 1, 0, '127.0.0.1');
+(772, 'QdShop', 2, '|Qdmvc_DataPort_Shop|update|QdShop|save|writeLog', '', 23, 0, '2015-07-04 05:09:52', '2015-07-04 05:09:52', 1, 0, '127.0.0.1'),
+(773, 'QdContact', 2, '|Qdmvc_DataPort_Contact|update|QdContact|save|writeLog', '', 5, 0, '2015-07-04 05:32:56', '2015-07-04 05:32:56', 1, 0, '127.0.0.1'),
+(774, 'QdContact', 2, '|Qdmvc_DataPort_Contact|update|QdContact|save|writeLog', '', 5, 0, '2015-07-04 05:34:41', '2015-07-04 05:34:41', 1, 0, '127.0.0.1'),
+(775, 'QdAbout', 2, '|Qdmvc_DataPort_About|update|QdAbout|save|writeLog', '', 17, 0, '2015-07-04 05:36:36', '2015-07-04 05:36:36', 1, 0, '127.0.0.1'),
+(776, 'QdPost', 2, '|Qdmvc_DataPort_Post|update|QdPost|save|writeLog', '', 16, 0, '2015-07-04 05:36:54', '2015-07-04 05:36:54', 1, 0, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -1082,8 +1086,8 @@ INSERT INTO `mpd_post` (`id`, `content`, `short_content`, `avatar`, `title`, `da
 (12, '<p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>', '', '', 'CHỮ CANH GIỮA', '2015-05-14 15:51:31', '2015-05-14 14:37:50', 1, 1, 57, 0, 10, 20, '', ''),
 (14, '<p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>', '', '/vnc_2015/wp-content/uploads/2015/02/d.jpg', 'CHỮ TRÁI/HÌNH PHẢI', '2015-05-14 15:51:49', '2015-05-14 15:08:36', 1, 1, 57, 0, 20, 30, '', ''),
 (15, '<p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>', '', '/vnc_2015/wp-content/uploads/2015/02/d.jpg', 'HÌNH TRÁI/CHỮ PHẢI', '2015-05-14 15:52:12', '2015-05-14 15:09:16', 1, 1, 57, 0, 30, 40, '', ''),
-(16, '<p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>', '', '/vnc_2015/wp-content/uploads/2015/02/d.jpg', 'CHỮ TRÁI/HÌNH PHẢI (02)', '2015-07-02 13:23:16', '2015-05-14 15:52:45', 1, 1, 0, 0, 20, 50, '', ''),
-(17, '<p>[2]Gom tất cả bài viết (trừ trang GIỚI THIỆU) vào module này. Chú ý: Khi click vào chữ dịch vụ thì danh mục xổ xuống, hiện ra danh mục con, thân trang không thay đổi. Khi chọn vào một danh mục con cụ thể thì nôi của phần đó hiện ra.</p><p>Tương tự như vậy cho mục HỖ TRỢ/HƯỚNG DẪN, GIAO HÀNG - THANH TOÁN, BẢO HÀNH - ĐỔI TrẢ.</p><p><b>RIÊNG MỤC FAQs, LIÊN HỆ, TÌM SHOP CÓ CẤU TRÚC KHÁC</b> (xem phần của nó).</p>', '', '', '[2]DỊCH VỤ THU MUA VÀ THANH LÝ', '2015-07-02 13:27:18', '2015-06-09 17:08:06', 1, 1, 57, 1, 0, 0, '', '');
+(16, '<p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>', '', '/vnc_2015/wp-content/uploads/2015/02/d.jpg', 'CHỮ TRÁI/HÌNH PHẢI (02)', '2015-07-04 05:36:54', '2015-05-14 15:52:45', 1, 1, 57, 0, 20, 50, '', ''),
+(17, '<p>[2]Gom tất cả bài viết (trừ trang GIỚI THIỆU) vào module này. Chú ý: Khi click vào chữ dịch vụ thì danh mục xổ xuống, hiện ra danh mục con, thân trang không thay đổi. Khi chọn vào một danh mục con cụ thể thì nôi của phần đó hiện ra.</p><p>Tương tự như vậy cho mục HỖ TRỢ/HƯỚNG DẪN, GIAO HÀNG - THANH TOÁN, BẢO HÀNH - ĐỔI TrẢ.</p><p><b>RIÊNG MỤC FAQs, LIÊN HỆ, TÌM SHOP CÓ CẤU TRÚC KHÁC</b> (xem phần của nó).</p>', '', '', '[2]DỊCH VỤ THU MUA VÀ THANH LÝ', '2015-07-04 05:36:36', '2015-06-09 17:08:06', 1, 1, 0, 1, 0, 0, '', '');
 
 -- --------------------------------------------------------
 

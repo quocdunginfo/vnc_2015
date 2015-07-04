@@ -163,7 +163,7 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
 
     public function getContactPart()
     {
-        if (QdT_Library::isNullOrEmpty($this->contacts)) return;
+        if (QdT_Library::isNullOrEmpty($this->page->contacts)) return;
         ?>
         <div class="vn-lienhe-border"></div>
 
@@ -171,37 +171,37 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
             <div class="col-xs-12">
                 <h5 style="margin-bottom: 0px;">
 
-                    <?= $this->contacts[0]->name ?>
+                    <?= $this->page->contacts[0]->name ?>
 
                 </h5>
 
                 <p>
-                    Địa chỉ: <?= $this->contacts[0]->address ?>.
+                    Địa chỉ: <?= $this->page->contacts[0]->address ?>.
                     <br>
-                    Điện thoại: <?= $this->contacts[0]->phone ?>.
+                    Điện thoại: <?= $this->page->contacts[0]->phone ?>.
                     <br>
-                    Email: <?= $this->contacts[0]->email ?>.
+                    Email: <?= $this->page->contacts[0]->email ?>.
                     <br>
-                    Facebook: <?= $this->contacts[0]->website ?>.
+                    Facebook: <?= $this->page->contacts[0]->website ?>.
                 </p>
 
             </div>
         </div>
         <div class="row" style="margin-top: 20px;">
             <?php
-            for ($i = 1; $i < count($this->contacts); $i++):
+            for ($i = 1; $i < count($this->page->contacts); $i++):
                 ?>
                 <div class="col-xs-6">
                     <h5 style="margin-bottom: 0px;">
 
-                        <?= $this->contacts[$i]->name ?>
+                        <?= $this->page->contacts[$i]->name ?>
 
                     </h5>
 
                     <p>
-                        T: <?= $this->contacts[$i]->phone ?>.
+                        T: <?= $this->page->contacts[$i]->phone ?>.
                         <br>
-                        E: <?= $this->contacts[$i]->email ?>.
+                        E: <?= $this->page->contacts[$i]->email ?>.
                     </p>
                 </div>
                 <?php
