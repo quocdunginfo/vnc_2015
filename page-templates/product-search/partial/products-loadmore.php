@@ -40,25 +40,25 @@ if($shop_id>0)
     $obj = new QdProduct();
     if($key_word!='')
     {
-        $obj->SETRANGE('name', $key_word, false);
-        $obj->SETRANGE('description', $key_word, false);
-        $obj->SETRANGE('doitra_baohanh', $key_word, false);
-        $obj->SETRANGE('giaohang_thanhtoan', $key_word, false);
-        $obj->SETRANGE('code', $key_word, false);
+        $obj->SETRANGE('name', $key_word, $obj::$OP_CONTAINS);
+        $obj->SETRANGE('description', $key_word, $obj::$OP_CONTAINS);
+        $obj->SETRANGE('doitra_baohanh', $key_word, $obj::$OP_CONTAINS);
+        $obj->SETRANGE('giaohang_thanhtoan', $key_word, $obj::$OP_CONTAINS);
+        $obj->SETRANGE('code', $key_word, $obj::$OP_CONTAINS);
         $obj->SETFILTERRELATION('OR');
     }
     else {
         if ($product_cat_id > 0)
-            $obj->SETRANGE('product_cat_id', $product_cat_id, true);
+            $obj->SETRANGE('product_cat_id', $product_cat_id);
         if ($manufactor_id > 0)
-            $obj->SETRANGE('manufacturer_id', $manufactor_id, true);
+            $obj->SETRANGE('manufacturer_id', $manufactor_id);
         if ($size_id > 0)
-            $obj->SETRANGE('size_id', $size_id, true);
+            $obj->SETRANGE('size_id', $size_id);
 
         if ($price_from > 0)
-            $obj->SETRANGE('price', $price_from, true, '>=');
+            $obj->SETRANGE('price', $price_from, $obj::$OP_GREATER_THAN_OR_EQUAL);//quocdunginfo
         if ($price_to > 0)
-            $obj->SETRANGE('price', $price_to, true, '<=');
+            $obj->SETRANGE('price', $price_to, $obj::$OP_LESS_THAN_OR_EQUAL);//quocdunginfo
 
         $obj->SETFILTERRELATION('AND');
     }

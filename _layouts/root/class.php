@@ -35,7 +35,7 @@ class QdT_Layout_Root
         $this->product_setup = QdSetupProduct::GET();
 
         $record = new QdWidgetNav();
-        $record->SETRANGE('group_id', $this->theme_root_setup->social_icon, true);
+        $record->SETRANGE('group_id', $this->theme_root_setup->social_icon);
         $this->data['social_icon'] = $record->GETLIST();
 
         $this->data['vnc_logo'] = $this->theme_root_setup->vnc_logo;
@@ -49,14 +49,14 @@ class QdT_Layout_Root
 
         //Widget NAV
         $record = new QdWidgetNav();
-        $record->SETRANGE('group_id', $this->theme_root_setup->widgetnavcat_id, true);
+        $record->SETRANGE('group_id', $this->theme_root_setup->widgetnavcat_id);
         $this->widget_nav_list = $record->GETLIST();
         //END Widget NAV
 
         //Partner
         $record = new QdPartner();
-        $record->SETRANGE('group_id', $this->theme_root_setup->partnergrp_id, true);
-        $record->SETRANGE('active', true, true);
+        $record->SETRANGE('group_id', $this->theme_root_setup->partnergrp_id);
+        $record->SETRANGE('active', true);
         $record->SETORDERBY('order', 'asc');
         $this->partner_list = $record->GETLIST();
 

@@ -16,7 +16,7 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View {
     protected function getContentPart()
     {
         $record = new QdProductCat();
-        $record->SETRANGE('type', QdProductCat::$TYPE_PRODUCTCAT, true);
+        $record->SETRANGE('type', QdProductCat::$TYPE_PRODUCTCAT);
         $objss = $record->GETLIST();
         //$menu_ul_li = QdT_Library::genMenuTree(QdProductCat::genObjectsToArray($objss), $this->uri);
 
