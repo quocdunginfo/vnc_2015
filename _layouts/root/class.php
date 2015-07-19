@@ -17,6 +17,7 @@ class QdT_Layout_Root
     public $theme_root_setup = null;
     public $product_setup = null;
     public $cookie_customer = array();
+    public $main_menus = array();
 
     function __construct()
     {
@@ -59,6 +60,13 @@ class QdT_Layout_Root
         $record->SETRANGE('active', true);
         $record->SETORDERBY('order', 'asc');
         $this->partner_list = $record->GETLIST();
+
+        //Main menu
+        $record = new QdMenu();
+        $record->SETRANGE('active', true);
+        $record->SETORDERBY('order', 'asc');
+
+        $this->main_menus = $record->GETLIST();
 
         //END Partner
         $this->loadScript();
