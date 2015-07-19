@@ -9,6 +9,7 @@
 QdT_Library::loadPageView('product-search');
 
 $product_cat_id = get_query_var('product-cat-id', 0);
+$product_cat_level = get_query_var('product-cat-level', 0);
 $manufactor_id = get_query_var('manufactor-id', 0);
 $price_from = get_query_var('price-from', -1);
 $price_to = get_query_var('price-to', -1);
@@ -48,8 +49,14 @@ if($shop_id>0)
         $obj->SETFILTERRELATION('OR');
     }
     else {
-        if ($product_cat_id > 0)
-            $obj->SETRANGE('product_cat_id', $product_cat_id);
+        if ($product_cat_id > 0) {
+            if ($product_cat_level > 0) {
+                $obj->SETRANGE("product_cat_lv{$product_cat_level}_id", $product_cat_id);
+            } else {
+                $obj->SETRANGE('product_cat_id', $product_cat_id);
+            }
+        }
+
         if ($manufactor_id > 0)
             $obj->SETRANGE('manufacturer_id', $manufactor_id);
         if ($size_id > 0)
