@@ -17,7 +17,7 @@ $size_id = get_query_var('size-id', 0);
 $shop_id = get_query_var('shop-id', 0);
 $offset = get_query_var('offset', 0);
 $key_word = get_query_var('key-word', '');
-$item_per_segment = 3;
+$item_per_segment = 9;
 
 $products = array();
 
