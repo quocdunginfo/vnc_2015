@@ -37,5 +37,9 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
     {
         return 'QdT_PageT_HomePage_View';
     }
+    public static function getPageViewMobileClass()
+    {
+        return "QdT_PageT_HomePage_ViewMobile";
+    }
 
 }
