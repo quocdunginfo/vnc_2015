@@ -30,6 +30,12 @@ class QdT_PageT_Service extends QdCPT_IntroductionLayout
     {
         return 'QdT_PageT_Service_View';
     }
+
+    public static function getPageViewMobileClass()
+    {
+        return 'QdT_PageT_Service_ViewMobile';
+    }
+
     public function isServicePage()
     {
         return true;
