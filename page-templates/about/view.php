@@ -108,7 +108,7 @@ class QdT_PageT_About_View extends QdT_Layout_Root_View
         <div class="container-non-responsive">
             <div class="row">
                 <div class="col-xs-12 size-gioithieu">
-                    <img src="<?=$obj->avatar?>" class="vn-gioithieu-box" alt="Cinque Terre">
+                    <img src="<?=$obj->avatar?>" class="vn-gioithieu-box" alt="">
                 </div>
             </div>
         </div>

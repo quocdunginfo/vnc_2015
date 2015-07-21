@@ -87,6 +87,8 @@ class QdT_Layout_Root_ViewMobile
 
         <?= $this->getHeaderPart() ?>
 
+        <?=$this->getBreadcrumbsPart()?>
+
         <?= $this->getContentPart() ?>
 
         <?= $this->getFooterPart() ?>
@@ -380,13 +382,32 @@ class QdT_Layout_Root_ViewMobile
 
     protected function getBreadcrumbsPart()
     {
-        ?>
-        <?php
-        //breadCrums
         $bc = $this->getBreadcrumbs();
+        if(count($bc)<=0) return;
         ?>
+        <!-- bread crumb -->
+        <div class="container">
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-xs-12">
+                    <ol class="breadcrumb" style="">
+                        <?php
 
+                        foreach ($bc as $item):
+                            ?>
+                            <li><a href="<?= $item['url'] ?>"><?= $item['name'] ?></a></li>
+                        <?php
+                        endforeach;
+                        ?>
+                    </ol>
 
+                    <!-- <ol class="breadcrumb">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="#">Dịch vụ</a></li>
+                        <li class="active">Dịch vụ ký gửi</li>
+                    </ol> -->
+                </div>
+            </div>
+        </div>
     <?php
     }
 
