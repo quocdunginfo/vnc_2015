@@ -23,14 +23,11 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
         //QdJqwidgets::loadSinglePluginJS("ajax-loader.js");
     }
 
-
-    protected function getContentPart()
+    private function getBigSalePart()
     {
+        if (QdT_Library::isNullOrEmpty($this->page->big_sale_cat)) return;
+        if (QdT_Library::isNullOrEmpty($this->page->big_sale_products)) return;
         ?>
-        <!-- Page Content -->
-
-        <?= $this->getBestChoicePart() ?>
-
         <!-- Big Sale -->
         <div class="container">
 
@@ -38,26 +35,21 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
             <div class="row big-sale">
                 <div class="col-lg-12">
                     <h4 class="page-header">
-                        BIG SALE
+                        <?= $this->page->big_sale_cat->name; ?>
                     </h4>
                 </div>
-                <div class="col-xs-6 johnchuong" style="padding-right: 5px;">
-                    <div class="bs-pro" style="background: url('img/panner1.jpg');
-                                                          background-repeat: no-repeat;
-                                                          background-size: contain;
-                                                          background-position: center;">
-                    </div>
-                    <p class="p-edit-1">
-                        iPhone 5S 32GB Quốc Tế màu trắng xanh vàng
-                    </p>
 
-                    <p class="p-edit-1">
-                        <b style="color: rgb(131,131,132);font-weight: normal;">5.000.000 VND</b><img
-                            src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                <?php
+                $count = 1;
+                foreach ($this->page->big_sale_products as $item):
+                    $this->genProductWidget($item, 'col-xs-6 johnchuong', 'padding-right: 5px;');
 
-                        <b class="bs-sale">1.000 USD (50% OFF)</b>
-                    </p>
-                </div>
+                    if ($count % 2 == 0) echo '<div class="col-xs-12" style="padding-left: 5px; margin-top: 20px;"></div>';//trick to avoid using new row and not overlap with other item
+                    $count++;
+                endforeach;
+                ?>
+
+                <!--
                 <div class="col-xs-6 johnchuong" style="padding-left: 5px;">
                     <div class="bs-pro" style="background: url('img/panner1.jpg');
                                                           background-repeat: no-repeat;
@@ -90,13 +82,26 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
                         <b class="bs-sale">1.000 USD (50% OFF)</b>
                     </p>
                 </div>
+
+
                 <div class="col-xs-12">
                     <p style="text-align: center; font-style: italic; ">Xem tiếp</p>
                 </div>
+                -->
             </div>
             <!-- /.row -->
         </div>
         <!-- Portfolio Section -->
+        <?php
+    }
+    protected function getContentPart()
+    {
+        ?>
+        <!-- Page Content -->
+
+        <?= $this->getBestChoicePart() ?>
+
+        <?=$this->getBigSalePart()?>
 
 
     <?php

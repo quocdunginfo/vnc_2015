@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: quocd_000
@@ -6,12 +7,16 @@
  * Time: 10:15 PM
  * Version: 150720
  */
-class QdT_Layout_Root_ViewMobile {
+class QdT_Layout_Root_ViewMobile
+{
 
     protected $page = null;
-    function __construct($page){
+
+    function __construct($page)
+    {
         $this->page = $page;
     }
+
     protected function getBreadcrumbs()
     {
         $t = array();
@@ -56,7 +61,6 @@ class QdT_Layout_Root_ViewMobile {
             <meta name="author" content="quocdunginfo">
 
 
-
             <!-- Bootstrap Core CSS -->
             <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -81,11 +85,11 @@ class QdT_Layout_Root_ViewMobile {
 
         <body <?php body_class(); ?>>
 
-        <?=$this->getHeaderPart()?>
+        <?= $this->getHeaderPart() ?>
 
-        <?=$this->getContentPart()?>
+        <?= $this->getContentPart() ?>
 
-        <?=$this->getFooterPart()?>
+        <?= $this->getFooterPart() ?>
 
         <!-- /.container -->
         <a href="#0" class="cd-top cd-is-visible cd-fade-out">Top</a>
@@ -110,18 +114,17 @@ class QdT_Layout_Root_ViewMobile {
         <!-- bxSlider Javascript file -->
         <script src="js/jquery.bxslider.min.js"></script>
         <!-- bxSlider CSS file -->
+        <!-- Review script code: quocdunginfo -->
         <script>
-            $(document).on("pagecreate",function(event)
-            {
-                $(window).on("orientationchange",function(event){
-                    $(".johnchuong div").height($(".johnchuong div").width()*2/3);
+            $(document).on("pagecreate", function (event) {
+                $(window).on("orientationchange", function (event) {
+                    $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
                 });
             });
-            $(document).ready(function()
-            {
+            $(document).ready(function () {
                 $('.bxslider').bxSlider();
             });
-            $(document).ready(function(){
+            $(document).ready(function () {
                 $('.slider1').bxSlider({
                     pager: false,
                     maxSlides: 1,
@@ -132,118 +135,103 @@ class QdT_Layout_Root_ViewMobile {
                     prevText: '<span class="vnc-control-bestchoise glyphicon glyphicon-menu-left "></span>',
                 });
             });
-            $("#menubutton").click(function(){
-                if ($("#menubutton").css("background-repeat").indexOf("repeat-x") > -1)
-                {
-                    if ($(".menu-xs").css("display") == "none")
-                    {
+            $("#menubutton").click(function () {
+                if ($("#menubutton").css("background-repeat").indexOf("repeat-x") > -1) {
+                    if ($(".menu-xs").css("display") == "none") {
                         $(".menu-xs").slideDown(200);
                     }
-                    else
-                    {
+                    else {
                         $(".menu-xs").slideUp(200);
                     }
                     return;
                 }
             });
-            $("#searchmenu").click(function(){
+            $("#searchmenu").click(function () {
 
-                if ($(".search-xs").css("display") == "none")
-                {
+                if ($(".search-xs").css("display") == "none") {
                     $(".search-xs").slideDown(200);
                     $(".menu-xs").slideUp(200);
                 }
-                else
-                {
+                else {
                     $(".search-xs").slideUp(200);
                 }
                 return;
             });
-            $("#hidemenu-xs").click(function(){
+            $("#hidemenu-xs").click(function () {
                 $(".menu-xs").slideUp(200);
             });
-            $("#hidesearch-xs").click(function(){
+            $("#hidesearch-xs").click(function () {
                 $(".search-xs").slideUp(200);
             });
-            $("#menu-1 a").click(function(){
+            $("#menu-1 a").click(function () {
                 $("#menu-2 ul").slideUp(200);
                 $("#menu-3 ul").slideUp(200);
-                if ($("#menu-1-0").css("display") == "none")
-                {
+                if ($("#menu-1-0").css("display") == "none") {
                     $("#menu-1-0").slideDown(200);
                 }
             });
-            $("#menu-1-0 a").click(function(){
-                if ($("#menu-1-1-0").css("display") == "none")
-                {
+            $("#menu-1-0 a").click(function () {
+                if ($("#menu-1-1-0").css("display") == "none") {
                     $("#menu-1-1-0").slideDown(200);
                 } else {
                     $("#menu-1-1-0").slideUp(200);
                 }
             });
-            $("#menu-2 a").click(function(){
+            $("#menu-2 a").click(function () {
                 $("#menu-1 ul").slideUp(200);
                 $("#menu-3 ul").slideUp(200);
-                if ($("#menu-2 ul").css("display") == "none")
-                {
+                if ($("#menu-2 ul").css("display") == "none") {
                     $("#menu-2 ul").slideDown(200);
                 }
             });
-            $("#menu-3 a").click(function(){
+            $("#menu-3 a").click(function () {
                 $("#menu-1 ul").slideUp(200);
                 $("#menu-2 ul").slideUp(200);
-                if ($("#menu-3 ul").css("display") == "none")
-                {
+                if ($("#menu-3 ul").css("display") == "none") {
                     $("#menu-3 ul").slideDown(200);
                 }
             });
-            $("#dropdown1").click(function(){
-                if($(".danhmuccon1").css("display") == "none")
-                {
+            $("#dropdown1").click(function () {
+                if ($(".danhmuccon1").css("display") == "none") {
                     $(".danhmuccon1").slideDown(200);
                     $(".danhmuca1 span").removeClass("glyphicon-plus").addClass("glyphicon-minus");
                 }
-                else
-                {
-                    $(".danhmuca1 span").removeClass( "glyphicon-minus" ).addClass( "glyphicon-plus" );
+                else {
+                    $(".danhmuca1 span").removeClass("glyphicon-minus").addClass("glyphicon-plus");
                     $(".danhmuccon1").slideUp(200);
                 }
             });
-            $("#dropdown2").click(function(){
-                if($(".danhmuccon2").css("display") == "none")
-                {
+            $("#dropdown2").click(function () {
+                if ($(".danhmuccon2").css("display") == "none") {
                     $(".danhmuccon2").slideDown(200);
                     $(".danhmuca2 span").removeClass("glyphicon-plus").addClass("glyphicon-minus");
                 }
-                else
-                {
-                    $(".danhmuca2 span").removeClass( "glyphicon-minus" ).addClass( "glyphicon-plus" );
+                else {
+                    $(".danhmuca2 span").removeClass("glyphicon-minus").addClass("glyphicon-plus");
                     $(".danhmuccon2").slideUp(200);
                 }
             });
-            $("#dropdown3").click(function(){
-                if($(".danhmuccon3").css("display") == "none")
-                {
+            $("#dropdown3").click(function () {
+                if ($(".danhmuccon3").css("display") == "none") {
                     $(".danhmuccon3").slideDown(200);
                     $(".danhmuca3 span").removeClass("glyphicon-plus").addClass("glyphicon-minus");
                 }
-                else
-                {
-                    $(".danhmuca3 span").removeClass( "glyphicon-minus" ).addClass( "glyphicon-plus" );
+                else {
+                    $(".danhmuca3 span").removeClass("glyphicon-minus").addClass("glyphicon-plus");
                     $(".danhmuccon3").slideUp(200);
                 }
             });
-            $(".johnchuong").load("/index.html",function(){
-                $(".johnchuong div").height($(".johnchuong div").width()*2/3);
+            $(".johnchuong").load("/index.html", function () {
+                $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
             });
-            $(".fix-height-1").load(function(){
-                $(".fix-height-1").height($(".fix-height-1").width()*2/3);
+            $(".fix-height-1").load(function () {
+                $(".fix-height-1").height($(".fix-height-1").width() * 2 / 3);
             });
-            $(".fix-height-2").load("/index.html",function(){
-                $(".fix-height-2").height($(".fix-height-2").width()*2/3);
+            $(".fix-height-2").load("/index.html", function () {
+                $(".fix-height-2").height($(".fix-height-2").width() * 2 / 3);
             });
-            $(".fix-height-3").load("/index.html",function(){
-                $(".fix-height-3").height($(".fix-height-3").width()*2/3);
+            $(".fix-height-3").load("/index.html", function () {
+                $(".fix-height-3").height($(".fix-height-3").width() * 2 / 3);
             });
         </script>
         <?php wp_footer(); ?>
@@ -254,6 +242,7 @@ class QdT_Layout_Root_ViewMobile {
 
     <?php
     }
+
     private function getDefaultMaterial()
     {
 
@@ -273,7 +262,7 @@ class QdT_Layout_Root_ViewMobile {
             </div>
         </div>
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse" id="nav-fix"  role="navigation">
+        <nav class="navbar navbar-inverse" id="nav-fix" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="container">
                 <div class="row">
@@ -288,7 +277,8 @@ class QdT_Layout_Root_ViewMobile {
                     <div class="col-xs-8">
                         <a href="index.html">
                             <div class="vnc-logo">
-                                <a rel="external" href="<?= get_home_url() ?>"><img  src="<?= $this->page->data['vnc_logo'] ?>" alt="Viet Ngan Cash" height="50"></a>
+                                <a rel="external" href="<?= get_home_url() ?>"><img
+                                        src="<?= $this->page->data['vnc_logo'] ?>" alt="Viet Ngan Cash" height="50"></a>
                             </div>
                         </a>
                     </div>
@@ -366,8 +356,8 @@ class QdT_Layout_Root_ViewMobile {
             <!-- /.container -->
         </nav>
 
-        <?=$this->getBannerPart()?>
-        <?php
+        <?= $this->getBannerPart() ?>
+    <?php
     }
 
     protected function getBannerPart()
@@ -379,13 +369,13 @@ class QdT_Layout_Root_ViewMobile {
             <?php
             $count = 0;
             foreach ($this->page->img_slider as $item): ?>
-            <li>
-                <img src="<?=$item->path?>" style="height: 200px;width: 100%;"/></li>
-            <?php
-            $count++;
+                <li>
+                    <img src="<?= $item->path ?>" style="height: 200px;width: 100%;"/></li>
+                <?php
+                $count++;
             endforeach; ?>
         </ul>
-        <?php
+    <?php
     }
 
     protected function getBreadcrumbsPart()
@@ -500,16 +490,46 @@ class QdT_Layout_Root_ViewMobile {
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <p style="color: black;text-align: center; font-size: 10px;">Copyright &copy; Viet Ngan Cash 2015</p>
+                    <p style="color: black;text-align: center; font-size: 10px;">Copyright &copy; Viet Ngan Cash
+                        2015</p>
                 </div>
             </div>
         </div>
-        <?php
+    <?php
     }
 
     public static function genProductWidget($item, $wrapper_class, $wrapper_style)
     {
+        $size_obj = QdSize::GET($item->size_id);
+        ?>
+        <a rel="external" href="<?= $item->getPermalink() ?>" style="color: inherit">
+            <div class="<?= $wrapper_class ?>" style="<?= $wrapper_style ?>">
+                <div class="bs-pro" style="background: url('<?= $item->avatar ?>');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    background-position: center;">
+                </div>
+                <p class="p-edit-1">
+                    <?= $item->name ?>
+                </p>
 
+                <p class="p-edit-1">
+                    <b style="color: rgb(131,131,132);font-weight: normal;"><?= number_format($item->price, 0, '.', ',') ?>
+                        VND</b><img
+                        src="img/border-links.png" style="margin: 0px 5px;">
+                    <?php if ($size_obj != null): ?>
+                        <b>
+                            <?= $size_obj->code ?>
+                        </b>
+                    <?php endif; ?>
+                    </br>
+
+                    <b class="bs-sale"><?= number_format($item->_price_discount, 0, '.', ',') ?> VND
+                        (<?= $item->discount_percent * 100 ?>% OFF)</b>
+                </p>
+            </div>
+        </a>
+    <?php
     }
 
     protected function getWidgetNavsPart()
