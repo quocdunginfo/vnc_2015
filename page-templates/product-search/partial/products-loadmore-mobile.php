@@ -6,14 +6,15 @@
  * Time: 10:29 PM
  */
 
-QdT_Library::loadPageView('product-search');
-$item_per_segment = 9;
+QdT_Library::loadPageViewMobile('product-search');
+$item_per_segment = 8;
+
 require_once('products-loadmore-common.php');
 
 $count = 1;
 foreach ($products as $item):
-    QdT_PageT_ProductSearch_View::genProductWidget($item, 'col-xs-4', '');
-    if ($count % 3 == 0) echo '<div class="col-xs-12" style="height: 20px"></div>';//trick to avoid using new row and not overlap with other item
+    QdT_PageT_ProductSearch_ViewMobile::genProductWidget($item, 'col-xs-6 johnchuong', 'padding-right: 5px;');
+    if ($count % 2 == 0) echo '<div class="col-xs-12" style="padding-left: 5px; margin-top: 20px;"></div>';//trick to avoid using new row and not overlap with other item
     $count++;
 endforeach;
 ?>
@@ -32,7 +33,10 @@ if (count($products) > 0):
         <?php
         $next_url = add_query_arg(array('offset'=>$offset + $item_per_segment), $_SERVER['REQUEST_URI']);
         ?>
-        <a href="<?= $next_url ?>">Xem thêm</a>
+        <a href="<?= $next_url ?>" style="font-style: italic">Xem thêm</a>
     </div>
+    <script>
+        MYAPP.validateJohnChuongImgHeight();
+    </script>
 <?php
 endif;

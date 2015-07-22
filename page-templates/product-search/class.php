@@ -86,6 +86,9 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     {
         return 'QdT_PageT_ProductSearch_View';
     }
-
+    public static function getPageViewMobileClass()
+    {
+        return 'QdT_PageT_ProductSearch_ViewMobile';
+    }
 
 }

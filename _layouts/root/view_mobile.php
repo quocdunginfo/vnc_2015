@@ -71,7 +71,8 @@ class QdT_Layout_Root_ViewMobile
             <link href="css/jquery.bxslider.css" rel="stylesheet">
             <!-- Custom Fonts -->
             <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+            <!-- jQuery -->
+            <script src="js/jquery.js"></script>
             <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
             <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
             <!--[if lt IE 9]>
@@ -80,6 +81,55 @@ class QdT_Layout_Root_ViewMobile
             <![endif]-->
             <?= QdT_Library::FERequestCompactLayout() ?>
             <?= $this->page->setPageInfoToClient() ?>
+
+            <!-- jQuery -->
+            <!-- <script src="js/jquery.js"></script> -->
+            <!-- Disable AJAX href and form POST -->
+            <script type="text/javascript">
+                jQuery(document).bind("mobileinit", function () {
+                    $.mobile.ajaxEnabled = false;
+                });
+            </script>
+
+            <!-- Back to top Jquery -->
+            <script src="js/main.js"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/menu-fixed.js"></script>
+            <!-- JQuery Mobile -->
+            <!-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> -->
+            <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+            <!-- Script to Activate the Carousel -->
+            <!-- bxSlider Javascript file -->
+            <script src="js/jquery.bxslider.min.js"></script>
+            <!-- bxSlider CSS file -->
+
+            <!-- Review script code: quocdunginfo -->
+            <script>
+                $(document).on("pagecreate", function (event) {
+                    $(window).on("orientationchange", function (event) {
+                        $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
+                    });
+                });
+                $(document).ready(function () {
+                    $('.bxslider').bxSlider();
+                });
+                $(document).ready(function () {
+                    $('.slider1').bxSlider({
+                        pager: false,
+                        maxSlides: 1,
+                        slideMargin: 10,
+                        nextSelector: '#vnc-slider-next',
+                        prevSelector: '#vnc-slider-prev',
+                        nextText: '<span class="vnc-control-bestchoise glyphicon glyphicon-menu-right "></span>',
+                        prevText: '<span class="vnc-control-bestchoise glyphicon glyphicon-menu-left "></span>'
+                    });
+                });
+
+                MYAPP.validateJohnChuongImgHeight = function(){
+                    $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
+                }
+            </script>
 
         </head>
 
@@ -95,48 +145,7 @@ class QdT_Layout_Root_ViewMobile
 
         <!-- /.container -->
         <a href="#0" class="cd-top cd-is-visible cd-fade-out">Top</a>
-        <!-- jQuery -->
-        <script src="js/jquery.js"></script>
-        <!-- Disable AJAX href and form POST -->
-        <script type="text/javascript">
-            jQuery(document).bind("mobileinit", function () {
-                $.mobile.ajaxEnabled = false;
-            });
-        </script>
-
-        <!-- Back to top Jquery -->
-        <script src="js/main.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/menu-fixed.js"></script>
-        <!-- JQuery Mobile -->
-        <!-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> -->
-        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <!-- Script to Activate the Carousel -->
-        <!-- bxSlider Javascript file -->
-        <script src="js/jquery.bxslider.min.js"></script>
-        <!-- bxSlider CSS file -->
-        <!-- Review script code: quocdunginfo -->
         <script>
-            $(document).on("pagecreate", function (event) {
-                $(window).on("orientationchange", function (event) {
-                    $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
-                });
-            });
-            $(document).ready(function () {
-                $('.bxslider').bxSlider();
-            });
-            $(document).ready(function () {
-                $('.slider1').bxSlider({
-                    pager: false,
-                    maxSlides: 1,
-                    slideMargin: 10,
-                    nextSelector: '#vnc-slider-next',
-                    prevSelector: '#vnc-slider-prev',
-                    nextText: '<span class="vnc-control-bestchoise glyphicon glyphicon-menu-right "></span>',
-                    prevText: '<span class="vnc-control-bestchoise glyphicon glyphicon-menu-left "></span>',
-                });
-            });
             $("#menubutton").click(function () {
                 if ($("#menubutton").css("background-repeat").indexOf("repeat-x") > -1) {
                     if ($(".menu-xs").css("display") == "none") {
