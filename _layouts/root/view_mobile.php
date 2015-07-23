@@ -86,7 +86,7 @@ class QdT_Layout_Root_ViewMobile
             <!-- <script src="js/jquery.js"></script> -->
             <!-- Disable AJAX href and form POST -->
             <script type="text/javascript">
-                jQuery(document).bind("mobileinit", function () {
+                $(document).bind("mobileinit", function () {
                     $.mobile.ajaxEnabled = false;
                 });
             </script>
@@ -104,31 +104,42 @@ class QdT_Layout_Root_ViewMobile
             <script src="js/jquery.bxslider.min.js"></script>
             <!-- bxSlider CSS file -->
 
-            <!-- Review script code: quocdunginfo -->
+            <!-- Review script code: johnchuong -->
             <script>
+                MYAPP.validateJohnChuongImgHeight = function(){
+                    $(".johnchuong > div" ).each(function( index ) {
+                        $(this).height($(this).width() * 2 / 3);
+                    });
+
+                    $(".qd-fix-height" ).each(function( index ) {
+                        $(this).height($(this).width() * 2 / 3);
+                    });
+
+                    $("#bx-pager img" ).each(function( index ) {
+                        $(this).height($(this).width() * 2 / 3);
+                    });
+
+                    $(".chitiet-img" ).each(function( index ) {
+                        $(this).height($(this).width() * 2 / 3);
+                    });
+
+                    $(".bx-viewport").css("height", "auto");
+                };
                 $(document).on("pagecreate", function (event) {
                     $(window).on("orientationchange", function (event) {
-                        $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
-                    });
-                });
-                $(document).ready(function () {
-                    $('.bxslider').bxSlider();
-                });
-                $(document).ready(function () {
-                    $('.slider1').bxSlider({
-                        pager: false,
-                        maxSlides: 1,
-                        slideMargin: 10,
-                        nextSelector: '#vnc-slider-next',
-                        prevSelector: '#vnc-slider-prev',
-                        nextText: '<span class="vnc-control-bestchoise glyphicon glyphicon-menu-right "></span>',
-                        prevText: '<span class="vnc-control-bestchoise glyphicon glyphicon-menu-left "></span>'
+                        console.log("Screen Orientation changed");
+                        MYAPP.validateJohnChuongImgHeight();
                     });
                 });
 
-                MYAPP.validateJohnChuongImgHeight = function(){
-                    $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
-                }
+                $(window).load(function(){
+                    console.log("All Imgs loaded");
+                    MYAPP.validateJohnChuongImgHeight();
+                });
+                $(window).on('resize', function(){
+                    console.log("Window resized");
+                    MYAPP.validateJohnChuongImgHeight();
+                });
             </script>
 
         </head>
@@ -232,9 +243,11 @@ class QdT_Layout_Root_ViewMobile
                     $(".danhmuccon3").slideUp(200);
                 }
             });
+            /*
             $(".johnchuong").load("/index.html", function () {
                 $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
-            });
+            });*/
+            /*
             $(".fix-height-1").load(function () {
                 $(".fix-height-1").height($(".fix-height-1").width() * 2 / 3);
             });
@@ -243,7 +256,7 @@ class QdT_Layout_Root_ViewMobile
             });
             $(".fix-height-3").load("/index.html", function () {
                 $(".fix-height-3").height($(".fix-height-3").width() * 2 / 3);
-            });
+            });*/
         </script>
         <?php wp_footer(); ?>
 
@@ -376,7 +389,7 @@ class QdT_Layout_Root_ViewMobile
         if ($this->page->img_slider == null || empty($this->page->img_slider)) return;
         ?>
         <!-- Header Carousel -->
-        <ul class="bxslider">
+        <ul id="bxsliderMain">
             <?php
             $count = 0;
             foreach ($this->page->img_slider as $item): ?>
@@ -386,6 +399,11 @@ class QdT_Layout_Root_ViewMobile
                 $count++;
             endforeach; ?>
         </ul>
+        <script>
+            $(document).ready(function () {
+                $('#bxsliderMain').bxSlider();
+            });
+        </script>
     <?php
     }
 

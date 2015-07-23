@@ -127,11 +127,11 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
                         </h4>
                     </div>
                     <div class="col-xs-12" style="position: relative;">
-                        <div class="slider1">
+                        <div id="bxsliderBestChoice">
                             <?php
                             $count = 1;
                             foreach ($list2 as $item2): ?>
-                                <div class="slide-bestchoise" id="fix-height-<?=$count?>">
+                                <div class="slide-bestchoise qd-fix-height">
                                     <img src="<?= $item2->avatar ?>" style="height: 200px;width: 100%;"/>
 
                                     <div class="sup-bestchoise">
@@ -168,6 +168,19 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
                             <div class="col-xs-1" id="vnc-slider-next"></div>
                         </div>
                     </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('#bxsliderBestChoice').bxSlider({
+                                pager: false,
+                                maxSlides: 1,
+                                slideMargin: 10,
+                                nextSelector: '#vnc-slider-next',
+                                prevSelector: '#vnc-slider-prev',
+                                nextText: '<span class="vnc-control-bestchoise glyphicon glyphicon-menu-right "></span>',
+                                prevText: '<span class="vnc-control-bestchoise glyphicon glyphicon-menu-left "></span>'
+                            });
+                        });
+                    </script>
                 </div>
                 <!-- /.row -->
             </div>
