@@ -123,6 +123,8 @@ class QdT_Layout_Root_ViewMobile
                         $(this).height($(this).width() * 2 / 3);
                     });
 
+                    $("#dathang-product span").height($("#dathang-product span").width()*2/3);
+
                     $(".bx-viewport").css("height", "auto");
                 };
                 $(document).on("pagecreate", function (event) {
@@ -563,17 +565,20 @@ class QdT_Layout_Root_ViewMobile
 
                 <p class="p-edit-1">
                     <b style="color: rgb(131,131,132);font-weight: normal;"><?= number_format($item->price, 0, '.', ',') ?>
-                        VND</b><img
-                        src="img/border-links.png" style="margin: 0px 5px;">
+                        VND</b>
+
                     <?php if ($size_obj != null): ?>
+                        <img src="img/border-links.png" style="margin: 0px 5px; display: inline">
                         <b>
                             <?= $size_obj->code ?>
                         </b>
                     <?php endif; ?>
+                    <?php if($item->discount_percent > 0) :?>
                     </br>
 
                     <b class="bs-sale"><?= number_format($item->_price_discount, 0, '.', ',') ?> VND
                         (<?= $item->discount_percent * 100 ?>% OFF)</b>
+                    <?php endif; ?>
                 </p>
             </div>
         </a>

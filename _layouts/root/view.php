@@ -606,11 +606,13 @@ class QdT_Layout_Root_View {
                         </b>
                     <?php endif; ?>
 
+                    <?php if($item->discount_percent > 0) :?>
                     </br>
                     <b style="color: #C80815;">
                         <?= number_format($item->_price_discount, 0, '.', ',') ?> VND
                         (<?= $item->discount_percent * 100 ?>% OFF)
                     </b>
+                    <?php endif; ?>
                 </p>
             </div>
         </a>
