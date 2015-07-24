@@ -59,7 +59,7 @@ class QdT_Layout_Root_ViewMobile
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="description" content="<?= $this->getPageDescription() ?>">
             <meta name="author" content="quocdunginfo">
-
+            <?php wp_head(); ?>
 
             <!-- Bootstrap Core CSS -->
             <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -72,7 +72,7 @@ class QdT_Layout_Root_ViewMobile
             <!-- Custom Fonts -->
             <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
             <!-- jQuery -->
-            <script src="js/jquery.js"></script>
+            <!-- <script src="js/jquery.js"></script> -->
             <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
             <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
             <!--[if lt IE 9]>
