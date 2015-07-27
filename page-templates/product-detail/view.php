@@ -448,7 +448,7 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View{
             <div class="col-xs-5" style="font-weight: bold;">
                 MUA HÀNG TẠI SHOP
                 <br>
-                <a href="#" class="product-detail-shop">( xem Shop có hàng )</a>
+                <a href="<?=QdT_Library::getNoneLink()?>" class="product-detail-shop">( xem Shop có hàng )</a>
 
             </div>
             <div class="col-xs-5 edit-768">

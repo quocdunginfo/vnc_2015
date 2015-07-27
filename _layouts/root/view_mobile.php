@@ -280,11 +280,23 @@ class QdT_Layout_Root_ViewMobile
         <div class="container-non-responsive vnc-header">
             <div class="row">
                 <div class="col-xs-8 header-left">
+                    <p>
+                        <b>MIỄN PHÍ</b>
+                        CHO ĐƠN HÀNG TỪ 250K
+                    </p>
+                </div>
+                <div class="col-xs-4 col-non-padding header-right">
+                    <p>
+                        THU MUA
+                    </p>
+                </div>
+                <!--
+                <div class="col-xs-8 header-left">
                     <?= $this->page->theme_root_setup->topcenter_promotion ?>
                 </div>
                 <div class="col-xs-4 col-non-padding header-right">
                     <?= $this->page->theme_root_setup->topright_navs ?>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- Navigation -->

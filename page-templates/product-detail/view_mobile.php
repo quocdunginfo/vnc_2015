@@ -161,13 +161,18 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                 <div class="col-xs-12">
                     <hr>
                     <div class="row">
-                        <div class="col-xs-9 product-detail-shop">
+                        <div class="col-xs-12 product-detail-shop">
                             MUA HÀNG TẠI SHOP
                             <br>
-                            <a href="#">(xem Shop có hàng)</a>
+                            <a href="<?=QdT_Library::getNoneLink()?>">(xem Shop có hàng)</a>
                         </div>
-                        <div class="col-xs-3">
-                            Share +
+                        <div class="col-xs-12">
+                            <?php
+                            $tmp = QdT_Library::getFullURLFromAbsPath($_SERVER["REQUEST_URI"]);
+                            //$tmp = "[addtoany url='{$tmp}' title='Some Example Page']";
+                            $tmp = "[feather_share url='{$tmp}']";
+                            echo do_shortcode($tmp);
+                            ?>
                         </div>
                     </div>
                     <hr>
