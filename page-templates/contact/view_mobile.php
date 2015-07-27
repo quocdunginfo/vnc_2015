@@ -5,8 +5,10 @@
  * Date: 23/06/2015
  * Time: 11:22 PM
  */
-QdT_Library::loadLayoutView('introduction');
-class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
+QdT_Library::loadLayoutViewMobile('introduction');
+
+class QdT_PageT_Contact_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
+{
 
     public function getSubContentMain()
     {
@@ -14,15 +16,25 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
         return $post->post_content;
     }
 
-    public function getContentMain()
+    protected function getContentPart()
     {
         ?>
-        <?= $this->getSubContentMain() ?>
-        <div class="row">
-            <div class="col-xs-12">
+        <div class="container">
+
+
+            <!-- Marketing Icons Section -->
+            <div class="row big-sale">
+                <div class="col-lg-12">
+                    <h4 class="vnc-title">
+                        <?=$this->getContentTitle()?>
+                    </h4>
+                </div>
+                <!-- info -->
+                <div class="col-xs-12">
+                    <?=$this->getSubContentMain()?>
+                </div>
                 <form id="formContact" onsubmit="return false;">
-                    <input type="hidden" name="id" value="0">
-                    <div class="row col-xs-6 control-group form-group">
+                    <div class="col-xs-12 control-group form-group">
                         <div class="controls">
                             <input type="text" class="form-control" name="customer_name"
                                    placeholder="Vui lòng nhập họ tên"
@@ -37,11 +49,11 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                                    ?>"
                                    required autofocus>
 
+
                             <p class="help-block"></p>
                         </div>
                     </div>
-                    <div class="col-xs-12"></div>
-                    <div class="row col-xs-6 control-group form-group">
+                    <div class=" col-xs-12 control-group form-group">
                         <div class="controls">
                             <input type="text" class="form-control" id="customer_email"
                                    placeholder="Vui lòng nhập email"
@@ -59,8 +71,7 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                             <p class="help-block"></p>
                         </div>
                     </div>
-                    <div class="col-xs-12"></div>
-                    <div class="row col-xs-6 control-group form-group">
+                    <div class="col-xs-12 control-group form-group">
                         <div class="controls">
                             <input type="text" class="form-control" name="customer_phone"
                                    placeholder="Vui lòng nhập số điện thoại"
@@ -78,8 +89,7 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                             <p class="help-block"></p>
                         </div>
                     </div>
-                    <div class="col-xs-12"></div>
-                    <div class="row col-xs-6 control-group form-group">
+                    <div class="col-xs-12 control-group form-group">
                         <div class="controls">
                             <input type="text" class="form-control" name="title"
                                    placeholder="Vui lòng nhập chủ đề"
@@ -92,21 +102,22 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                             <p class="help-block"></p>
                         </div>
                     </div>
-                    <div class="col-xs-12"></div>
-                    <div class="row col-xs-10 control-group form-group">
+                    <div class="col-xs-12 control-group form-group">
                         <div class="controls">
                             <textarea rows="10" cols="100" class="form-control" name="content" required=""
                                       placeholder="Vui lòng ghi nội dung"
                                       data-validation-required-message="Please enter your message" maxlength="999"
                                       style="resize:none" aria-invalid="false"></textarea>
 
+
                             <p class="help-block"></p>
                         </div>
                     </div>
-                    <div class="row col-xs-12">
-                        <button id="formContactSubmit" type="submit" class="btn btn-primary" style="width:180px; height: 36px; font-size: 18px;">GỬI
+                    <div class="col-xs-12 vnc-lh-size">
+                        <button id="formContactSubmit" type="submit" class="btn btn-primary"
+                                style="width:150px; height: 36px; font-size: 18px;">GỬI
                         </button>
-                        <img id="qd-loading" src="img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
+                        <img id="qd-loading" src="../img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
                         <script>
                             MYAPP.PageInfo.DataPort_front_feedback_port = '<?=Qdmvc_Helper::getDataPortPath('front/feedback_port')?>';
                             (function($){
@@ -149,11 +160,17 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                         </script>
                     </div>
                 </form>
+
+                <div class="col-xs-12">
+                    <hr>
+                </div>
+                <?=$this->getContactPart()?>
             </div>
+            <!-- /.row -->
         </div>
-        <?= $this->getContactPart() ?>
     <?php
     }
+
 
     public function getContentTitle()
     {
@@ -165,53 +182,34 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
     {
         if (QdT_Library::isNullOrEmpty($this->page->contacts)) return;
         ?>
-        <div class="vn-lienhe-border"></div>
+        <div class="col-xs-12 vnc-lh-size">
+            <h5><b><?= $this->page->contacts[0]->name ?></b></h5>
 
-        <div class="row">
-            <div class="col-xs-12">
-                <h5 style="margin-bottom: 0px;">
+            <p>
+                Địa chỉ: <?= $this->page->contacts[0]->address ?>.
+                <br>
+                Điện thoại: <?= $this->page->contacts[0]->phone ?>.
+                <br>
+                Email: <?= $this->page->contacts[0]->email ?>.
+                <br>
+                Facebook: <?= $this->page->contacts[0]->website ?>.
+            </p>
 
-                    <?= $this->page->contacts[0]->name ?>
-
-                </h5>
+        </div>
+        <?php
+        for ($i = 1; $i < count($this->page->contacts); $i++):
+            ?>
+            <div class="col-xs-12 vnc-lh-size">
+                <h5><b><?= $this->page->contacts[$i]->name ?></b></h5>
 
                 <p>
-                    Địa chỉ: <?= $this->page->contacts[0]->address ?>.
+                    T: <?= $this->page->contacts[$i]->phone ?>.
                     <br>
-                    Điện thoại: <?= $this->page->contacts[0]->phone ?>.
-                    <br>
-                    Email: <?= $this->page->contacts[0]->email ?>.
-                    <br>
-                    Facebook: <?= $this->page->contacts[0]->website ?>.
+                    E: <?= $this->page->contacts[$i]->email ?>.
                 </p>
-
             </div>
-        </div>
-        <div class="row" style="margin-top: 20px;">
-            <?php
-            for ($i = 1; $i < count($this->page->contacts); $i++):
-                ?>
-                <div class="col-xs-6">
-                    <h5 style="margin-bottom: 0px;">
+        <?php endfor; ?>
 
-                        <?= $this->page->contacts[$i]->name ?>
-
-                    </h5>
-
-                    <p>
-                        T: <?= $this->page->contacts[$i]->phone ?>.
-                        <br>
-                        E: <?= $this->page->contacts[$i]->email ?>.
-                    </p>
-                </div>
-                <?php
-                if($i%2==0)
-                {
-                    echo '<div class="col-xs-12" style="height: 20px"></div>';
-                }
-            endfor;
-            ?>
-        </div>
     <?php
     }
 

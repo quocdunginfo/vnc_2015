@@ -36,6 +36,10 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
     {
         return 'QdT_PageT_Contact_View';
     }
+    public static function getPageViewMobileClass()
+    {
+        return 'QdT_PageT_Contact_ViewMobile';
+    }
     public function isContactPage()
     {
         return true;

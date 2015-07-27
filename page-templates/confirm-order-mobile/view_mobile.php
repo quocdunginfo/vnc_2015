@@ -134,9 +134,67 @@ class QdT_PageT_ConfirmOrder_ViewMobile extends QdT_Layout_Root_ViewMobile
                     </div>
 
                     <div class="col-xs-12 vnc-lh-size">
-                        <a href="dathangtc.html" rel="external" type="button" class="btn btn-primary"
-                           style="width:150px; height: 36px; font-size: 18px;">XÁC NHẬN</a>
+                        <button type="submit" id="formOrderDoneConfirm" class="btn btn-primary"
+                           style="width:150px; height: 36px; font-size: 18px;">XÁC NHẬN</button>
+                        <img id="qd-loading" src="../img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
                     </div>
+
+                    <script>
+                        MYAPP.PageInfo.DataPort_front_product_order_port = '<?=Qdmvc_Helper::getDataPortPath('front/product_order_port')?>';
+                        (function ($) {
+                            $(document).ready(function () {
+                                $('#formOrderDoneConfirm').click(function () {
+                                    //send data to DataPort
+                                    var json = form2js("formOrder", ".", false, null, true);
+                                    //validate
+                                    if (json.customer_name == '') return;
+                                    if (json.customer_phone == '') return;
+                                    if (json.customer_email == '') return;
+                                    if (json.sex == '') return;
+
+                                    console.log(json);
+                                    //save to cookie
+                                    Cookies.set('customer', json, {expires: 7});
+                                    //lock button
+                                    $("#formOrderDoneConfirm").attr("disabled", true);
+
+                                    //show progress bar
+                                    $('#qd-loading').css('display', 'inline-block');
+                                    $.post(MYAPP.PageInfo.DataPort_front_product_order_port, {
+                                        submit: "submit",
+                                        action: "insert",
+                                        data: json
+                                    })
+                                        .done(function (data) {
+                                            //data JSON
+                                            console.log(data);
+                                            //var obj = data;//"ok";//jQuery.parseJSON( data );//may throw error if data aldreay JSON format
+                                            var customer_sex = $("#formOrder input:radio[name=sex]:checked").val();
+
+                                            customer_sex = customer_sex == 1 ? "Anh" : (customer_sex == 0 ? "Chị" : "");
+                                            var customer_name = $("#formOrder input[name=customer_name]").val();
+                                            //...
+                                            //if OK -> redirect to next Page
+                                            window.location = '<?php
+                                            $r_url = get_permalink(QdT_Library::getPageIdByTemplate('page-templates/order-done-mobile.php'));
+                                            $r_url = add_query_arg(array('id' => $this->page->product->id), $r_url);
+                                            echo QdT_Library::getFullURLFromAbsPath($r_url);
+
+                                            ?>';
+                                            //alert("done");
+                                        })
+                                        .fail(function (data) {
+                                            console.log(data);
+                                        })
+                                        .always(function () {
+                                            //release lock
+                                            $("#formOrderDoneConfirm").removeAttr("disabled");
+                                            $('#qd-loading').css('display', 'none');
+                                        });
+                                });
+                            });
+                        })(jQuery);
+                    </script>
                 </form>
                 <div class="col-xs-12">
                     <p class="goihotro">Gọi hỗ trợ <b>098 900 3338</b></p>

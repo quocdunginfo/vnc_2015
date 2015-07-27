@@ -20,6 +20,7 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
 
     <?php
     }
+
     protected function getContentPart()
     {
         ?>
@@ -55,7 +56,7 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
             <div class="row product">
                 <div class="col-xs-12">
                     <div class="vn-title">
-                        IPHONE 5S 32GB QUỐC TẾ MÀU TRẮNG
+                        <?= $this->page->product->name ?>
                     </div>
                 </div>
                 <div class="col-xs-12">
@@ -64,39 +65,48 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                             No.
                         </div>
                         <div class="id">
-                            123456789
+                            <?= $this->page->product->code ?>
                         </div>
                     </div>
 
-                    <div class="vn-symbol">|</div>
-                    <div class="vn-hang">
-                        <div class="title">
-                            Hãng:
+
+                    <?php if (!QdT_Library::isNullOrEmpty($this->page->manufactor) && $this->page->manufactor->name != ''): ?>
+                        <div class="vn-symbol">|</div>
+                        <div class="vn-hang">
+                            <div class="title">
+                                Hãng:
+                            </div>
+                            <div class="id" style="padding-left: 5px;">
+                                <?= $this->page->manufactor->name ?>
+                            </div>
                         </div>
-                        <div class="id" style="padding-left: 5px;">
-                            Apple
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
                 <div class="col-xs-12" style="padding-top: 20px;">
                     <div class="price">
-                        5.000.000 VND
+                        <?= number_format($this->page->product->_price_discount, 0, '.', ',') ?> VND
                     </div>
-                    <div class="vn-symbol">|</div>
-                    <div class="size">
-                        XL
-                    </div>
-                    <div class="vn-symbol">|</div>
-                    <div class="off">
-                        2.500.000 VND (OFF 50%)
-                    </div>
+                    <?php if (!QdT_Library::isNullOrEmpty($this->page->size) && $this->page->size->code != ''): ?>
+                        <div class="vn-symbol">|</div>
+                        <div class="size">
+                            <?= $this->page->size->code ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (!QdT_Library::isNullOrEmpty($this->page->product) && $this->page->product->discount_percent > 0): ?>
+                        <div class="vn-symbol">|</div>
+                        <div class="off">
+                            <?= number_format($this->page->product->_price_discount, 0, '.', ',') ?> VND
+                            (<?= $this->page->product->discount_percent * 100 ?>% OFF)
+                        </div>
+                    <?php endif; ?>
                 </div>
-
+                <?php if (!QdT_Library::isNullOrEmpty($this->page->product) && ($this->page->product->temp_out_of_stock == true)): ?>
                 <div class="col-xs-12">
                     <div class="state">
                         Tạm hết hàng
                     </div>
                 </div>
+                <?php endif; ?>
 
                 <div class="col-xs-12">
                     <hr>
@@ -105,42 +115,48 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                     <div class="vn-product-detail">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#mo-ta">MÔ TẢ SẢN PHẨM</a></li>
-                            <li><div class="vn-symbol">|</div></li>
+                            <li>
+                                <div class="vn-symbol">|</div>
+                            </li>
                             <li><a data-toggle="tab" href="#bao-hanh">ĐỔI TRẢ - BẢO HÀNH</a></li>
-                            <li><div class="vn-symbol">|</div></li>
+                            <li>
+                                <div class="vn-symbol">|</div>
+                            </li>
                             <li><a data-toggle="tab" href="#giao-hang">GIAO HÀNG</a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
-                        <div id="mo-ta" class="tab-pane fade in active product-list2  edit-font-size" style="margin-top: 15px;">
-                            <div class="tinh-trang"> <span style="color:black;">Tình trạng:</span> <span>Like new</span></div>
-                            <div class="bao-hanh"> <span style="color:black;">Bảo hành: </span> <span>6 Tháng</span></div>
-                            <div class="giao-hang"> <span style="color:black;">Giao hàng: </span> <span>Miễn phí</span></div>
-                            <div class="phu-kien"> <span style="color:black;">Phụ kiện: </span> <span>Sạc, cáp, tai nghe, que sim</span></div>
-                            <div class="dac-diem"> <span style="color:black;">Đặc điểm: </span> <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id.</p></div>
+                        <div id="mo-ta" class="tab-pane fade in active product-list2  edit-font-size"
+                             style="margin-top: 15px;">
+                            <?= $this->page->product->description ?>
                         </div>
                         <div id="bao-hanh" class="tab-pane fade product-list2  edit-font-size">
-                            <h3>Section B</h3>
-                            <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+                            <?= $this->page->product->doitra_baohanh ?>
                         </div>
                         <div id="giao-hang" class="tab-pane fade product-list2  edit-font-size">
-                            <h3>Section B</h3>
-                            <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+                            <?= $this->page->product->giaohang_thanhtoan ?>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-12">
-                    <div class="ps"> ĐẶT MUA TẶNG: BAO DA KAKA TRỊ GIÁ 300K !</div>
+                    <div class="ps">
+
+                    </div>
                 </div>
                 <div class="col-xs-12" style="text-align: center;">
                     <?php
                     $order_url = get_permalink(QdT_Library::getPageIdByTemplate('page-templates/confirm-order-mobile.php'));
                     $order_url = add_query_arg(array('id' => $this->page->product->id), $order_url);
                     ?>
-                    <a href="<?= $order_url?>" class="btn btn-primary order-online-button">ĐẶT HÀNG ONLINE</a>
+                    <a onclick="jQuery(this).hide(); $('#qd-loading').css('display', 'inline-block')" href="<?= $order_url ?>" class="btn btn-primary order-online-button">
+                        <?= $this->page->product_order_setup->btn_dathang ?>
+                    </a>
+                    <img id="qd-loading" src="../img/loading.gif" style="width: 30px; height: 30px; display: none; margin-top: 15px">
                 </div>
                 <div class="col-xs-12" style="text-align: center;">
-                    <button class="btn btn-default order-phone-button">Gọi đặt hàng 098 900 3339</button>
+                    <button class="btn btn-default order-phone-button">
+                        <?= $this->page->product_order_setup->btn_goidathang ?>
+                    </button>
                 </div>
                 <div class="col-xs-12">
                     <hr>
@@ -158,13 +174,13 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                 </div>
             </div>
 
-            <?=$this->render_r_products()?>
+            <?= $this->render_r_products() ?>
 
             <!-- /.row -->
         </div>
         <script>
 
-            $(document).ready(function(){
+            $(document).ready(function () {
                 $('#bxsliderProductDetail').bxSlider({
                     pagerCustom: '#bx-pager',
                     controls: false
@@ -183,37 +199,37 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                 });
             });
             /*
-            $(document).on("pagecreate",function(event)
-            {
-                $(window).on("orientationchange",function(event){
-                    $("#bx-pager img").height($("#bx-pager img").width()*2/3);
-                    $("#chitiet-img").height($("#chitiet-img").width()*2/3);
-                    $("#johnchuong div").height($("#johnchuong div").width()*2/3);
-                    $(".bx-viewport").css("height", "auto");
-                });
-            });*/
+             $(document).on("pagecreate",function(event)
+             {
+             $(window).on("orientationchange",function(event){
+             $("#bx-pager img").height($("#bx-pager img").width()*2/3);
+             $("#chitiet-img").height($("#chitiet-img").width()*2/3);
+             $("#johnchuong div").height($("#johnchuong div").width()*2/3);
+             $(".bx-viewport").css("height", "auto");
+             });
+             });*/
             /*
-            $(document).ready(function(){
-                $("#bx-pager img").height($("#bx-pager img").width()*2/3);
-                $("#chitiet-img").height($("#chitiet-img").width()*2/3);
-                $("#johnchuong div").height($("#johnchuong div").width()*2/3);
-                $(".bx-viewport").css("height", "auto");
-            });*/
+             $(document).ready(function(){
+             $("#bx-pager img").height($("#bx-pager img").width()*2/3);
+             $("#chitiet-img").height($("#chitiet-img").width()*2/3);
+             $("#johnchuong div").height($("#johnchuong div").width()*2/3);
+             $(".bx-viewport").css("height", "auto");
+             });*/
             /*
-            $("#bx-pager img").load("/chitietsp.html",function(){
-                $("#bx-pager img").height($("#bx-pager img").width()*2/3);
-                $("#chitiet-img").height($("#chitiet-img").width()*2/3);
-            });
-            $("#johnchuong div").load("/chitietsp.html",function(){
-                $(".bx-viewport").css("height", "auto");
-                $("#johnchuong div").height($("#johnchuong div").width()*2/3);
-            });*/
+             $("#bx-pager img").load("/chitietsp.html",function(){
+             $("#bx-pager img").height($("#bx-pager img").width()*2/3);
+             $("#chitiet-img").height($("#chitiet-img").width()*2/3);
+             });
+             $("#johnchuong div").load("/chitietsp.html",function(){
+             $(".bx-viewport").css("height", "auto");
+             $("#johnchuong div").height($("#johnchuong div").width()*2/3);
+             });*/
             /*
-            $(".johnchuong2 div").load(window.location, function(){
+             $(".johnchuong2 div").load(window.location, function(){
 
-                $(".bx-viewport").css("height", "auto");
-                $(".johnchuong2 div").height($(".johnchuong2 div").width()*2/3);
-            });*/
+             $(".bx-viewport").css("height", "auto");
+             $(".johnchuong2 div").height($(".johnchuong2 div").width()*2/3);
+             });*/
 
         </script>
     <?php
@@ -264,7 +280,7 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                 </div>
             </div>
         </div>
-        <?php
+    <?php
     }
 
     protected function getBreadcrumbs()

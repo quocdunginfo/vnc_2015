@@ -199,7 +199,7 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View{
         <!-- Button đặt hàng -->
         <div class="row">
         <div class="col-xs-12">
-            <div class="ps"> ĐẶT MUA TẶNG: BAO DA KAKA TRỊ GIÁ 300K !</div>
+            <div class="ps"></div>
         </div>
         <div class="col-xs-5" data-role="main" style="padding-right: 0px;">
         <button type="button" class="btn btn-primary order-online-button" data-toggle="modal"
@@ -435,7 +435,7 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View{
 
         </div>
         <div class="col-xs-7 vn-chitiet-922">
-            <button class="btn btn-default order-phone-button" href="#myPopup" data-rel="popup">
+            <button class="btn btn-default order-phone-button" data-rel="popup">
                 <?= $this->page->product_order_setup->btn_goidathang ?>
             </button>
         </div>
