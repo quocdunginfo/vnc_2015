@@ -14,6 +14,7 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     public $manufactor = null;
     public $product_cat = null;
     public $size = null;
+    public $shop_obj = null;
 
     public $size_quanao_list = array();
 
@@ -42,6 +43,14 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
         if ($tmp_size_id != null) {
             $this->size = QdSize::GET($tmp_size_id);
             if ($this->size == null) {
+                static::redirectPageError404();
+            }
+        }
+
+        $tmp_shop_id = get_query_var('shop-id', null);
+        if ($tmp_shop_id != null) {
+            $this->shop_obj = QdShop::GET($tmp_shop_id);
+            if ($this->shop_obj == null) {
                 static::redirectPageError404();
             }
         }
@@ -89,6 +98,52 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     public static function getPageViewMobileClass()
     {
         return 'QdT_PageT_ProductSearch_ViewMobile';
+    }
+
+    public function getPageTitle()
+    {
+        $obj = $this->getGeneralPanelName();
+
+        if($this->product_cat!=null)
+        {
+            $c = $this->product_cat->getParentObj();
+            if($c!=null)
+            {
+                $obj = $this->product_cat->name;
+            }
+
+            while($c!=null)
+            {
+                $obj = $c->name. ' ' . $obj;
+                $c=$c->getParentObj();
+            }
+        }
+
+        $obj = str_replace("{prefix}", $obj, $this->theme_root_setup->seo_title_struct);
+        return $obj;
+    }
+
+    public function getPageDescription()
+    {
+        return 'Shop điện thoại cũ like new chính hãng, xách tay, giá rẻ, tiết kiệm, chất lượng cao, giao hàng tận nơi, bảo hành chu đáo, thanh toán khi nhận hàng.';
+    }
+
+
+    public function getGeneralPanelName()
+    {
+        if($this->product_cat!=null)
+        {
+            return $this->product_cat->name;
+        }
+        if($this->manufactor!=null)
+        {
+            return $this->manufactor->name;
+        }
+        if($this->shop_obj!=null)
+        {
+            return 'Shop '. $this->shop_obj->name;
+        }
+        return 'Sản phẩm';
     }
 
 }

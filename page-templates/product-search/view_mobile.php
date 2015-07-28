@@ -31,7 +31,7 @@ class QdT_PageT_ProductSearch_ViewMobile extends QdT_Layout_Root_ViewMobile {
             <div class="row big-sale" id="qd_list_sanpham">
                 <div class="col-lg-12">
                     <h4 class="vnc-title">
-                        <?= $this->page->product_cat != null ? $this->page->product_cat->name : 'SẢN PHẨM' ?>
+                        <?= mb_strtoupper($this->page->getGeneralPanelName()) ?>
                     </h4>
                 </div>
                 <script type="text/javascript" src="../plugin/jquery.jscroll.js"></script>
@@ -200,6 +200,8 @@ class QdT_PageT_ProductSearch_ViewMobile extends QdT_Layout_Root_ViewMobile {
             array_push($obj, array('name' => $this->page->product_cat->name, 'url' => $this->page->product_cat->getPermalink()));
         } else if ($this->page->manufactor != null) {
             array_push($obj, array('name' => $this->page->manufactor->name, 'url' => $this->page->manufactor->getPermalink()));
+        } else if ($this->page->shop_obj != null) {
+            array_push($obj, array('name' => 'Shop ' . $this->page->shop_obj->name, 'url' => $this->page->shop_obj->getPermalink()));
         }
         return $obj;
     }

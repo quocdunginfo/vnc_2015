@@ -30,12 +30,16 @@ class QdT_Layout_Root_View {
 
     protected function getPageTitle()
     {
-        return get_bloginfo('name');
+        return $this->page->getPageTitle();
     }
 
     protected function getPageDescription()
     {
-        return get_bloginfo('description');
+        return $this->page->getPageDescription();
+    }
+    protected function getPageKeywords()
+    {
+        return $this->page->getPageKeywords();
     }
 
     public function render()
@@ -51,6 +55,7 @@ class QdT_Layout_Root_View {
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="description" content="<?= $this->getPageDescription() ?>">
+            <meta name="keywords" content="<?= $this->getPageKeywords() ?>">
             <meta name="author" content="quocdunginfo">
             <?php wp_head(); ?>
 

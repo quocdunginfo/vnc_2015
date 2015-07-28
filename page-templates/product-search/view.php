@@ -29,7 +29,7 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View {
                     <?= $this->getBreadcrumbsPart() ?>
                     <h2 class="sanpham-header">
                         <small>
-                            <?= $this->page->product_cat != null ? $this->page->product_cat->name : 'SẢN PHẨM' ?>
+                            <?= mb_strtoupper($this->page->getGeneralPanelName()) ?>
                         </small>
                     </h2>
                 </div>
@@ -293,7 +293,10 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View {
             array_push($obj, array('name' => $this->page->product_cat->name, 'url' => $this->page->product_cat->getPermalink()));
         } else if ($this->page->manufactor != null) {
             array_push($obj, array('name' => $this->page->manufactor->name, 'url' => $this->page->manufactor->getPermalink()));
+        } else if ($this->page->shop_obj != null) {
+            array_push($obj, array('name' => 'Shop ' . $this->page->shop_obj->name, 'url' => $this->page->shop_obj->getPermalink()));
         }
         return $obj;
     }
+
 }

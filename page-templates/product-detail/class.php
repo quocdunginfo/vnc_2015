@@ -75,4 +75,22 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
     {
         return 'QdT_PageT_ProductDetail_ViewMobile';
     }
+
+    public function getPageTitle()
+    {
+        return $this->product->name . ' – Viet Ngan Cash – Tiết kiệm hoàn hảo';
+    }
+
+    public function getPageDescription()
+    {
+        $price = number_format($this->product->_price_discount, 0, '.', ',').' VND';
+        if($this->product->discount_percent > 0)
+        {
+            $price .= ' ('.($this->product->discount_percent * 100).'% OFF)';
+        }
+
+        return substr(strip_tags($this->product->description), 0, 80). '...'. $price;
+    }
+
+
 }

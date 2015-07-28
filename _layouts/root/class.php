@@ -137,4 +137,27 @@ class QdT_Layout_Root
     {
         QdT_Library::redirectPageError404();
     }
+    public function getPageTitle()
+    {
+        $obj = str_replace("{prefix}", 'Mua bán, ký gửi đồ hiệu', $this->theme_root_setup->seo_title_struct);
+        return $obj;
+    }
+    public function getPageDescription()
+    {
+        $obj = str_replace("{prefix}", '', $this->theme_root_setup->seo_description_struct);
+        if(trim($obj)=='')
+        {
+            return get_bloginfo('description');
+        }
+        return $obj;
+    }
+    public function getPageKeywords()
+    {
+        $obj = str_replace("{prefix}", '', $this->theme_root_setup->seo_keywords_struct);
+        if(trim($obj)=='')
+        {
+            return '';
+        }
+        return $obj;
+    }
 }

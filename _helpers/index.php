@@ -177,7 +177,7 @@ class QdT_Library extends Qdmvc_Helper
     }
     public static function isMobile()
     {
-        return true;//quocdunginfo force mobile
+        //return true;//quocdunginfo force mobile
         static $is_mobile;
 
         if ( isset($is_mobile) )
