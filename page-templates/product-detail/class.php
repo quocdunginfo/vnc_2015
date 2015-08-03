@@ -7,6 +7,7 @@ QdT_Library::loadLayoutClass('root');
 class QdT_PageT_ProductDetail extends QdT_Layout_Root
 {
     public $product = null;
+    public $seo = array();
     public $r_products = array();
     public $product_imgs = array();
     public $size = null;
@@ -41,7 +42,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
 
         $this->r_products = $this->product->getRProducts2();
 
-
+        $this->seo = $this->product->getSEOMeta();
     }
 
 
@@ -78,18 +79,27 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
 
     public function getPageTitle()
     {
-        return $this->product->name . ' – Viet Ngan Cash – Tiết kiệm hoàn hảo';
+        foreach($this->seo as $meta)
+        {
+            if($meta->meta_name == QdSEOMeta::$META_NAME_TITLE)
+            {
+                return $meta->_meta_value_preview;
+            }
+        }
+        return QdT_Library::getNoneText();
     }
 
     public function getPageDescription()
     {
-        $price = number_format($this->product->_price_discount, 0, '.', ',').' VND';
-        if($this->product->discount_percent > 0)
+        foreach($this->seo as $meta)
         {
-            $price .= ' ('.($this->product->discount_percent * 100).'% OFF)';
+            if($meta->meta_name == QdSEOMeta::$META_NAME_DESCRIPTION)
+            {
+                return $meta->_meta_value_preview;
+            }
         }
 
-        return substr(strip_tags($this->product->description), 0, 80). '...'. $price;
+        return '';
     }
 
 
