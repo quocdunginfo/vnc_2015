@@ -79,27 +79,12 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
 
     public function getPageTitle()
     {
-        foreach($this->seo as $meta)
-        {
-            if($meta->meta_name == QdSEOMeta::$META_NAME_TITLE)
-            {
-                return $meta->_meta_value_preview;
-            }
-        }
-        return QdT_Library::getNoneText();
+        return $this->product->_seo_title_preview;
     }
 
     public function getPageDescription()
     {
-        foreach($this->seo as $meta)
-        {
-            if($meta->meta_name == QdSEOMeta::$META_NAME_DESCRIPTION)
-            {
-                return $meta->_meta_value_preview;
-            }
-        }
-
-        return '';
+        return $this->product->_seo_description_preview;
     }
 
 
