@@ -4,6 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:43 PM
+ * Version: 150720
  */
 QdT_Library::loadLayoutViewMobile('root');
 class QdT_PageT_ProductSearch_ViewMobile extends QdT_Layout_Root_ViewMobile {

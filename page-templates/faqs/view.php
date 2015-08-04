@@ -4,6 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:12 PM
+ * Version: 150607
  */
 QdT_Library::loadLayoutView('introduction');
 class QdT_PageT_FAQS_View extends QdCPT_IntroductionLayout_View {

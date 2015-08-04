@@ -4,6 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:32 PM
+ * Version: 150720
  */
 QdT_Library::loadLayoutViewMobile('root');
 

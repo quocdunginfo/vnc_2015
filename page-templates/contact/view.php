@@ -4,6 +4,7 @@
  * User: quocd_000
  * Date: 23/06/2015
  * Time: 11:22 PM
+ * Version: 150607
  */
 QdT_Library::loadLayoutView('introduction');
 class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {

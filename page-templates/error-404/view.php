@@ -4,6 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 8:52 PM
+ * Version: 150607
  */
 QdT_Library::loadLayoutView('root');
 class QdT_PageT_Error404_View extends QdT_Layout_Root_View {

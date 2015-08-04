@@ -4,6 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 8:52 PM
+ * Version: 150720
  */
 QdT_Library::loadLayoutViewMobile('root');
 class QdT_PageT_Error404_ViewMobile extends QdT_Layout_Root_ViewMobile {
