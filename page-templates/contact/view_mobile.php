@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 23/06/2015
  * Time: 11:22 PM
- * Version: 150720
+ * Version: 150720, 150819
  */
 QdT_Library::loadLayoutViewMobile('introduction');
 
@@ -116,7 +116,7 @@ class QdT_PageT_Contact_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
                     </div>
                     <div class="col-xs-12 vnc-lh-size">
                         <button id="formContactSubmit" type="submit" class="btn btn-primary"
-                                style="width:150px; height: 36px; font-size: 18px;">GỬI
+                                style="width:150px; height: 34px; font-size: 18px;">GỬI
                         </button>
                         <img id="qd-loading" src="../img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
                         <script>

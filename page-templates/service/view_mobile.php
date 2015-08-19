@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:54 PM
- * Version: 150720
+ * Version: 150720, 150819 (un change)
  */
 QdT_Library::loadLayoutViewMobile('introduction');
 class QdT_PageT_Service_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile {

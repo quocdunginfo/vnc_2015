@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:32 PM
- * Version: 150720
+ * Version: 150720, 150819
  */
 QdT_Library::loadLayoutViewMobile('root');
 
@@ -136,7 +136,7 @@ class QdT_PageT_ConfirmOrder_ViewMobile extends QdT_Layout_Root_ViewMobile
 
                     <div class="col-xs-12 vnc-lh-size">
                         <button type="submit" id="formOrderDoneConfirm" class="btn btn-primary"
-                           style="width:150px; height: 36px; font-size: 18px;">XÁC NHẬN</button>
+                           style="width:150px; height: 34px; font-size: 18px;">XÁC NHẬN</button>
                         <img id="qd-loading" src="../img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
                     </div>
 

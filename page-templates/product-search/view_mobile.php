@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:43 PM
- * Version: 150720
+ * Version: 150720, 150819 (Tai sao lai bo the hr)
  */
 QdT_Library::loadLayoutViewMobile('root');
 class QdT_PageT_ProductSearch_ViewMobile extends QdT_Layout_Root_ViewMobile {
@@ -31,7 +31,7 @@ class QdT_PageT_ProductSearch_ViewMobile extends QdT_Layout_Root_ViewMobile {
             <!-- Marketing Icons Section -->
             <div class="row big-sale" id="qd_list_sanpham">
                 <div class="col-lg-12">
-                    <h4 class="vnc-title">
+                    <h4 class="page-header">
                         <?= mb_strtoupper($this->page->getGeneralPanelName()) ?>
                     </h4>
                 </div>

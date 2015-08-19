@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:32 PM
- * Version: 150720
+ * Version: 150720, 150819
  */
 QdT_Library::loadLayoutViewMobile('root');
 
@@ -21,9 +21,11 @@ class QdT_PageT_OrderDone_ViewMobile extends QdT_Layout_Root_ViewMobile
         <div class="container">
             <div class="row" style="margin-top: 10px;padding-bottom: 20px;">
                 <div class="col-xs-12">
-                    <h5 class="vnc-title">
-                        <?= $this->page->product_order_setup->form_order_done_title ?>
-                    </h5>
+                    <h4 class="vnc-title">
+                        <b style="color: #337ab7;">
+                            <?= $this->page->product_order_setup->form_order_done_title ?>
+                        </b>
+                    </h4>
                 </div>
                 <div id="formOrderDoneTpl" class="col-xs-12">
 

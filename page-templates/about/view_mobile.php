@@ -1,6 +1,6 @@
 <?php
 /*
- * Version: 150720
+ * Version: 150720, 150819 (no changes)
  * */
 QdT_Library::loadLayoutViewMobile('root');
 class QdT_PageT_About_ViewMobile extends QdT_Layout_Root_ViewMobile

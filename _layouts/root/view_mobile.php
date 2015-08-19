@@ -105,9 +105,11 @@ class QdT_Layout_Root_ViewMobile
             <!-- Bootstrap Core JavaScript -->
             <script src="js/bootstrap.min.js"></script>
             <script src="js/menu-fixed.js"></script>
+
             <!-- JQuery Mobile -->
             <!-- <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> -->
             <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
             <!-- Script to Activate the Carousel -->
             <!-- bxSlider Javascript file -->
             <script src="js/jquery.bxslider.min.js"></script>
@@ -151,6 +153,7 @@ class QdT_Layout_Root_ViewMobile
                     console.log("Window resized");
                     MYAPP.validateJohnChuongImgHeight();
                 });
+
             </script>
 
         </head>
@@ -406,7 +409,7 @@ class QdT_Layout_Root_ViewMobile
 
             ?>
             <div class="container-fluid search-xs">
-                <form action="<?= $search_url ?>" style="text-align: center;margin-top: 1px;" method="GET">
+                <form action="<?= $search_url ?>" style="text-align: center;margin-top: 0px;" method="GET">
                     <input class="vnc-inputsearch" placeholder="Nhập sản phẩm cần tìm" name="key-word"
                            value="<?= get_query_var('key-word', '') ?>">
                     <button class="btn btn-default vnc-btnsearch" type="submit">Tìm</button>

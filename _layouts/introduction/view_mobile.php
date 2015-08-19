@@ -4,6 +4,7 @@
  * User: quocd_000
  * Date: 23/06/2015
  * Time: 10:27 PM
+ * Version: 150720, 150819 (un change)
  */
 QdT_Library::loadLayoutViewMobile('root');
 class QdCPT_IntroductionLayout_ViewMobile extends QdT_Layout_Root_ViewMobile {

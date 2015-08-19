@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:32 PM
- * Version: 150720
+ * Version: 150720, 150819 (Keep previous version, redundancy code)
  */
 QdT_Library::loadLayoutViewMobile('root');
 
