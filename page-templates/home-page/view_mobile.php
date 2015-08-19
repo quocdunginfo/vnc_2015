@@ -132,7 +132,7 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
                             $count = 1;
                             foreach ($list2 as $item2): ?>
                                 <div class="slide-bestchoise qd-fix-height">
-                                    <img src="<?= $item2->avatar ?>" style="height: 200px;width: 100%;"/>
+                                    <img src="<?= $item2->avatar ?>" style="width: 100%;"/>
 
                                     <div class="sup-bestchoise">
                                         <p <?php if ($item2->title_color != '') echo "style='color: {$item2->title_color}'"; ?>>
@@ -145,7 +145,7 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
                             endforeach; ?>
                             <!--
                             <div class="slide-bestchoise" id="fix-height-2">
-                                <img src="img/panner1.jpg" style="height: 200px;width: 100%;"/>
+                                <img src="img/panner1.jpg" style="width: 100%;"/>
 
                                 <div class="sup-bestchoise">
                                     <p>
@@ -154,7 +154,7 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
                                 </div>
                             </div>
                             <div class="slide-bestchoise" id="fix-height-3">
-                                <img src="img/panner1.jpg" style="height: 200px;width: 100%;"/>
+                                <img src="img/panner1.jpg" style="width: 100%;"/>
 
                                 <div class="sup-bestchoise">
                                     <p>

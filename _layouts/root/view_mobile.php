@@ -5,7 +5,11 @@
  * User: quocd_000
  * Date: 23/06/2015
  * Time: 10:15 PM
- * Version: 150720
+ * Version:
+ * -150720
+ *
+ * -150819
+ *  +Tai sao Footer menu item lai nam ngang nhau
  */
 class QdT_Layout_Root_ViewMobile
 {
@@ -199,11 +203,20 @@ class QdT_Layout_Root_ViewMobile
                     $("#menu-1-0").slideDown(200);
                 }
             });
-            $("#menu-1-0 a").click(function () {
+            $("#menu-1-1 a").click(function () {
                 if ($("#menu-1-1-0").css("display") == "none") {
                     $("#menu-1-1-0").slideDown(200);
                 } else {
                     $("#menu-1-1-0").slideUp(200);
+                }
+            });
+            $("#menu-1-2 a").click(function(){
+                if ($("#menu-1-2-0").css("display") == "none")
+                {
+                    $("#menu-1-2-0").slideDown(200);
+
+                } else {
+                    $("#menu-1-2-0").slideUp(200);
                 }
             });
             $("#menu-2 a").click(function () {
@@ -285,15 +298,13 @@ class QdT_Layout_Root_ViewMobile
         <div class="container-non-responsive vnc-header">
             <div class="row">
                 <div class="col-xs-8 header-left">
-                    <p>
                         <b>MIỄN PHÍ</b>
                         CHO ĐƠN HÀNG TỪ 250K
-                    </p>
                 </div>
                 <div class="col-xs-4 col-non-padding header-right">
-                    <p>
+
                         THU MUA
-                    </p>
+
                 </div>
                 <!--
                 <div class="col-xs-8 header-left">
@@ -305,7 +316,7 @@ class QdT_Layout_Root_ViewMobile
             </div>
         </div>
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse" id="nav-fix" role="navigation">
+        <nav class="navbar navbar-inverse" id="test-jc" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="container">
                 <div class="row">
@@ -334,7 +345,7 @@ class QdT_Layout_Root_ViewMobile
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="container-fluid menu-xs">
-                <span class="closemenu" id="hidemenu-xs" aria-hidden="true">☓</span>
+                <span class="closemenu" id="hidemenu-xs" aria-hidden="true">X</span>
                 <br>
                 <ul style="padding-left: 0px;">
                     <li id="menu-1">
@@ -344,15 +355,23 @@ class QdT_Layout_Root_ViewMobile
                                 <a href="javascript:void(0);">Máy tính bảng</a>
                                 <ul id="menu-1-1-0" class="menu-css-1">
                                     <li class="tutitem">
-                                        a
+                                        <a href="#" rel="external">a</a>
                                     </li>
                                     <li class="tutitem">
-                                        b
+                                        <a href="#" rel="external">b</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="tutitem">
-                                Điện thoại cao cấp
+                            <li id="menu-1-2">
+                                <a href="javascript:void(0);">Điện thoại cao cấp</a>
+                                <ul id="menu-1-2-0" class="menu-css-1">
+                                    <li class="tutitem">
+                                        <a href="#" rel="external">a</a>
+                                    </li>
+                                    <li class="tutitem">
+                                        <a href="#" rel="external">b</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
@@ -371,10 +390,10 @@ class QdT_Layout_Root_ViewMobile
                         <a href="javascript:void(0);">ĐỒNG HỒ TRANG SỨC</a>
                         <ul class="menu-css">
                             <li class="tutitem">
-                                a
+                                <a href="#" rel="external">a</a>
                             </li>
                             <li class="tutitem">
-                                b
+                                <a href="#" rel="external">b</a>
                             </li>
                         </ul>
                     </li>
@@ -413,7 +432,7 @@ class QdT_Layout_Root_ViewMobile
             $count = 0;
             foreach ($this->page->img_slider as $item): ?>
                 <li>
-                    <img src="<?= $item->path ?>" style="height: 200px;width: 100%;"/></li>
+                    <img src="<?= $item->path ?>" style="width: 100%;"/></li>
                 <?php
                 $count++;
             endforeach; ?>
@@ -469,11 +488,10 @@ class QdT_Layout_Root_ViewMobile
                         <span class="glyphicon glyphicon-plus bs-sigh" aria-hidden="true"></span>
                     </button>
                     <div class="danhmuccon1 danhmuccon">
-                        text<br>
-                        text<br>
-                        text<br>
-                        text<br>
-                        text<br>
+                        <a href="#" rel="external">text</a>
+                        <a href="#" rel="external">text</a>
+                        <a href="#" rel="external">text</a>
+                        <a href="#" rel="external">text</a>
                     </div>
                 </div>
             </div>
@@ -487,10 +505,10 @@ class QdT_Layout_Root_ViewMobile
                         <span class="glyphicon glyphicon-plus bs-sigh" aria-hidden="true"></span>
                     </button>
                     <div class="danhmuccon2 danhmuccon">
-                        text<br>
-                        text<br>
-                        text<br>
-                        text<br>
+                        <a href="#" rel="external">text</a>
+                        <a href="#" rel="external">text</a>
+                        <a href="#" rel="external">text</a>
+                        <a href="#" rel="external">text</a>
                     </div>
                 </div>
             </div>
@@ -504,11 +522,10 @@ class QdT_Layout_Root_ViewMobile
                         <span class="glyphicon glyphicon-plus bs-sigh" aria-hidden="true"></span>
                     </button>
                     <div class="danhmuccon3 danhmuccon">
-                        text<br>
-                        text<br>
-                        text<br>
-                        text<br>
-                        text<br>
+                        <a href="#" rel="external">text</a>
+                        <a href="#" rel="external">text</a>
+                        <a href="#" rel="external">text</a>
+                        <a href="#" rel="external">text</a>
                     </div>
                 </div>
             </div>
