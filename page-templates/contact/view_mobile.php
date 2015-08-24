@@ -27,12 +27,12 @@ class QdT_PageT_Contact_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
             <div class="row big-sale">
                 <div class="col-lg-12">
                     <h4 class="vnc-title">
-                        <?=$this->getContentTitle()?>
+                        <?= $this->getContentTitle() ?>
                     </h4>
                 </div>
                 <!-- info -->
                 <div class="col-xs-12">
-                    <?=$this->getSubContentMain()?>
+                    <?= $this->getSubContentMain() ?>
                 </div>
                 <form id="formContact" onsubmit="return false;">
                     <div class="col-xs-12 control-group form-group">
@@ -43,8 +43,7 @@ class QdT_PageT_Contact_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
                                    oninput="this.setCustomValidity('')"
                                    aria-invalid="false"
                                    value="<?php
-                                   if(!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_name']))
-                                   {
+                                   if (!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_name'])) {
                                        echo $this->page->cookie_customer['customer_name'];
                                    }
                                    ?>"
@@ -62,8 +61,7 @@ class QdT_PageT_Contact_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
                                    oninput="this.setCustomValidity('')"
                                    aria-invalid="false"
                                    value="<?php
-                                   if(!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_email']))
-                                   {
+                                   if (!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_email'])) {
                                        echo $this->page->cookie_customer['customer_email'];
                                    }
                                    ?>"
@@ -80,8 +78,7 @@ class QdT_PageT_Contact_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
                                    oninput="this.setCustomValidity('')"
                                    aria-invalid="false"
                                    value="<?php
-                                   if(!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_phone']))
-                                   {
+                                   if (!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_phone'])) {
                                        echo $this->page->cookie_customer['customer_phone'];
                                    }
                                    ?>"
@@ -118,19 +115,20 @@ class QdT_PageT_Contact_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
                         <button id="formContactSubmit" type="submit" class="btn btn-primary"
                                 style="width:150px; height: 34px; font-size: 18px;">GỬI
                         </button>
-                        <img id="qd-loading" src="../img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
+                        <img id="qd-loading" src="../img/loading.gif"
+                             style="width: 30px; height: 30px; display: none; margin-left: 10px">
                         <script>
                             MYAPP.PageInfo.DataPort_front_feedback_port = '<?=Qdmvc_Helper::getDataPortPath('front/feedback_port')?>';
-                            (function($){
+                            (function ($) {
 
-                                $('#formContactSubmit').click(function(){
+                                $('#formContactSubmit').click(function () {
                                     //send data to DataPort
                                     var json = form2js("formContact", ".", false, null, true);
                                     //validate
-                                    if(json.customer_name=='') return;
-                                    if(json.customer_phone=='') return;
-                                    if(json.customer_email=='') return;
-                                    if(json.title=='') return;
+                                    if (json.customer_name == '') return;
+                                    if (json.customer_phone == '') return;
+                                    if (json.customer_email == '') return;
+                                    if (json.title == '') return;
 
                                     console.log(json);
                                     //lock button
@@ -139,7 +137,11 @@ class QdT_PageT_Contact_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
                                     //show progress bar
                                     $('#qd-loading').css('display', 'inline-block');
 
-                                    $.post(MYAPP.PageInfo.DataPort_front_feedback_port, {submit: "submit", action: "insert", data: json})
+                                    $.post(MYAPP.PageInfo.DataPort_front_feedback_port, {
+                                        submit: "submit",
+                                        action: "insert",
+                                        data: json
+                                    })
                                         .done(function (data) {
                                             //data JSON
                                             console.log(data);
@@ -165,7 +167,7 @@ class QdT_PageT_Contact_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
                 <div class="col-xs-12">
                     <hr>
                 </div>
-                <?=$this->getContactPart()?>
+                <?= $this->getContactPart() ?>
             </div>
             <!-- /.row -->
         </div>

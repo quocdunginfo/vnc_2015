@@ -7,17 +7,18 @@
  * Version: 150607
  */
 QdT_Library::loadLayoutClass('introduction');
+
 class QdT_PageT_Service extends QdCPT_IntroductionLayout
 {
     public $obj = null;
+
     function __construct()
     {
         parent::__construct();
 
         $this->obj = QdPost::GET(get_query_var('id'));
 
-        if($this->obj==null || $this->obj->type != QdPost::$TYPE_POST)
-        {
+        if ($this->obj == null || $this->obj->type != QdPost::$TYPE_POST) {
             static::redirectPageError404();
         }
     }

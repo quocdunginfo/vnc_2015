@@ -95,6 +95,7 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     {
         return 'QdT_PageT_ProductSearch_View';
     }
+
     public static function getPageViewMobileClass()
     {
         return 'QdT_PageT_ProductSearch_ViewMobile';
@@ -104,18 +105,15 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     {
         $obj = $this->getGeneralPanelName();
 
-        if($this->product_cat!=null)
-        {
+        if ($this->product_cat != null) {
             $c = $this->product_cat->getParentObj();
-            if($c!=null)
-            {
+            if ($c != null) {
                 $obj = $this->product_cat->name;
             }
 
-            while($c!=null)
-            {
-                $obj = $c->name. ' ' . $obj;
-                $c=$c->getParentObj();
+            while ($c != null) {
+                $obj = $c->name . ' ' . $obj;
+                $c = $c->getParentObj();
             }
         }
 
@@ -131,17 +129,14 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
 
     public function getGeneralPanelName()
     {
-        if($this->product_cat!=null)
-        {
+        if ($this->product_cat != null) {
             return $this->product_cat->name;
         }
-        if($this->manufactor!=null)
-        {
+        if ($this->manufactor != null) {
             return $this->manufactor->name;
         }
-        if($this->shop_obj!=null)
-        {
-            return 'Shop '. $this->shop_obj->name;
+        if ($this->shop_obj != null) {
+            return 'Shop ' . $this->shop_obj->name;
         }
         return 'Sản phẩm';
     }

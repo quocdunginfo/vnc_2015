@@ -47,6 +47,7 @@ class QdT_Layout_Root_ViewMobile
     {
         return $this->page->getPageDescription();
     }
+
     protected function getPageKeywords()
     {
         return $this->page->getPageKeywords();
@@ -117,24 +118,24 @@ class QdT_Layout_Root_ViewMobile
 
             <!-- Review script code: johnchuong -->
             <script>
-                MYAPP.validateJohnChuongImgHeight = function(){
-                    $(".johnchuong > div" ).each(function( index ) {
+                MYAPP.validateJohnChuongImgHeight = function () {
+                    $(".johnchuong > div").each(function (index) {
                         $(this).height($(this).width() * 2 / 3);
                     });
 
-                    $(".qd-fix-height" ).each(function( index ) {
+                    $(".qd-fix-height").each(function (index) {
                         $(this).height($(this).width() * 2 / 3);
                     });
 
-                    $("#bx-pager img" ).each(function( index ) {
+                    $("#bx-pager img").each(function (index) {
                         $(this).height($(this).width() * 2 / 3);
                     });
 
-                    $(".chitiet-img" ).each(function( index ) {
+                    $(".chitiet-img").each(function (index) {
                         $(this).height($(this).width() * 2 / 3);
                     });
 
-                    $("#dathang-product span").height($("#dathang-product span").width()*2/3);
+                    $("#dathang-product span").height($("#dathang-product span").width() * 2 / 3);
 
                     $(".bx-viewport").css("height", "auto");
                 };
@@ -145,11 +146,11 @@ class QdT_Layout_Root_ViewMobile
                     });
                 });
 
-                $(window).load(function(){
+                $(window).load(function () {
                     console.log("All Imgs loaded");
                     MYAPP.validateJohnChuongImgHeight();
                 });
-                $(window).on('resize', function(){
+                $(window).on('resize', function () {
                     console.log("Window resized");
                     MYAPP.validateJohnChuongImgHeight();
                 });
@@ -162,7 +163,7 @@ class QdT_Layout_Root_ViewMobile
 
         <?= $this->getHeaderPart() ?>
 
-        <?=$this->getBreadcrumbsPart()?>
+        <?= $this->getBreadcrumbsPart() ?>
 
         <?= $this->getContentPart() ?>
 
@@ -213,9 +214,8 @@ class QdT_Layout_Root_ViewMobile
                     $("#menu-1-1-0").slideUp(200);
                 }
             });
-            $("#menu-1-2 a").click(function(){
-                if ($("#menu-1-2-0").css("display") == "none")
-                {
+            $("#menu-1-2 a").click(function () {
+                if ($("#menu-1-2-0").css("display") == "none") {
                     $("#menu-1-2-0").slideDown(200);
 
                 } else {
@@ -267,19 +267,19 @@ class QdT_Layout_Root_ViewMobile
                 }
             });
             /*
-            $(".johnchuong").load("/index.html", function () {
-                $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
-            });*/
+             $(".johnchuong").load("/index.html", function () {
+             $(".johnchuong div").height($(".johnchuong div").width() * 2 / 3);
+             });*/
             /*
-            $(".fix-height-1").load(function () {
-                $(".fix-height-1").height($(".fix-height-1").width() * 2 / 3);
-            });
-            $(".fix-height-2").load("/index.html", function () {
-                $(".fix-height-2").height($(".fix-height-2").width() * 2 / 3);
-            });
-            $(".fix-height-3").load("/index.html", function () {
-                $(".fix-height-3").height($(".fix-height-3").width() * 2 / 3);
-            });*/
+             $(".fix-height-1").load(function () {
+             $(".fix-height-1").height($(".fix-height-1").width() * 2 / 3);
+             });
+             $(".fix-height-2").load("/index.html", function () {
+             $(".fix-height-2").height($(".fix-height-2").width() * 2 / 3);
+             });
+             $(".fix-height-3").load("/index.html", function () {
+             $(".fix-height-3").height($(".fix-height-3").width() * 2 / 3);
+             });*/
         </script>
         <?php wp_footer(); ?>
 
@@ -301,12 +301,12 @@ class QdT_Layout_Root_ViewMobile
         <div class="container-non-responsive vnc-header">
             <div class="row">
                 <div class="col-xs-8 header-left">
-                        <b>MIỄN PHÍ</b>
-                        CHO ĐƠN HÀNG TỪ 250K
+                    <b>MIỄN PHÍ</b>
+                    CHO ĐƠN HÀNG TỪ 250K
                 </div>
                 <div class="col-xs-4 col-non-padding header-right">
 
-                        THU MUA
+                    THU MUA
 
                 </div>
                 <!--
@@ -451,7 +451,7 @@ class QdT_Layout_Root_ViewMobile
     protected function getBreadcrumbsPart()
     {
         $bc = $this->getBreadcrumbs();
-        if(count($bc)<=0) return;
+        if (count($bc) <= 0) return;
         ?>
         <!-- bread crumb -->
         <div class="container">
@@ -610,7 +610,7 @@ class QdT_Layout_Root_ViewMobile
                             <?= $size_obj->code ?>
                         </b>
                     <?php endif; ?>
-                    <?php if($item->discount_percent > 0) :?>
+                    <?php if ($item->discount_percent > 0) : ?>
                     </br>
 
                     <b class="bs-sale"><?= number_format($item->_price_discount, 0, '.', ',') ?> VND

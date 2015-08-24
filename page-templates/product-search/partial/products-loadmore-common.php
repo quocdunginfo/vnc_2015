@@ -8,7 +8,7 @@
 $product_cat_id = get_query_var('product-cat-id', 0);
 $product_cat_level = 0;
 $product_cat_obj = QdProductCat::GET($product_cat_id);
-if($product_cat_obj!=null){
+if ($product_cat_obj != null) {
     $product_cat_level = $product_cat_obj->level;
 }
 
@@ -23,8 +23,7 @@ $key_word = get_query_var('key-word', '');
 $products = array();
 
 //Testing
-if($shop_id>0)
-{
+if ($shop_id > 0) {
     $tmp = new QdPro2Shop();
     $tmp->SETRANGE('shop_id', $shop_id);
 
@@ -32,26 +31,22 @@ if($shop_id>0)
     $tmp->SETORDERBY('id', 'desc');
     $tmp->SETOFFSET($offset);
     $tmp = $tmp->GETLIST();
-    foreach($tmp as $item)
-    {
+    foreach ($tmp as $item) {
         $tmp2 = QdProduct::GET($item->product_id);
         array_push($products, $tmp2);
     }
-}else
-{
+} else {
     $obj = new QdProduct();
-    if($key_word!='')
-    {
+    if ($key_word != '') {
         $obj->SETRANGE('name', $key_word, $obj::$OP_CONTAINS);
         $obj->SETRANGE('description', $key_word, $obj::$OP_CONTAINS);
         $obj->SETRANGE('doitra_baohanh', $key_word, $obj::$OP_CONTAINS);
         $obj->SETRANGE('giaohang_thanhtoan', $key_word, $obj::$OP_CONTAINS);
         $obj->SETRANGE('code', $key_word, $obj::$OP_CONTAINS);
         $obj->SETFILTERRELATION('OR');
-    }
-    else {
+    } else {
         if ($product_cat_id > 0) {
-            if ($product_cat_level>0) {
+            if ($product_cat_level > 0) {
                 $obj->SETRANGE("product_cat_lv{$product_cat_level}_id", $product_cat_id);
             } else {
                 $obj->SETRANGE('product_cat_id', $product_cat_id);

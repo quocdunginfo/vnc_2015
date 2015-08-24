@@ -7,7 +7,9 @@
  * Version: 150720, 150819 (un change)
  */
 QdT_Library::loadLayoutViewMobile('root');
-class QdT_PageT_Error404_ViewMobile extends QdT_Layout_Root_ViewMobile {
+
+class QdT_PageT_Error404_ViewMobile extends QdT_Layout_Root_ViewMobile
+{
     protected function getBannerPart()
     {
         //HIDE

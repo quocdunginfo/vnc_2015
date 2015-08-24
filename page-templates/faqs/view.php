@@ -7,17 +7,21 @@
  * Version: 150607
  */
 QdT_Library::loadLayoutView('introduction');
-class QdT_PageT_FAQS_View extends QdCPT_IntroductionLayout_View {
+
+class QdT_PageT_FAQS_View extends QdCPT_IntroductionLayout_View
+{
     protected function getContentMain()
     {
         global $post;
         return $post->post_content;
     }
+
     protected function getContentTitle()
     {
         global $post;
         return $post->post_title;
     }
+
     protected function getBreadcrumbs()
     {
         global $post;

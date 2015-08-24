@@ -6,6 +6,6 @@
  * @subpackage mpd2015
  */
 ?>
-<?php if ( is_active_sidebar( 'sidebar-footer-bottom' ) ) : ?>
-    <?php dynamic_sidebar( 'sidebar-footer-bottom' ); ?>
+<?php if (is_active_sidebar('sidebar-footer-bottom')) : ?>
+    <?php dynamic_sidebar('sidebar-footer-bottom'); ?>
 <?php endif; ?>

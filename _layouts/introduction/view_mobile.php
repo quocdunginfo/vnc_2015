@@ -7,7 +7,9 @@
  * Version: 150720, 150819 (un change)
  */
 QdT_Library::loadLayoutViewMobile('root');
-class QdCPT_IntroductionLayout_ViewMobile extends QdT_Layout_Root_ViewMobile {
+
+class QdCPT_IntroductionLayout_ViewMobile extends QdT_Layout_Root_ViewMobile
+{
     protected function isServicePage()
     {
         return false;
@@ -37,12 +39,12 @@ class QdCPT_IntroductionLayout_ViewMobile extends QdT_Layout_Root_ViewMobile {
             <div class="row big-sale" style="min-height: 500px;">
                 <div class="col-lg-12">
                     <h4 class="vnc-title">
-                        <?=$this->getContentTitle()?>
+                        <?= $this->getContentTitle() ?>
                     </h4>
                 </div>
                 <div class="col-xs-12">
                     <div class="info">
-                        <?=$this->getContentMain()?>
+                        <?= $this->getContentMain() ?>
                     </div>
                 </div>
             </div>

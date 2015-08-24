@@ -7,17 +7,21 @@
  * Version: 150720, 150819 (un change)
  */
 QdT_Library::loadLayoutViewMobile('introduction');
-class QdT_PageT_FAQS_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile {
+
+class QdT_PageT_FAQS_ViewMobile extends QdCPT_IntroductionLayout_ViewMobile
+{
     protected function getContentMain()
     {
         global $post;
         return $post->post_content;
     }
+
     protected function getContentTitle()
     {
         global $post;
         return $post->post_title;
     }
+
     protected function getBreadcrumbs()
     {
         global $post;

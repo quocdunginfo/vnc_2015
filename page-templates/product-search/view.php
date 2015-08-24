@@ -7,7 +7,9 @@
  * Version: 150607
  */
 QdT_Library::loadLayoutView('root');
-class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View {
+
+class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
+{
 
     protected function getBannerPart()
     {
@@ -168,8 +170,9 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View {
                     <?php
                     foreach ($this->page->vnc_shops as $item):
                         ?>
-                        <li><a href="<?= add_query_arg(array('shop-id' => $item->id), $this->page->uri) ?>" class="product-links">
-                                <?=$item->name?>
+                        <li><a href="<?= add_query_arg(array('shop-id' => $item->id), $this->page->uri) ?>"
+                               class="product-links">
+                                <?= $item->name ?>
                             </a></li>
                     <?php endforeach; ?>
                 </ul>

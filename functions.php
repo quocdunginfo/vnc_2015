@@ -108,8 +108,7 @@ require_once('_helpers/index.php');
 //Register all query var here - DO NOT use $_GET[var_name]
 function qd_register_query_vars($vars)
 {
-    foreach(QdT_Fn_Config::$query_args as $item)
-    {
+    foreach (QdT_Fn_Config::$query_args as $item) {
         $vars[] = $item;
     }
 
@@ -123,8 +122,7 @@ add_filter('query_vars', 'qd_register_query_vars');
 //Register all query var here - DO NOT use $_GET[var_name]
 function qd_register_url_rewrite_tag($vars)
 {
-    foreach(QdT_Fn_Config::$query_args as $item)
-    {
+    foreach (QdT_Fn_Config::$query_args as $item) {
         add_rewrite_tag("%{$item}%", '([^&]+)');
     }
 }

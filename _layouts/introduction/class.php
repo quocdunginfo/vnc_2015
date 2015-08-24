@@ -31,6 +31,7 @@ class QdCPT_IntroductionLayout extends QdT_Layout_Root
         $tmp->SETRANGE('group_id', $this->theme_root_setup->banner_service_page);
         $this->banner_service_page_list = $tmp->GETLIST();
     }
+
     public function isServicePage()
     {
         return false;

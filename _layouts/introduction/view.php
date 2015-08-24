@@ -6,7 +6,9 @@
  * Time: 10:27 PM
  */
 QdT_Library::loadLayoutView('root');
-class QdCPT_IntroductionLayout_View extends QdT_Layout_Root_View {
+
+class QdCPT_IntroductionLayout_View extends QdT_Layout_Root_View
+{
 
     protected function getContentMain()
     {
@@ -71,8 +73,9 @@ class QdCPT_IntroductionLayout_View extends QdT_Layout_Root_View {
         foreach ($this->page->banner_service_page_list as $item):
             ?>
             <div class="col-xs-12" style="margin-top: 25px;">
-                <a href="<?=QdT_Library::isNullOrEmpty($item->path)?QdT_Library::getNoneLink():$item->path?>" target="<?=$item->target?>">
-                    <img src="<?=$item->avatar?>" alt="<?=$item->title?>" width="70%" style="margin-left: 40px;">
+                <a href="<?= QdT_Library::isNullOrEmpty($item->path) ? QdT_Library::getNoneLink() : $item->path ?>"
+                   target="<?= $item->target ?>">
+                    <img src="<?= $item->avatar ?>" alt="<?= $item->title ?>" width="70%" style="margin-left: 40px;">
                 </a>
             </div>
         <?php

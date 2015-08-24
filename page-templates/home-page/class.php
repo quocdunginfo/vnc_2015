@@ -11,7 +11,7 @@ QdT_Library::loadLayoutClass('root');
 class QdT_PageT_HomePage extends QdT_Layout_Root
 {
     public $big_sale_cat = null;
-    public  $big_sale_products = array();
+    public $big_sale_products = array();
     public $bestchoicecat_list = array();
 
     function __construct()
@@ -37,6 +37,7 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
     {
         return 'QdT_PageT_HomePage_View';
     }
+
     public static function getPageViewMobileClass()
     {
         return "QdT_PageT_HomePage_ViewMobile";

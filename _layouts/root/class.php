@@ -71,12 +71,13 @@ class QdT_Layout_Root
         //END Partner
         $this->loadScript();
     }
+
     public function setPageInfoToClient()
     {
         ?>
         <style>
-            .breadcrumb>li {
-                white-space: nowrap;/*Fix breadcrumbs new line broken*/
+            .breadcrumb > li {
+                white-space: nowrap; /*Fix breadcrumbs new line broken*/
             }
         </style>
         <script>
@@ -97,18 +98,16 @@ class QdT_Layout_Root
         </script>
     <?php
     }
+
     public function render()
     {
         $tmp = null;
         $c = '';
-        if(QdT_Library::isMobile())
-        {
+        if (QdT_Library::isMobile()) {
             //load view
             $c = static::getPageViewMobileClass();
             QdT_Library::loadPageViewMobile(static::getPageName());
-        }
-        else
-        {
+        } else {
             //load view
             $c = static::getPageViewClass();
             QdT_Library::loadPageView(static::getPageName());
@@ -116,46 +115,52 @@ class QdT_Layout_Root
         $tmp = new $c($this);
         $tmp->render();
     }
+
     public function loadScript()
     {
         QdJqwidgets::loadSinglePluginJS("form2js.js");
         QdJqwidgets::loadSinglePluginJS("js.cookie.js");
     }
+
     public static function getPageViewClass()
     {
         return "QdT_Layout_Root_View";
     }
+
     public static function getPageViewMobileClass()
     {
         return "QdT_Layout_Root_ViewMobile";
     }
+
     public static function getPageName()
     {
         return '';
     }
+
     public static function redirectPageError404()
     {
         QdT_Library::redirectPageError404();
     }
+
     public function getPageTitle()
     {
         $obj = str_replace("{prefix}", 'Mua bán, ký gửi đồ hiệu', $this->theme_root_setup->seo_title_struct);
         return $obj;
     }
+
     public function getPageDescription()
     {
         $obj = str_replace("{prefix}", '', $this->theme_root_setup->seo_description_struct);
-        if(trim($obj)=='')
-        {
+        if (trim($obj) == '') {
             return get_bloginfo('description');
         }
         return $obj;
     }
+
     public function getPageKeywords()
     {
         $obj = str_replace("{prefix}", '', $this->theme_root_setup->seo_keywords_struct);
-        if(trim($obj)=='')
-        {
+        if (trim($obj) == '') {
             return '';
         }
         return $obj;

@@ -3,12 +3,14 @@
  * Version: 150720, 150819 (no changes)
  * */
 QdT_Library::loadLayoutViewMobile('root');
+
 class QdT_PageT_About_ViewMobile extends QdT_Layout_Root_ViewMobile
 {
     protected function getBannerPart()
     {
         parent::getBannerPart();
     }
+
     protected function getBreadcrumbsPart()
     {
         //HIDE
@@ -37,31 +39,32 @@ class QdT_PageT_About_ViewMobile extends QdT_Layout_Root_ViewMobile
             </div>
 
             <?php
-            foreach($this->page->about_list as $item)
-            {
+            foreach ($this->page->about_list as $item) {
                 $this->_templateImgText($item);
             }
             ?>
         </div>
     <?php
     }
+
     private function _templateImgText($obj)
     {
         ?>
         <!-- Marketing Icons Section -->
-        <div class="row gioithieu" >
+        <div class="row gioithieu">
             <div class="col-xs-12 size-gioithieu">
-                <h2 class="title-center"><?=$obj->title?></h2>
+                <h2 class="title-center"><?= $obj->title ?></h2>
+
                 <div class="option-text">
-                    <?=$obj->content?>
+                    <?= $obj->content ?>
                 </div>
-                <?php if($obj->avatar != ''):?>
-                <img src="<?=$obj->avatar?>" class="vn-gioithieu-box1" alt="">
+                <?php if ($obj->avatar != ''): ?>
+                    <img src="<?= $obj->avatar ?>" class="vn-gioithieu-box1" alt="">
                 <?php endif; ?>
             </div>
         </div>
 
         <!-- /.row -->
-        <?php
+    <?php
     }
 }

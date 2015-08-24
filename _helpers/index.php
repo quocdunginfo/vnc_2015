@@ -25,10 +25,12 @@ class QdT_Library extends Qdmvc_Helper
     {
         require_once(__DIR__ . '/' . self::$layout_loc . $name . '/view.php');
     }
+
     public static function loadLayoutViewMobile($name)
     {
         require_once(__DIR__ . '/' . self::$layout_loc . $name . '/view_mobile.php');
     }
+
     public static function loadLayoutClass($name)
     {
         require_once(__DIR__ . '/' . self::$layout_loc . $name . '/class.php');
@@ -49,10 +51,12 @@ class QdT_Library extends Qdmvc_Helper
     {
         require_once(__DIR__ . '/' . self::$pageT_loc . $name . '/class.php');
     }
+
     public static function loadPageView($name)
     {
         require_once(__DIR__ . '/' . self::$pageT_loc . $name . '/view.php');
     }
+
     public static function loadPageViewMobile($name)
     {
         require_once(__DIR__ . '/' . self::$pageT_loc . $name . '/view_mobile.php');
@@ -140,6 +144,7 @@ class QdT_Library extends Qdmvc_Helper
 
         return static::renderMenu($topLevel, 0, $root_uri);
     }
+
     //recursive function
     private static function renderMenu($items, $ul_level, $root_uri)
     {
@@ -155,35 +160,37 @@ class QdT_Library extends Qdmvc_Helper
             ),
         );
 
-        $render = '<ul class="'.$deep_class['ul'][$ul_level].'">';
+        $render = '<ul class="' . $deep_class['ul'][$ul_level] . '">';
 
         foreach ($items as $item) {
-	        $link = add_query_arg(array('product-cat-id' => $item->id), $root_uri);
+            $link = add_query_arg(array('product-cat-id' => $item->id), $root_uri);
 
-            $render .= '<li class="'.$deep_class['li'][$item->deep].'"><a href="'.$link.'">' . $item->title;
+            $render .= '<li class="' . $deep_class['li'][$item->deep] . '"><a href="' . $link . '">' . $item->title;
             if (!empty($item->subs)) {
-                $render .= static::renderMenu($item->subs, $ul_level+1, $root_uri);
+                $render .= static::renderMenu($item->subs, $ul_level + 1, $root_uri);
             }
             $render .= '</a></li>';
         }
 
         return $render . '</ul>';
     }
+
     public static function redirectPageError404()
     {
         $tmp_url = get_permalink(static::getPageIdByTemplate('page-templates/error-404.php'));
         wp_redirect($tmp_url);
         exit;
     }
+
     public static function isMobile()
     {
         //return true;//quocdunginfo force mobile
         static $is_mobile;
 
-        if ( isset($is_mobile) )
+        if (isset($is_mobile))
             return $is_mobile;
 
-        if ( strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') !== false // many mobile devices (all iPhone, iPad, etc.)
+        if (strpos($_SERVER['HTTP_USER_AGENT'], 'iPad') !== false // many mobile devices (all iPhone, iPad, etc.)
             || strpos($_SERVER['HTTP_USER_AGENT'], 'Kindle') !== false
             || strpos($_SERVER['HTTP_USER_AGENT'], 'Silk/') !== false //Kindle
             || strpos($_SERVER['HTTP_USER_AGENT'], 'PlayBook') !== false

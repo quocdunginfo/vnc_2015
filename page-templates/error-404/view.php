@@ -7,7 +7,9 @@
  * Version: 150607
  */
 QdT_Library::loadLayoutView('root');
-class QdT_PageT_Error404_View extends QdT_Layout_Root_View {
+
+class QdT_PageT_Error404_View extends QdT_Layout_Root_View
+{
     protected function getBannerPart()
     {
         //HIDE

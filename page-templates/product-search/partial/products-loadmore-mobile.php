@@ -32,7 +32,7 @@ if (count($products) > 0):
     </style>
     <div class="qd_jscroll_next">
         <?php
-        $next_url = add_query_arg(array('offset'=>$offset + $item_per_segment), $_SERVER['REQUEST_URI']);
+        $next_url = add_query_arg(array('offset' => $offset + $item_per_segment), $_SERVER['REQUEST_URI']);
         ?>
         <a href="<?= $next_url ?>" style="font-style: italic">Xem thêm</a>
     </div>

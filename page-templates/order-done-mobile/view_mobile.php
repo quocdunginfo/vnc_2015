@@ -31,10 +31,10 @@ class QdT_PageT_OrderDone_ViewMobile extends QdT_Layout_Root_ViewMobile
 
                 </div>
                 <script>
-                    (function($){
-                        $(document).ready(function(){
+                    (function ($) {
+                        $(document).ready(function () {
                             var customer_sex = <?=$this->page->cookie_customer['sex']?>;
-                            customer_sex = customer_sex==1?'Anh':'Chị';
+                            customer_sex = customer_sex == 1 ? 'Anh' : 'Chị';
                             var customer_name = '<?=$this->page->cookie_customer['customer_name']?>';
 
                             var tpl = MYAPP.TplReplace(["{customer_title}", "{customer_name}", "{product_name}"], [customer_sex, customer_name, MYAPP.PageInfo.product_obj[0].name], MYAPP.PageInfo.product_order_setup[0].form_order_done_tpl);

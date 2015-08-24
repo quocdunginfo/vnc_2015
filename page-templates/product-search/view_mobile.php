@@ -7,7 +7,9 @@
  * Version: 150720, 150819 (Tai sao lai bo the hr)
  */
 QdT_Library::loadLayoutViewMobile('root');
-class QdT_PageT_ProductSearch_ViewMobile extends QdT_Layout_Root_ViewMobile {
+
+class QdT_PageT_ProductSearch_ViewMobile extends QdT_Layout_Root_ViewMobile
+{
 
     protected function getBannerPart()
     {
@@ -75,8 +77,9 @@ class QdT_PageT_ProductSearch_ViewMobile extends QdT_Layout_Root_ViewMobile {
                     <?php
                     foreach ($this->page->vnc_shops as $item):
                         ?>
-                        <li><a href="<?= add_query_arg(array('shop-id' => $item->id), $this->page->uri) ?>" class="product-links">
-                                <?=$item->name?>
+                        <li><a href="<?= add_query_arg(array('shop-id' => $item->id), $this->page->uri) ?>"
+                               class="product-links">
+                                <?= $item->name ?>
                             </a></li>
                     <?php endforeach; ?>
                 </ul>

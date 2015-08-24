@@ -8,12 +8,9 @@
 //require_once('class.php');
 
 if (isset($_GET['offset'])) {
-    if(QdT_Library::isMobile())
-    {
+    if (QdT_Library::isMobile()) {
         QdT_Library::loadPageT('product-search/partial/products-loadmore-mobile');
-    }
-    else
-    {
+    } else {
         QdT_Library::loadPageT('product-search/partial/products-loadmore');
     }
     exit(0);

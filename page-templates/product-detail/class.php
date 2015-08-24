@@ -72,6 +72,7 @@ class QdT_PageT_ProductDetail extends QdT_Layout_Root
     {
         return 'QdT_PageT_ProductDetail_View';
     }
+
     public static function getPageViewMobileClass()
     {
         return 'QdT_PageT_ProductDetail_ViewMobile';

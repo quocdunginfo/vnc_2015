@@ -102,11 +102,11 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                     <?php endif; ?>
                 </div>
                 <?php if (!QdT_Library::isNullOrEmpty($this->page->product) && ($this->page->product->temp_out_of_stock == true)): ?>
-                <div class="col-xs-12">
-                    <div class="state">
-                        Tạm hết hàng
+                    <div class="col-xs-12">
+                        <div class="state">
+                            Tạm hết hàng
+                        </div>
                     </div>
-                </div>
                 <?php endif; ?>
 
                 <div class="col-xs-12">
@@ -149,10 +149,12 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                     $order_url = get_permalink(QdT_Library::getPageIdByTemplate('page-templates/confirm-order-mobile.php'));
                     $order_url = add_query_arg(array('id' => $this->page->product->id), $order_url);
                     ?>
-                    <a onclick="jQuery(this).hide(); $('#qd-loading').css('display', 'inline-block')" href="<?= $order_url ?>" class="btn btn-primary order-online-button">
+                    <a onclick="jQuery(this).hide(); $('#qd-loading').css('display', 'inline-block')"
+                       href="<?= $order_url ?>" class="btn btn-primary order-online-button">
                         <?= $this->page->product_order_setup->btn_dathang ?>
                     </a>
-                    <img id="qd-loading" src="../img/loading.gif" style="width: 30px; height: 30px; display: none; margin-top: 15px">
+                    <img id="qd-loading" src="../img/loading.gif"
+                         style="width: 30px; height: 30px; display: none; margin-top: 15px">
                 </div>
                 <div class="col-xs-12" style="text-align: center;">
                     <button class="btn btn-default order-phone-button">
@@ -165,7 +167,7 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                         <div class="col-xs-12 product-detail-shop">
                             MUA HÀNG TẠI SHOP
                             <br>
-                            <a href="<?=QdT_Library::getNoneLink()?>">(xem Shop có hàng)</a>
+                            <a href="<?= QdT_Library::getNoneLink() ?>">(xem Shop có hàng)</a>
                         </div>
                         <div class="col-xs-12">
                             <?php

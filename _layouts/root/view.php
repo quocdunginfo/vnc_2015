@@ -1,16 +1,21 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: quocd_000
  * Date: 23/06/2015
  * Time: 10:15 PM
  */
-class QdT_Layout_Root_View {
+class QdT_Layout_Root_View
+{
 
     protected $page = null;
-    function __construct($page){
+
+    function __construct($page)
+    {
         $this->page = $page;
     }
+
     protected function getBreadcrumbs()
     {
         $t = array();
@@ -37,6 +42,7 @@ class QdT_Layout_Root_View {
     {
         return $this->page->getPageDescription();
     }
+
     protected function getPageKeywords()
     {
         return $this->page->getPageKeywords();
@@ -102,7 +108,7 @@ class QdT_Layout_Root_View {
         </head>
 
         <body <?php body_class(); ?> style="/*background: rgba(0,0,0,0.1);*/">
-        <?=$this->getDefaultMaterial()?>
+        <?= $this->getDefaultMaterial() ?>
         <?= $this->getHeaderPart() ?>
 
         <?php
@@ -116,11 +122,13 @@ class QdT_Layout_Root_View {
         </html>
     <?php
     }
+
     private function getDefaultMaterial()
     {
         ?>
         <!-- Modal 1 -->
-        <div class="modal fade" id="qd-root-progressing-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        <div class="modal fade" id="qd-root-progressing-modal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content" style="">
@@ -179,42 +187,42 @@ class QdT_Layout_Root_View {
             </div>
         </div>
         <div class="vn-cas-nav" id="nav-fix">
-        <div class="container-non-responsive">
-        <div class="navMenu expander">
-        <?php
-        $search_url = get_permalink(QdT_Library::getPageIdByTemplate('page-templates/product-search.php'));
+            <div class="container-non-responsive">
+                <div class="navMenu expander">
+                    <?php
+                    $search_url = get_permalink(QdT_Library::getPageIdByTemplate('page-templates/product-search.php'));
 
-        ?>
-        <form action="<?= $search_url ?>" method="get" onsubmit="MYAPP.RootProgressBar(true)">
-            <script>
-                MYAPP.RootProgressBar = function(show) {
-                    if(show)
-                    {
-                        $('#qd-root-progressing-modal').modal('show');
-                    }else {
-                        $('#qd-root-progressing-modal').modal('hide');
-                    }
-                };
+                    ?>
+                    <form action="<?= $search_url ?>" method="get" onsubmit="MYAPP.RootProgressBar(true)">
+                        <script>
+                            MYAPP.RootProgressBar = function (show) {
+                                if (show) {
+                                    $('#qd-root-progressing-modal').modal('show');
+                                } else {
+                                    $('#qd-root-progressing-modal').modal('hide');
+                                }
+                            };
 
-            </script>
-            <input type="search" placeholder="Tìm kiếm..." class="form-control" name="key-word"
-                   value="<?= get_query_var('key-word', '') ?>">
-        </form>
-        <?=$this->getMainMenuPart()?>
-        </div>
-        <div style="display: none; width: 980px; height: 40px; float: left;"></div>
-        </div>
+                        </script>
+                        <input type="search" placeholder="Tìm kiếm..." class="form-control" name="key-word"
+                               value="<?= get_query_var('key-word', '') ?>">
+                    </form>
+                    <?= $this->getMainMenuPart() ?>
+                </div>
+                <div style="display: none; width: 980px; height: 40px; float: left;"></div>
+            </div>
         </div>
         <hr>
         <?= $this->getBannerPart() ?>
     <?php
     }
+
     private function getMainMenuPart()
     {
         ?>
         <ul style="padding-left: 0px;">
             <?php
-            foreach($this->page->main_menus as $qdmenu_item):
+            foreach ($this->page->main_menus as $qdmenu_item):
 
                 $this->genMainMenuFromWP($qdmenu_item);
             endforeach;
@@ -288,7 +296,7 @@ class QdT_Layout_Root_View {
             </li>
             END MENU SAMPLE -->
         </ul>
-        <?php
+    <?php
     }
 
     protected function getBannerPart()
@@ -363,207 +371,207 @@ class QdT_Layout_Root_View {
         ?>
         <!-- Begin Footer -->
         <div class="vn-cas-footer">
-        <!-- Begin Footer Email-->
-        <div class="footer-email">
-            <div class="container-non-responsive">
-                <!-- Begin Title Email-->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="title-email">NHẬN TIN ƯU ĐÃI</h2>
+            <!-- Begin Footer Email-->
+            <div class="footer-email">
+                <div class="container-non-responsive">
+                    <!-- Begin Title Email-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 class="title-email">NHẬN TIN ƯU ĐÃI</h2>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-email">
-                        <form action="" onsubmit="return false" id="formSubscriber">
-                            <style>
-                                input.qd-trans-input,
-                                input.qd-trans-input:focus {
-                                    border:none;
-                                    box-shadow: none;
-                                    -webkit-box-shadow: none;
-                                    -moz-box-shadow: none;
-                                    -moz-transition: none;
-                                    -webkit-transition: none;
-                                    outline: none;
-                                }
-                            </style>
-                            <input type="hidden" name="id" value="0">
-                            <input name="email" class="qd-trans-input" type="text" style="position: absolute; width: 80%; height: 100%; background-color: rgba(0, 0, 0, 0); border:none; padding-left: 20px; padding-right: 20px; text-align: center; font-size: 24px; ">
-                            <button type="submit" class="email-button qd-trans-input" id="formSubscriberBtn"></button>
-                            <script>
-                                MYAPP.PageInfo.DataPort_front_subscriber_port = '<?=Qdmvc_Helper::getDataPortPath('front/subscriber_port')?>';
-                                (function ($) {
-                                    $(document).ready(function () {
-                                        $('#formSubscriberBtn').click(function () {
-                                            //send data to DataPort
-                                            var json = form2js("formSubscriber", ".", false, null, true);
-                                            //validate
-                                            if (json.email == '')
-                                            {
-                                                alert('Email bắt buộc nhập');
-                                                return;
-                                            }
-                                            else if (!MYAPP.isValidEmail(json.email))
-                                            {
-                                                alert('Email không đúng định dạng');
-                                                return;
-                                            }
+                    <div class="row">
+                        <div class="form-email">
+                            <form action="" onsubmit="return false" id="formSubscriber">
+                                <style>
+                                    input.qd-trans-input,
+                                    input.qd-trans-input:focus {
+                                        border: none;
+                                        box-shadow: none;
+                                        -webkit-box-shadow: none;
+                                        -moz-box-shadow: none;
+                                        -moz-transition: none;
+                                        -webkit-transition: none;
+                                        outline: none;
+                                    }
+                                </style>
+                                <input type="hidden" name="id" value="0">
+                                <input name="email" class="qd-trans-input" type="text"
+                                       style="position: absolute; width: 80%; height: 100%; background-color: rgba(0, 0, 0, 0); border:none; padding-left: 20px; padding-right: 20px; text-align: center; font-size: 24px; ">
+                                <button type="submit" class="email-button qd-trans-input"
+                                        id="formSubscriberBtn"></button>
+                                <script>
+                                    MYAPP.PageInfo.DataPort_front_subscriber_port = '<?=Qdmvc_Helper::getDataPortPath('front/subscriber_port')?>';
+                                    (function ($) {
+                                        $(document).ready(function () {
+                                            $('#formSubscriberBtn').click(function () {
+                                                //send data to DataPort
+                                                var json = form2js("formSubscriber", ".", false, null, true);
+                                                //validate
+                                                if (json.email == '') {
+                                                    alert('Email bắt buộc nhập');
+                                                    return;
+                                                }
+                                                else if (!MYAPP.isValidEmail(json.email)) {
+                                                    alert('Email không đúng định dạng');
+                                                    return;
+                                                }
 
-                                            console.log(json);
-                                            //lock button
-                                            $("#formSubscriberBtn").attr("disabled", true);
+                                                console.log(json);
+                                                //lock button
+                                                $("#formSubscriberBtn").attr("disabled", true);
 
-                                            //show progress bar
-                                            MYAPP.RootProgressBar(true);
-                                            $.post(MYAPP.PageInfo.DataPort_front_subscriber_port, {
-                                                submit: "submit",
-                                                action: "insert",
-                                                data: json
-                                            })
-                                                .done(function (data) {
-                                                    //data JSON
-                                                    console.log(data);
-
-                                                    alert('Đăng ký nhận tin thành công');
-
+                                                //show progress bar
+                                                MYAPP.RootProgressBar(true);
+                                                $.post(MYAPP.PageInfo.DataPort_front_subscriber_port, {
+                                                    submit: "submit",
+                                                    action: "insert",
+                                                    data: json
                                                 })
-                                                .fail(function (data) {
-                                                    console.log(data);
-                                                })
-                                                .always(function () {
-                                                    //release lock
-                                                    $("#formSubscriberBtn").removeAttr("disabled");
-                                                    MYAPP.RootProgressBar(false);
-                                                });
+                                                    .done(function (data) {
+                                                        //data JSON
+                                                        console.log(data);
+
+                                                        alert('Đăng ký nhận tin thành công');
+
+                                                    })
+                                                    .fail(function (data) {
+                                                        console.log(data);
+                                                    })
+                                                    .always(function () {
+                                                        //release lock
+                                                        $("#formSubscriberBtn").removeAttr("disabled");
+                                                        MYAPP.RootProgressBar(false);
+                                                    });
+                                            });
                                         });
-                                    });
-                                })(jQuery);
-                            </script>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Begin Footer Center-->
-        <div class="footer-center">
-            <div class="container-non-responsive ">
-                <style>
-                    /*quocdunginfo*/
-                    .qd-widget-navs {
-                        padding-top: 68px;
-                    }
-
-                    .qd-widget-navs h2 {
-                        list-style: none;
-                        margin-bottom: 10px;
-                        font-size: 14px;
-                        font-weight: bold;
-                        margin-top: 0px;
-                    }
-
-                    .widget_advanced_menu li a {
-                        margin-bottom: 20px;
-                        font-size: 13px;
-                        color: rgb(255, 255, 255);
-                    }
-
-                    .widget_advanced_menu li a:hover {
-                        color: rgb(82, 82, 82);
-                        text-decoration: none;
-                        font-size: 14px;
-                        font-weight: bold;
-                    }
-
-                    .widget_advanced_menu ul.menu {
-                        padding-left: 0px;
-                    }
-
-                    /*END quocdunginfo*/
-                </style>
-                <div class="row qd-widget-navs">
-                    <div class="col-xs-3">
-                        <?php get_sidebar('footer-menu-1'); ?>
-                        <!--
-                        <ul style="margin-top: 68px;padding-left: 0px;">
-                            <li style="font-weight: bold;"> CÔNG TY </li>
-                            <li> <a href="#" class="vn-ft-links">GIỚI THIỆU </a></li>
-                            <li> <a href="#" class="vn-ft-links">TUYỂN DỤNG </a></li>
-                            <li> <a href="#" class="vn-ft-links">LIÊN HỆ </a></li>
-                        </ul> -->
-                    </div>
-                    <div class="col-xs-3">
-                        <?php get_sidebar('footer-menu-2'); ?>
-                    </div>
-                    <div class="col-xs-3">
-                        <?php get_sidebar('footer-menu-3'); ?>
-                    </div>
-                    <div class="col-xs-3">
-                        <?php get_sidebar('footer-menu-4'); ?>
-                        <?php
-                        $social_icon_imgs = array(
-                            'facebook' => array(
-                                'static' => 'img/fa-1.png',
-                                'hover' => 'img/fa-2.png'
-                            ),
-                            'google' => array(
-                                'static' => 'img/go-1.png',
-                                'hover' => 'img/go-2.png'
-                            ),
-                            'twitter' => array(
-                                'static' => 'img/tw-1.png',
-                                'hover' => 'img/tw-2.png'
-                            ),
-                            'youtube' => array(
-                                'static' => 'img/yo-1.png',
-                                'hover' => 'img/yo-2.png'
-                            ),
-                        );
-                        ?>
-
-                        <div>
-                            <?php foreach ($this->page->data['social_icon'] as $item) : ?>
-                                <a class="vn-icon" target="<?= $item->target ?>" href="<?= $item->path ?>">
-                                    <img class="footer-center-img"
-                                         src="<?= $social_icon_imgs[$item->title]['static'] ?>"
-                                         onmouseover="this.src='<?= $social_icon_imgs[$item->title]['hover'] ?>'"
-                                         onmouseout="this.src='<?= $social_icon_imgs[$item->title]['static'] ?>'">
-                                </a>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                </div>
-                <?= $this->getPartnerLogoPart() ?>
-            </div>
-        </div>
-
-        <!-- Begin Footer Bottom-->
-        <div class="footer-bottom">
-            <div class="container-non-responsive">
-                <hr style="margin-bottom: 0px; margin-top: 0px;border-top: 1px solid rgb(107,107,107);">
-                <div class="row">
-                    <div class="col-xs-8">
-                        <?= $this->page->theme_root_setup->bottomleft_footer_note ?>
-                        <!--
-                        <p style="padding-top: 20px;font-size: 12px;color: black;">
-                            CÔNG TY TNHH FINEWAY<br>
-                            180 Trương CÔng Định, Phường 14, Tân Bình, TP.HCM <br>
-                            Tel: 08 6679 7779 - 08 6678 7779 <img src="img/border-links.png" style="margin: 0px 5px;"> www.vietngan.vn<br>
-
-                        </p>
-                        <p style="font-size: 12px;margin-bottom: 0px;color: black;">
-                            © 2015 - Việt Ngân Cash <img src="img/border-links.png" style="margin: 0px 5px;"> Điều khoản sử dụng
-                        </p> -->
-                    </div>
-                    <div class="col-xs-4">
-                        <div class="copyright">
-                            <img style="max-width: 90px; max-height: 60px"
-                                 src="<?= $this->page->theme_root_setup->commercial_logo == '' ? 'img/ban-quyen.png' : $this->page->theme_root_setup->commercial_logo ?>">
+                                    })(jQuery);
+                                </script>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Begin Footer Center-->
+            <div class="footer-center">
+                <div class="container-non-responsive ">
+                    <style>
+                        /*quocdunginfo*/
+                        .qd-widget-navs {
+                            padding-top: 68px;
+                        }
+
+                        .qd-widget-navs h2 {
+                            list-style: none;
+                            margin-bottom: 10px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            margin-top: 0px;
+                        }
+
+                        .widget_advanced_menu li a {
+                            margin-bottom: 20px;
+                            font-size: 13px;
+                            color: rgb(255, 255, 255);
+                        }
+
+                        .widget_advanced_menu li a:hover {
+                            color: rgb(82, 82, 82);
+                            text-decoration: none;
+                            font-size: 14px;
+                            font-weight: bold;
+                        }
+
+                        .widget_advanced_menu ul.menu {
+                            padding-left: 0px;
+                        }
+
+                        /*END quocdunginfo*/
+                    </style>
+                    <div class="row qd-widget-navs">
+                        <div class="col-xs-3">
+                            <?php get_sidebar('footer-menu-1'); ?>
+                            <!--
+                            <ul style="margin-top: 68px;padding-left: 0px;">
+                                <li style="font-weight: bold;"> CÔNG TY </li>
+                                <li> <a href="#" class="vn-ft-links">GIỚI THIỆU </a></li>
+                                <li> <a href="#" class="vn-ft-links">TUYỂN DỤNG </a></li>
+                                <li> <a href="#" class="vn-ft-links">LIÊN HỆ </a></li>
+                            </ul> -->
+                        </div>
+                        <div class="col-xs-3">
+                            <?php get_sidebar('footer-menu-2'); ?>
+                        </div>
+                        <div class="col-xs-3">
+                            <?php get_sidebar('footer-menu-3'); ?>
+                        </div>
+                        <div class="col-xs-3">
+                            <?php get_sidebar('footer-menu-4'); ?>
+                            <?php
+                            $social_icon_imgs = array(
+                                'facebook' => array(
+                                    'static' => 'img/fa-1.png',
+                                    'hover' => 'img/fa-2.png'
+                                ),
+                                'google' => array(
+                                    'static' => 'img/go-1.png',
+                                    'hover' => 'img/go-2.png'
+                                ),
+                                'twitter' => array(
+                                    'static' => 'img/tw-1.png',
+                                    'hover' => 'img/tw-2.png'
+                                ),
+                                'youtube' => array(
+                                    'static' => 'img/yo-1.png',
+                                    'hover' => 'img/yo-2.png'
+                                ),
+                            );
+                            ?>
+
+                            <div>
+                                <?php foreach ($this->page->data['social_icon'] as $item) : ?>
+                                    <a class="vn-icon" target="<?= $item->target ?>" href="<?= $item->path ?>">
+                                        <img class="footer-center-img"
+                                             src="<?= $social_icon_imgs[$item->title]['static'] ?>"
+                                             onmouseover="this.src='<?= $social_icon_imgs[$item->title]['hover'] ?>'"
+                                             onmouseout="this.src='<?= $social_icon_imgs[$item->title]['static'] ?>'">
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?= $this->getPartnerLogoPart() ?>
+                </div>
+            </div>
+
+            <!-- Begin Footer Bottom-->
+            <div class="footer-bottom">
+                <div class="container-non-responsive">
+                    <hr style="margin-bottom: 0px; margin-top: 0px;border-top: 1px solid rgb(107,107,107);">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <?= $this->page->theme_root_setup->bottomleft_footer_note ?>
+                            <!--
+                            <p style="padding-top: 20px;font-size: 12px;color: black;">
+                                CÔNG TY TNHH FINEWAY<br>
+                                180 Trương CÔng Định, Phường 14, Tân Bình, TP.HCM <br>
+                                Tel: 08 6679 7779 - 08 6678 7779 <img src="img/border-links.png" style="margin: 0px 5px;"> www.vietngan.vn<br>
+
+                            </p>
+                            <p style="font-size: 12px;margin-bottom: 0px;color: black;">
+                                © 2015 - Việt Ngân Cash <img src="img/border-links.png" style="margin: 0px 5px;"> Điều khoản sử dụng
+                            </p> -->
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="copyright">
+                                <img style="max-width: 90px; max-height: 60px"
+                                     src="<?= $this->page->theme_root_setup->commercial_logo == '' ? 'img/ban-quyen.png' : $this->page->theme_root_setup->commercial_logo ?>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <!-- End Footer -->
@@ -611,7 +619,7 @@ class QdT_Layout_Root_View {
                         </b>
                     <?php endif; ?>
 
-                    <?php if($item->discount_percent > 0) :?>
+                    <?php if ($item->discount_percent > 0) : ?>
                     </br>
                     <b style="color: #C80815;">
                         <?= number_format($item->_price_discount, 0, '.', ',') ?> VND
@@ -644,7 +652,8 @@ class QdT_Layout_Root_View {
 
                         <div class="vn-dichvu-btn">
                             <a class="btn btn-default" type="submit" style="width:120px;"
-                               target="<?=$item->target?>" href="<?= QdT_Library::isNullOrEmpty($item->path)?QdT_Library::getNoneLink():$item->path ?>">
+                               target="<?= $item->target ?>"
+                               href="<?= QdT_Library::isNullOrEmpty($item->path) ? QdT_Library::getNoneLink() : $item->path ?>">
                                 <?= $item->button_text ?>
                             </a>
                         </div>
@@ -673,7 +682,8 @@ class QdT_Layout_Root_View {
         ?>
         <div class="row logo-thanhtoan">
             <?php foreach ($this->page->partner_list as $item): ?>
-                <a class="vn-icon" target="<?=$item->target?>" href="<?= QdT_Library::isNullOrEmpty($item->path)?QdT_Library::getNoneLink():$item->path ?>">
+                <a class="vn-icon" target="<?= $item->target ?>"
+                   href="<?= QdT_Library::isNullOrEmpty($item->path) ? QdT_Library::getNoneLink() : $item->path ?>">
                     <img class="footer-center-img-tt" src="<?= $item->avatar ?>" alt="">
                 </a>
                 <!--
@@ -690,21 +700,22 @@ class QdT_Layout_Root_View {
         </div>
     <?php
     }
+
     private function genMainMenuFromWPCol($cols, $col_index, $root_node, $second_nodes, $third_nodes)
     {
-        $count=0;
-        foreach($cols[$col_index] as $item):
-        ?>
-            <div class="sub-info" <?php if($count>0) echo 'style="margin-top: 5px;"';?> >
+        $count = 0;
+        foreach ($cols[$col_index] as $item):
+            ?>
+            <div class="sub-info" <?php if ($count > 0) echo 'style="margin-top: 5px;"';?> >
                 <div class="vn-sub-title">
-                    <a href="<?=$item->url?>" class="nav-sub-links" target="<?=$item->target?>">
-                        <?=$item->title?>
+                    <a href="<?= $item->url ?>" class="nav-sub-links" target="<?= $item->target ?>">
+                        <?= $item->title ?>
                     </a>
                 </div>
-                <?php foreach($third_nodes[$item->ID] as $third_node): ?>
+                <?php foreach ($third_nodes[$item->ID] as $third_node): ?>
                     <div class="vn-sub-icons">
-                        <a href="<?=$third_node->url?>" class="nav-sub-links" target="<?=$third_node->target?>">
-                            <?=$third_node->title?>
+                        <a href="<?= $third_node->url ?>" class="nav-sub-links" target="<?= $third_node->target ?>">
+                            <?= $third_node->title ?>
                         </a>
                     </div>
                 <?php endforeach; ?>
@@ -713,25 +724,24 @@ class QdT_Layout_Root_View {
         <?php
         endforeach;
     }
+
     private function genMainMenuFromWP($qdmenu_item)
     {
-        if($qdmenu_item->content=='') return;
+        if ($qdmenu_item->content == '') return;
         $wp_menu_item = wp_get_nav_menu_items($qdmenu_item->content);
-        if($wp_menu_item===false) return;
+        if ($wp_menu_item === false) return;
 
         $root_node = array();
         $second_nodes = array();
         $third_nodes = array();
         //build menu nodes by parent
-        foreach($wp_menu_item as $item)
-        {
-            if($item->menu_item_parent=='0')
-            {
+        foreach ($wp_menu_item as $item) {
+            if ($item->menu_item_parent == '0') {
                 $root_node = $item;
-            }else if($item->menu_item_parent == $root_node->ID.''){
+            } else if ($item->menu_item_parent == $root_node->ID . '') {
                 $second_nodes[$item->ID] = $item;
                 $third_nodes[$item->ID] = array();
-            } else if(isset($second_nodes[$item->menu_item_parent])){
+            } else if (isset($second_nodes[$item->menu_item_parent])) {
                 $third_nodes[$item->menu_item_parent][$item->ID] = $item;
             }
         }
@@ -744,17 +754,17 @@ class QdT_Layout_Root_View {
 
         //push 2nd nodes to cols (horizontal first)
         $col_index = 1;
-        foreach($second_nodes as $item){
+        foreach ($second_nodes as $item) {
             $cols[$col_index][$item->ID] = $item;
             $col_index++;
-            if($col_index==4) $col_index=1;
+            if ($col_index == 4) $col_index = 1;
         }
 
         echo '';
         ?>
         <li>
-            <a href="<?=QdT_Library::getNoneLink()?>" class="nav-links">
-                <?=$root_node->title?>
+            <a href="<?= QdT_Library::getNoneLink() ?>" class="nav-links">
+                <?= $root_node->title ?>
             </a>
             <!-- begin -->
             <ul class="vn-sub">
@@ -763,23 +773,23 @@ class QdT_Layout_Root_View {
                         <div class="col-xs-8">
                             <div class="row">
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <?=$this->genMainMenuFromWPCol($cols, 1, $root_node, $second_nodes, $third_nodes)?>
+                                    <?= $this->genMainMenuFromWPCol($cols, 1, $root_node, $second_nodes, $third_nodes) ?>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <?=$this->genMainMenuFromWPCol($cols, 2, $root_node, $second_nodes, $third_nodes)?>
+                                    <?= $this->genMainMenuFromWPCol($cols, 2, $root_node, $second_nodes, $third_nodes) ?>
                                 </div>
                                 <div class="col-xs-4" style="margin-top: 30px;">
-                                    <?=$this->genMainMenuFromWPCol($cols, 3, $root_node, $second_nodes, $third_nodes)?>
+                                    <?= $this->genMainMenuFromWPCol($cols, 3, $root_node, $second_nodes, $third_nodes) ?>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-4">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                                     style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
-                            <div class="sub-image" style="background: url('<?=$qdmenu_item->avatar?>');
-                                                                                    background-repeat: no-repeat;
-                                                                                    background-size: contain;
-                                                                                    background-position: center;">
+                            <div class="sub-image" style="background: url('<?= $qdmenu_item->avatar ?>');
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                background-position: center;">
                             </div>
                         </div>
                     </div>
@@ -787,6 +797,6 @@ class QdT_Layout_Root_View {
             </ul>
             <!-- end -->
         </li>
-        <?php
+    <?php
     }
 }

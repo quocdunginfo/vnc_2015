@@ -7,6 +7,7 @@
  * Version: 150607
  */
 QdT_Library::loadLayoutClass('introduction');
+
 class QdT_PageT_FAQS extends QdCPT_IntroductionLayout
 {
     function __construct()
@@ -28,6 +29,7 @@ class QdT_PageT_FAQS extends QdCPT_IntroductionLayout
     {
         return 'QdT_PageT_FAQS_ViewMobile';
     }
+
     public function isFAQsPage()
     {
         return true;

@@ -7,7 +7,9 @@
  * Version: 150607
  */
 QdT_Library::loadLayoutView('introduction');
-class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
+
+class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View
+{
 
     public function getSubContentMain()
     {
@@ -23,6 +25,7 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
             <div class="col-xs-12">
                 <form id="formContact" onsubmit="return false;">
                     <input type="hidden" name="id" value="0">
+
                     <div class="row col-xs-6 control-group form-group">
                         <div class="controls">
                             <input type="text" class="form-control" name="customer_name"
@@ -31,8 +34,7 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                                    oninput="this.setCustomValidity('')"
                                    aria-invalid="false"
                                    value="<?php
-                                   if(!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_name']))
-                                   {
+                                   if (!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_name'])) {
                                        echo $this->page->cookie_customer['customer_name'];
                                    }
                                    ?>"
@@ -50,8 +52,7 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                                    oninput="this.setCustomValidity('')"
                                    aria-invalid="false"
                                    value="<?php
-                                   if(!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_email']))
-                                   {
+                                   if (!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_email'])) {
                                        echo $this->page->cookie_customer['customer_email'];
                                    }
                                    ?>"
@@ -69,8 +70,7 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                                    oninput="this.setCustomValidity('')"
                                    aria-invalid="false"
                                    value="<?php
-                                   if(!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_phone']))
-                                   {
+                                   if (!QdT_Library::isNullOrEmpty($this->page->cookie_customer['customer_phone'])) {
                                        echo $this->page->cookie_customer['customer_phone'];
                                    }
                                    ?>"
@@ -105,21 +105,23 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                         </div>
                     </div>
                     <div class="row col-xs-12">
-                        <button id="formContactSubmit" type="submit" class="btn btn-primary" style="width:180px; height: 36px; font-size: 18px;">GỬI
+                        <button id="formContactSubmit" type="submit" class="btn btn-primary"
+                                style="width:180px; height: 36px; font-size: 18px;">GỬI
                         </button>
-                        <img id="qd-loading" src="img/loading.gif" style="width: 30px; height: 30px; display: none; margin-left: 10px">
+                        <img id="qd-loading" src="img/loading.gif"
+                             style="width: 30px; height: 30px; display: none; margin-left: 10px">
                         <script>
                             MYAPP.PageInfo.DataPort_front_feedback_port = '<?=Qdmvc_Helper::getDataPortPath('front/feedback_port')?>';
-                            (function($){
+                            (function ($) {
 
-                                $('#formContactSubmit').click(function(){
+                                $('#formContactSubmit').click(function () {
                                     //send data to DataPort
                                     var json = form2js("formContact", ".", false, null, true);
                                     //validate
-                                    if(json.customer_name=='') return;
-                                    if(json.customer_phone=='') return;
-                                    if(json.customer_email=='') return;
-                                    if(json.title=='') return;
+                                    if (json.customer_name == '') return;
+                                    if (json.customer_phone == '') return;
+                                    if (json.customer_email == '') return;
+                                    if (json.title == '') return;
 
                                     console.log(json);
                                     //lock button
@@ -128,7 +130,11 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                                     //show progress bar
                                     $('#qd-loading').css('display', 'inline-block');
 
-                                    $.post(MYAPP.PageInfo.DataPort_front_feedback_port, {submit: "submit", action: "insert", data: json})
+                                    $.post(MYAPP.PageInfo.DataPort_front_feedback_port, {
+                                        submit: "submit",
+                                        action: "insert",
+                                        data: json
+                                    })
                                         .done(function (data) {
                                             //data JSON
                                             console.log(data);
@@ -206,8 +212,7 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View {
                     </p>
                 </div>
                 <?php
-                if($i%2==0)
-                {
+                if ($i % 2 == 0) {
                     echo '<div class="col-xs-12" style="height: 20px"></div>';
                 }
             endfor;

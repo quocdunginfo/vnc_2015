@@ -92,8 +92,9 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
             <!-- /.row -->
         </div>
         <!-- Portfolio Section -->
-        <?php
+    <?php
     }
+
     protected function getContentPart()
     {
         ?>
@@ -101,7 +102,7 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
 
         <?= $this->getBestChoicePart() ?>
 
-        <?=$this->getBigSalePart()?>
+        <?= $this->getBigSalePart() ?>
 
 
     <?php
@@ -140,8 +141,8 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
                                         </p>
                                     </div>
                                 </div>
-                            <?php
-                            $count++;
+                                <?php
+                                $count++;
                             endforeach; ?>
                             <!--
                             <div class="slide-bestchoise" id="fix-height-2">

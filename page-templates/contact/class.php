@@ -23,10 +23,12 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
 
         $this->contacts = $tmp->GETLIST();
     }
+
     public function loadScript()
     {
         QdJqwidgets::loadSinglePluginJS("form2js.js");
     }
+
     public static function getPageName()
     {
         return 'contact';
@@ -36,10 +38,12 @@ class QdT_PageT_Contact extends QdCPT_IntroductionLayout
     {
         return 'QdT_PageT_Contact_View';
     }
+
     public static function getPageViewMobileClass()
     {
         return 'QdT_PageT_Contact_ViewMobile';
     }
+
     public function isContactPage()
     {
         return true;
