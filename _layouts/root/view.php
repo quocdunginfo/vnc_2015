@@ -650,11 +650,11 @@ class QdT_Layout_Root_View
                             <?= $item->content ?>
                         </p>
 
-                        <div class="vn-dichvu-btn">
-                            <a class="btn btn-default" type="submit" style="width:120px;"
+                        <div class="vn-dichvu-btn" style="text-align: center; width: initial;">
+                            <a class="btn btn-default" type="submit" style="min-width:120px;"
                                target="<?= $item->target ?>"
                                href="<?= QdT_Library::isNullOrEmpty($item->path) ? QdT_Library::getNoneLink() : $item->path ?>">
-                                <?= $item->button_text ?>
+                                <?= $item->button_text ?> CHŨ MỚI
                             </a>
                         </div>
                     </div>
