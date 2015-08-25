@@ -654,7 +654,7 @@ class QdT_Layout_Root_View
                             <a class="btn btn-default" type="submit" style="min-width:120px;"
                                target="<?= $item->target ?>"
                                href="<?= QdT_Library::isNullOrEmpty($item->path) ? QdT_Library::getNoneLink() : $item->path ?>">
-                                <?= $item->button_text ?> CHŨ MỚI
+                                <?= $item->button_text ?>
                             </a>
                         </div>
                     </div>
