@@ -45,6 +45,7 @@ class QdT_Layout_Root
         $tmp = QdImgGrp::GET($this->theme_root_setup->img_slider);
         if ($tmp != null) {
             $tmp = $tmp->getImgs();
+            $tmp->SETRANGE('active', true);
             $this->img_slider = $tmp->GETLIST();
         }
 

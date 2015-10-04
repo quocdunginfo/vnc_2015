@@ -1,0 +1,3 @@
+Nhom hinh anh: Active
+BigSale -> Theme root setup
+Cau hinh Footer cua WP -> Be qua Qdmvc
