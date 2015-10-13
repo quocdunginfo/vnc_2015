@@ -116,24 +116,28 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
                             MỨC GIÁ
                         </div>
                         <div class="col-xs-12">
-                            <ul class="product-list1 edit-product-list1" style="height:140px;">
+                            <ul class="product-list1 edit-product-list1" style="height:150px;">
                                 <li><a href="<?= remove_query_arg(array('price-from', 'price-to'), $this->page->uri) ?>"
                                        class="product-links">(Tất cả)</a></li>
                                 <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 0, 'price-to' => 1000000), $this->page->uri) ?>"
-                                       class="product-links">Dưới 1.000.000 vnđ</a></li>
+                                    <a href="<?= add_query_arg(array('price-from' => 0, 'price-to' => 10000000), $this->page->uri) ?>"
+                                       class="product-links">0 - 10.000.000 vnđ</a></li>
                                 <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 1000000, 'price-to' => 3000000), $this->page->uri) ?>"
-                                       class="product-links">Từ 1.000.000 - 3.000.000</a></li>
+                                    <a href="<?= add_query_arg(array('price-from' => 10000000, 'price-to' => 20000000), $this->page->uri) ?>"
+                                       class="product-links">Từ 10.000.000 - 20.000.000</a></li>
                                 <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 3000000, 'price-to' => 6000000), $this->page->uri) ?>"
-                                       class="product-links">Từ 3.000.000 - 6.000.000</a></li>
+                                    <a href="<?= add_query_arg(array('price-from' => 20000000, 'price-to' => 30000000), $this->page->uri) ?>"
+                                       class="product-links">Từ 20.000.000 - 30.000.000</a></li>
                                 <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 6000000, 'price-to' => 10000000), $this->page->uri) ?>"
-                                       class="product-links">Từ 6.000.000 - 10.000.000</a></li>
+                                    <a href="<?= add_query_arg(array('price-from' => 30000000, 'price-to' => 40000000), $this->page->uri) ?>"
+                                       class="product-links">Từ 30.000.000 - 40.000.000</a></li>
                                 <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 10000000, 'price-to' => -1), $this->page->uri) ?>"
-                                       class="product-links">Trên 10.000.000</a></li>
+                                    <a href="<?= add_query_arg(array('price-from' => 40000000, 'price-to' => 50000000), $this->page->uri) ?>"
+                                       class="product-links">Từ 40.000.000 - 50.000.000</a></li>
+                                <li>
+                                    <a href="<?= add_query_arg(array('price-from' => 50000000, 'price-to' => -1), $this->page->uri) ?>"
+                                       class="product-links">Trên 50.000.000</a></li>
+
                             </ul>
                         </div>
                     </div>

@@ -22,6 +22,29 @@ class QdT_PageT_Console
                     $re['result'] = '0';
                 }
                 break;
+            case 'test':
+                set_time_limit(2);
+                for($i=0;$i<200000;$i++){
+                    $tmp = QdDgRequest::getInitObj();
+                    $tmp->suggest_price = rand();
+                    $tmp->price = rand();
+                    $tmp->save();
+                }
+                break;
+            case 'test2':
+                $start = microtime(true);
+
+                $tmp = new QdDgRequest();
+                $tmp->SETRANGE('status', QdDgRequest::$STATUS_OPEN);
+                $count = $tmp->COUNTLIST();
+
+                $re['result'] = "SUM total $count records with Status=Open: " . $tmp->SELECTSUM('suggest_price');
+                $start = microtime(true)-$start;
+                $re['result'] .= ' - Execute time: '.$start .' (second)';
+                break;
+            case 'test3':
+                $re['result'] = $_SERVER['HTTP_HOST'];
+                break;
         }
         echo json_encode($re);
     }

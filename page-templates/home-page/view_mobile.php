@@ -94,6 +94,76 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
         <!-- Portfolio Section -->
     <?php
     }
+    private function getLatestProductsPart()
+    {
+        if (QdT_Library::isNullOrEmpty($this->page->latestproduct_list)) return;
+        ?>
+        <!-- Big Sale -->
+        <div class="container">
+
+            <!-- Marketing Icons Section -->
+            <div class="row big-sale">
+                <div class="col-lg-12">
+                    <h4 class="page-header">
+                        <?=$this->page->theme_root_setup->latest_product_label?>
+                    </h4>
+                </div>
+
+                <?php
+                $count = 1;
+                foreach ($this->page->latestproduct_list as $item):
+                    $this->genProductWidget($item, 'col-xs-6 johnchuong', 'padding-right: 5px;');
+
+                    if ($count % 2 == 0) echo '<div class="col-xs-12" style="padding-left: 5px; margin-top: 20px;"></div>';//trick to avoid using new row and not overlap with other item
+                    $count++;
+                endforeach;
+                ?>
+
+                <!--
+                <div class="col-xs-6 johnchuong" style="padding-left: 5px;">
+                    <div class="bs-pro" style="background: url('img/panner1.jpg');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b>5.000.000 VND</b><img src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+                    </p>
+                </div>
+                <div class="col-xs-12" style="padding-left: 5px; margin-top: 20px;"></div>
+                <div class="col-xs-6 johnchuong">
+                    <div class="bs-pro" style="background: url('img/panner1.jpg');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
+                    </div>
+                    <p class="p-edit-1">
+                        IPhone 5S 32GB Quốc Tế màu trắng xanh vàng
+                    </p>
+
+                    <p class="p-edit-1">
+                        <b style="color: rgb(131,131,132);font-weight: normal;">5.000.000 VND</b><img
+                            src="img/border-links.png" style="margin: 0px 5px;"> <b>L</b></br>
+
+                        <b class="bs-sale">1.000 USD (50% OFF)</b>
+                    </p>
+                </div>
+
+
+                <div class="col-xs-12">
+                    <p style="text-align: center; font-style: italic; ">Xem tiếp</p>
+                </div>
+                -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- Portfolio Section -->
+    <?php
+    }
 
     protected function getContentPart()
     {
@@ -103,6 +173,8 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
         <?= $this->getBestChoicePart() ?>
 
         <?= $this->getBigSalePart() ?>
+
+        <?= $this->getLatestProductsPart() ?>
 
 
     <?php

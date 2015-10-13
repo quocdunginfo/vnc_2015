@@ -113,10 +113,45 @@ class QdT_PageT_HomePage_View extends QdT_Layout_Root_View
         <!-- END BIG SALE -->
     <?php
     }
+    private function getLatestProductsPart()
+    {
+        if (QdT_Library::isNullOrEmpty($this->page->latestproduct_list)) return;
+        ?>
+        <!-- BIG SALE -->
+        <div class="container-non-responsive">
+            <!-- Title BIG SALE -->
+            <div class="row">
+                <div class="col-lg-12" style="margin-top: 20px;">
+                    <h3 class="page-header">
+                        <?=$this->page->theme_root_setup->latest_product_label?>
+                    </h3>
+                </div>
+            </div>
+
+
+            <!-- San pham 1 -->
+            <div class="row" style="margin-top: 20px;">
+                <?php
+                $count = 1;
+                foreach ($this->page->latestproduct_list as $item):
+                    $this->genProductWidget($item, 'col-xs-3 vn-sanpham-size', 'padding-left: 15px;');
+
+                    if ($count % 4 == 0) echo '<div class="col-xs-12" style="height: 20px"></div>';//trick to avoid using new row and not overlap with other item
+                    $count++;
+                endforeach;
+                ?>
+
+            </div>
+
+        </div>
+        <!-- END BIG SALE -->
+    <?php
+    }
 
     protected function getContentPart()
     {
         $this->getBestChoicePart();
         $this->getBigSalePart();
+        $this->getLatestProductsPart();
     }
 }
