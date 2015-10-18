@@ -10,6 +10,15 @@ QdT_Library::loadLayoutView('root');
 
 class QdT_PageT_HomePage_View extends QdT_Layout_Root_View
 {
+    public function __construct($page){
+        parent::__construct($page);
+
+        $record = new QdProduct();
+        $record->SETRANGE('active', true);
+        $record->SETORDERBY('date_created', 'desc');
+        $record->SETLIMIT($this->page->theme_root_setup->getSetupValue('latest_product_segment', 12));
+        $this->page->latestproduct_list = $record->GETLIST();
+    }
     protected function getContentTitle()
     {
         return '';

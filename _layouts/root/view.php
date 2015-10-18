@@ -600,7 +600,7 @@ class QdT_Layout_Root_View
         ?>
         <a href="<?= $item->getPermalink() ?>" style="color: inherit">
             <div class="<?= $wrapper_class ?>" style="<?= $wrapper_style ?>">
-                <div class="vn-sanpham-box" style="background: url('<?= $item->avatar ?>');
+                <div class="vn-sanpham-box" style="background: url('<?= $item->getMediaURL('avatar', 'medium'); ?>');
                     background-repeat: no-repeat;
                     background-size: contain;
                     background-position: center;">
@@ -623,7 +623,6 @@ class QdT_Layout_Root_View
                     </br>
                     <b style="color: #C80815;">
                         <?= number_format($item->_price_discount, 0, '.', ',') ?> VND
-                        (<?= $item->discount_percent * 100 ?>% OFF)
                     </b>
                     <?php endif; ?>
                 </p>

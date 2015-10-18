@@ -6,6 +6,14 @@ QdT_Library::loadLayoutViewMobile('root');
 
 class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
 {
+    public function __construct($page){
+        parent::__construct($page);
+        $record = new QdProduct();
+        $record->SETRANGE('active', true);
+        $record->SETORDERBY('date_created', 'desc');
+        $record->SETLIMIT($this->theme_root_setup_mobile->getSetupValue('latest_product_segment', 2));
+        $this->page->latestproduct_list = $record->GETLIST();
+    }
     protected function getBannerPart()
     {
         parent::getBannerPart();
@@ -105,7 +113,7 @@ class QdT_PageT_HomePage_ViewMobile extends QdT_Layout_Root_ViewMobile
             <div class="row big-sale">
                 <div class="col-lg-12">
                     <h4 class="page-header">
-                        <?=$this->page->theme_root_setup->latest_product_label?>
+                        <?=$this->theme_root_setup_mobile->getSetupValue('latest_product_label', 'MỚI NHẤT')?>
                     </h4>
                 </div>
 

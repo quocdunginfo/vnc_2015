@@ -15,10 +15,12 @@ class QdT_Layout_Root_ViewMobile
 {
 
     protected $page = null;
+    protected $theme_root_setup_mobile=null;
 
     function __construct($page)
     {
         $this->page = $page;
+        $this->theme_root_setup_mobile = QdTRootSetupMobile::GET();
     }
 
     protected function getBreadcrumbs()
@@ -301,21 +303,11 @@ class QdT_Layout_Root_ViewMobile
         <div class="container-non-responsive vnc-header">
             <div class="row">
                 <div class="col-xs-8 header-left">
-                    <b>MIỄN PHÍ</b>
-                    CHO ĐƠN HÀNG TỪ 250K
+                    <?=$this->theme_root_setup_mobile->getSetupValue('topcenter_promotion')?>
                 </div>
                 <div class="col-xs-4 col-non-padding header-right">
-
-                    THU MUA
-
+                    <?=$this->theme_root_setup_mobile->getSetupValue('topright_navs')?>
                 </div>
-                <!--
-                <div class="col-xs-8 header-left">
-                    <?= $this->page->theme_root_setup->topcenter_promotion ?>
-                </div>
-                <div class="col-xs-4 col-non-padding header-right">
-                    <?= $this->page->theme_root_setup->topright_navs ?>
-                </div> -->
             </div>
         </div>
         <!-- Navigation -->
@@ -577,8 +569,9 @@ class QdT_Layout_Root_ViewMobile
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <p style="color: black;text-align: center; font-size: 10px;">Copyright &copy; Viet Ngan Cash
-                        2015</p>
+                    <p style="color: black;text-align: center; font-size: 10px;">
+                        <?=$this->theme_root_setup_mobile->getSetupValue('bottomleft_footer_note')?>
+                    </p>
                 </div>
             </div>
         </div>
@@ -591,7 +584,7 @@ class QdT_Layout_Root_ViewMobile
         ?>
         <a rel="external" href="<?= $item->getPermalink() ?>" style="color: inherit">
             <div class="<?= $wrapper_class ?>" style="<?= $wrapper_style ?>">
-                <div class="bs-pro" style="background: url('<?= $item->avatar ?>');
+                <div class="bs-pro" style="background: url('<?= $item->getMediaURL('avatar', 'medium') ?>');
                     background-repeat: no-repeat;
                     background-size: contain;
                     background-position: center;">
@@ -614,7 +607,6 @@ class QdT_Layout_Root_ViewMobile
                     </br>
 
                     <b class="bs-sale"><?= number_format($item->_price_discount, 0, '.', ',') ?> VND
-                        (<?= $item->discount_percent * 100 ?>% OFF)</b>
                     <?php endif; ?>
                 </p>
             </div>
