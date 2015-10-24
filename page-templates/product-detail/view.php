@@ -26,7 +26,7 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
     {
         ?>
         <?= $this->dialog() ?>
-        <div class="container-non-responsive carousel content" style="margin-top: 0px">
+        <div class="container-non-responsive carousel content" style="margin-top: 67px">
             <div class="row">
                 <div class="col-xs-12">
                     <?= $this->getBreadcrumbsPart() ?></div>

@@ -177,7 +177,368 @@ class QdT_Layout_Root_View
             </div>
         </div>
         <!-- End Header -->
+        <?php
+        //$this->oldVersion()
+        ?>
+        <?=$this->newVersion()?>
+        <hr>
+        <?= $this->getBannerPart() ?>
+    <?php
+    }
+    private function newVersion(){
+        ?>
         <!-- Navigation -->
+        <div class="vn-cas-nav" id="nav-fix">
+            <div class="container-non-responsive">
+                <div class="navMenu expander">
+                    <div class="vnc-nav-logo">
+                        <a href="<?= get_home_url() ?>"><img src="<?= $this->page->data['vnc_logo'] ?>" alt="" style="width: 100%;"/></a>
+                    </div>
+                    <div class="vnc-nav-menu">
+                        <?= $this->getMainMenuPart() ?>
+                        <?php if(false): ?>
+                        <ul style="padding-left: 20px;">
+                            <li>
+                                <a href="#" class="nav-links">ĐỒ CÔNG NGHỆ</a>
+                                <!-- begin -->
+                                <ul class="vn-sub">
+                                    <div class="container-non-responsive" style="padding-bottom: 15px;">
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <div class="row">
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">LG</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy ảnh</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavutu</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavia</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info" >
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                                                <div class="sub-image" style="background: url('img/current 3.jpg');
+                                                                                            background-repeat: no-repeat;
+                                                                                            background-size: contain;
+                                                                                            background-position: center;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <!-- end -->
+                            </li>
+                            <li>
+                                <a href="#" class="nav-links">XE</a>
+                                <!-- begin -->
+                                <ul class="vn-sub">
+                                    <div class="container-non-responsive" style="padding-bottom: 15px;">
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <div class="row">
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">LG</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy ảnh</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavutu</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavia</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info" >
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                                                <div class="sub-image" style="background: url('img/current 3.jpg');
+                                                                                            background-repeat: no-repeat;
+                                                                                            background-size: contain;
+                                                                                            background-position: center;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <!-- end -->
+                            </li>
+                            <li>
+                                <a href="#" class="nav-links">ĐỒ HIỆU</a>
+                                <!-- begin -->
+                                <ul class="vn-sub">
+                                    <div class="container-non-responsive" style="padding-bottom: 15px;">
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <div class="row">
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">LG</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy ảnh</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavutu</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavia</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info" >
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                                                <div class="sub-image" style="background: url('img/current 3.jpg');
+                                                                                            background-repeat: no-repeat;
+                                                                                            background-size: contain;
+                                                                                            background-position: center;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <!-- end -->
+                            </li>
+                            <li >
+                                <a href="#" class="nav-links">GIA DỤNG</a>
+                                <!-- begin -->
+                                <ul class="vn-sub">
+                                    <div class="container-non-responsive" style="padding-bottom: 15px;">
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <div class="row">
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">LG</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy ảnh</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavutu</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavia</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info" >
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                                                <div class="sub-image" style="background: url('img/current 3.jpg');
+                                                                                            background-repeat: no-repeat;
+                                                                                            background-size: contain;
+                                                                                            background-position: center;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <!-- end -->
+                            </li>
+                            <li>
+                                <a href="#" class="nav-links">DỊCH VỤ</a>
+                                <!-- begin -->
+                                <ul class="vn-sub">
+                                    <div class="container-non-responsive" style="padding-bottom: 15px;">
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <div class="row">
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Điện thoại cao cấp</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">iPhone</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Galaxy</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">LG</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy ảnh</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavutu</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Samsung</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Htc</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lumia</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Blackberry</a></div>
+                                                        </div>
+                                                        <div class="sub-info" style="margin-top: 5px;">
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Vertu</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Lavia</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4" style="margin-top: 30px;">
+                                                        <div class="sub-info" >
+                                                            <div class="vn-sub-title"><a href="#" class="nav-sub-links">Phụ kiện</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Apple</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Điện thoại</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Máy tính bảng</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Laptop</a></div>
+                                                            <div class="vn-sub-icons"><a href="#" class="nav-sub-links">Pin dự phòng</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                                                <div class="sub-image" style="background: url('img/current 3.jpg');
+                                                                                            background-repeat: no-repeat;
+                                                                                            background-size: contain;
+                                                                                            background-position: center;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                                <!-- end -->
+                            </li>
+                        </ul>
+                        <?php endif; ?>
+                    </div>
+                    <div class="vnc-nav-search">
+                        <?php
+                        $search_url = get_permalink(QdT_Library::getPageIdByTemplate('page-templates/product-search.php'));
+                        ?>
+                        <form action="<?= $search_url ?>" method="get" onsubmit="MYAPP.RootProgressBar(true)">
+                            <script>
+                                MYAPP.RootProgressBar = function (show) {
+                                    if (show) {
+                                        $('#qd-root-progressing-modal').modal('show');
+                                    } else {
+                                        $('#qd-root-progressing-modal').modal('hide');
+                                    }
+                                };
+
+                            </script>
+                            <input type="search" placeholder="Tìm kiếm..." class="form-control" name="key-word"
+                                   value="<?= get_query_var('key-word', '') ?>">
+                        </form>
+                    </div>
+                </div>
+                <div style="display: none; width: 980px; height: 40px; float: left;"></div>
+            </div>
+        </div>
+        <!-- End Navigation -->
+        <?php
+    }
+    private function oldVersion(){
+        ?>
         <div class="vn-cas-logo">
             <div class="container-non-responsive">
                 <div class="logo">
@@ -212,15 +573,13 @@ class QdT_Layout_Root_View
                 <div style="display: none; width: 980px; height: 40px; float: left;"></div>
             </div>
         </div>
-        <hr>
-        <?= $this->getBannerPart() ?>
-    <?php
+        <?php
     }
 
     private function getMainMenuPart()
     {
         ?>
-        <ul style="padding-left: 0px;">
+        <ul style="padding-left: 20px;">
             <?php
             foreach ($this->page->main_menus as $qdmenu_item):
 
@@ -304,7 +663,7 @@ class QdT_Layout_Root_View
         if ($this->page->img_slider == null || empty($this->page->img_slider)) return;
         ?>
         <!-- Header Carousel -->
-        <header id="myCarousel" class="carousel slide ibs-slider">
+        <header id="myCarousel" class="carousel slide ibs-slider" style="margin-top: 67px">
             <!-- Indicators -->
             <ol class="carousel-indicators ibs_list_slider">
                 <?php
@@ -783,12 +1142,11 @@ class QdT_Layout_Root_View
                             </div>
                         </div>
                         <div class="col-xs-4">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                                    style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 10px;"><span aria-hidden="true">x</span></button>
                             <div class="sub-image" style="background: url('<?= $qdmenu_item->avatar ?>');
-                                background-repeat: no-repeat;
-                                background-size: contain;
-                                background-position: center;">
+                                                                                            background-repeat: no-repeat;
+                                                                                            background-size: contain;
+                                                                                            background-position: center;">
                             </div>
                         </div>
                     </div>

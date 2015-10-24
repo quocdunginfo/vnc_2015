@@ -85,12 +85,11 @@ and open the template in the editor.
     }
     
     .vn-cas-nav {
-        height: 50px;
+        height: 75px;
         position: absolute;
         background-color: white;
         width: 100%;
-        z-index: 16;        
-    
+        z-index: 16;
         border-bottom: 1px solid rgb(203,203,203);
 }   
     .vn-choise-box {

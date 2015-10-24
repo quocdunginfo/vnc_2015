@@ -43,7 +43,7 @@ class QdT_PageT_About_View extends QdT_Layout_Root_View
     {
         ?>
         <!--Begin -->
-        <div class="container-non-responsive">
+        <div class="container-non-responsive" style="margin-top: 68px">
             <div class="row">
                 <div class="col-xs-5 size-gioithieu">
                     <img src="<?= $obj->avatar ?>" class="vn-gioithieu-box1" alt="Cinque Terre">
@@ -66,7 +66,7 @@ class QdT_PageT_About_View extends QdT_Layout_Root_View
     {
         ?>
         <!--Begin -->
-        <div class="container-non-responsive">
+        <div class="container-non-responsive" style="margin-top: 68px">
             <div class="row">
                 <div class="col-xs-7 size-gioithieu">
                     <h2 class="title-center"><?= $obj->title ?></h2>
@@ -89,7 +89,7 @@ class QdT_PageT_About_View extends QdT_Layout_Root_View
     {
         ?>
         <!--Begin -->
-        <div class="container-non-responsive">
+        <div class="container-non-responsive" style="margin-top: 68px">
             <div class="row">
                 <div class="col-xs-12 size-gioithieu">
                     <h2 class="title-center"><?= $obj->title ?></h2>
@@ -109,7 +109,7 @@ class QdT_PageT_About_View extends QdT_Layout_Root_View
     {
         ?>
         <!--Begin -->
-        <div class="container-non-responsive">
+        <div class="container-non-responsive" style="margin-top: 68px">
             <div class="row">
                 <div class="col-xs-12 size-gioithieu">
                     <img src="<?= $obj->avatar ?>" class="vn-gioithieu-box" alt="">
