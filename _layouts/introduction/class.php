@@ -4,7 +4,6 @@
  * User: quocd_000
  * Date: 23/02/2015
  * Time: 11:30 AM
- * Version: 150607
  */
 QdT_Library::loadLayoutClass('root');
 

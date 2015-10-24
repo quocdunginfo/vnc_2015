@@ -1,7 +1,5 @@
 <?php
-/*
- * Version: 150607
- * */
+
 QdT_Library::loadLayoutClass('root');
 
 class QdT_PageT_About extends QdT_Layout_Root

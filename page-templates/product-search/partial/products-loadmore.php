@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 23/02/2015
  * Time: 10:29 PM
- * Version: 150607
+ * Version: 150607, 151024
  */
 
 QdT_Library::loadPageView('product-search');
