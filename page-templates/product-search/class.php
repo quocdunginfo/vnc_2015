@@ -16,7 +16,7 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     public $size = null;
     public $shop_obj = null;
 
-    public $size_quanao_list = array();
+    public $size_thoitrang_list = array();
 
     public $size_giaydep_list = array();
 
@@ -65,21 +65,17 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
 
         if ($this->product_cat != null) {
             $record = new QdManufactor();
-            $record->SETRANGE('type2', $this->product_cat->type2);
+            //$record->SETRANGE('type2', $this->product_cat->type2);
             $this->manufactor_list = $record->GETLIST();
         } else if ($this->manufactor != null) {
             $record = new QdManufactor();
-            $record->SETRANGE('type2', $this->manufactor->type2);
+            //$record->SETRANGE('type2', $this->manufactor->type2);
             $this->manufactor_list = $record->GETLIST();
         }
 
         $record = new QdSize();
-        $record->SETRANGE('type', QdManufactor::$TYPE2_MANUFACTOR_QUANAO);
-        $this->size_quanao_list = $record->GETLIST();
-
-        $record->REMOVERANGE('type');
-        $record->SETRANGE('type', QdManufactor::$TYPE2_MANUFACTOR_GIAYDEP);
-        $this->size_giaydep_list = $record->GETLIST();
+        $record->SETRANGE('type', QdManufactor::$TYPE2_MANUFACTOR_THOITRANG);
+        $this->size_thoitrang_list = $record->GETLIST();
 
         $record = new QdShop();
         $record->SETRANGE('active', true);

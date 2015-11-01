@@ -216,11 +216,11 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
     protected function getSizeQuanAoPart()
     {
         if (
-            (!QdT_Library::isNullOrEmpty($this->page->product_cat) && $this->page->product_cat->type2 == QdManufactor::$TYPE2_MANUFACTOR_QUANAO)
+            (!QdT_Library::isNullOrEmpty($this->page->product_cat) && $this->page->product_cat->type2 == QdManufactor::$TYPE2_MANUFACTOR_THOITRANG)
             ||
-            (!QdT_Library::isNullOrEmpty($this->page->manufactor) && $this->page->manufactor->type2 == QdManufactor::$TYPE2_MANUFACTOR_QUANAO)
+            (!QdT_Library::isNullOrEmpty($this->page->manufactor) && $this->page->manufactor->type2 == QdManufactor::$TYPE2_MANUFACTOR_THOITRANG)
             ||
-            (!QdT_Library::isNullOrEmpty($this->page->size) && $this->page->size->type == QdManufactor::$TYPE2_MANUFACTOR_QUANAO)
+            (!QdT_Library::isNullOrEmpty($this->page->size) && $this->page->size->type == QdManufactor::$TYPE2_MANUFACTOR_THOITRANG)
         ):
             ?>
             <!-- Size quan ao -->
@@ -255,6 +255,8 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
 
     protected function getSizeGiayDepPart()
     {
+        return;
+        /*
         if (
             (!QdT_Library::isNullOrEmpty($this->page->product_cat) && $this->page->product_cat->type2 == QdManufactor::$TYPE2_MANUFACTOR_GIAYDEP)
             ||
@@ -291,18 +293,21 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
             </div>
         <?php
         endif;
+        */
     }
 
     protected function getBreadcrumbs()
     {
         $obj = parent::getBreadcrumbs();
-        array_push($obj, array('name' => 'Sản phẩm', 'url' => $this->page->uri));
+        //array_push($obj, array('name' => 'Sản phẩm', 'url' => $this->page->uri));
         if ($this->page->product_cat != null) {
-            array_push($obj, array('name' => $this->page->product_cat->name, 'url' => $this->page->product_cat->getPermalink()));
+            //array_push($obj, array('name' => $this->page->product_cat->name, 'url' => $this->page->product_cat->getPermalink()));//1 level
+            $obj = array_merge($obj, $this->page->product_cat->getBreadcrumbs());//multi level
         } else if ($this->page->manufactor != null) {
-            array_push($obj, array('name' => $this->page->manufactor->name, 'url' => $this->page->manufactor->getPermalink()));
+            array_push($obj, array('name' => $this->page->manufactor->name, 'url' => $this->page->manufactor->getPermalink()));//1 level
+
         } else if ($this->page->shop_obj != null) {
-            array_push($obj, array('name' => 'Shop ' . $this->page->shop_obj->name, 'url' => $this->page->shop_obj->getPermalink()));
+            array_push($obj, array('name' => 'Shop ' . $this->page->shop_obj->name, 'url' => $this->page->shop_obj->getPermalink()));//1 level
         }
         return $obj;
     }

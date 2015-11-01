@@ -580,6 +580,7 @@ class QdT_Layout_Root_ViewMobile
 
     public static function genProductWidget($item, $wrapper_class, $wrapper_style)
     {
+        if($item==null) return;
         $size_obj = QdSize::GET($item->size_id);
         ?>
         <a rel="external" href="<?= $item->getPermalink() ?>" style="color: inherit">
