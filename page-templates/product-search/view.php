@@ -25,7 +25,7 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
 
         ?>
         <!-- Begin Content -->
-        <div class="container-non-responsive carousel content" style="margin-top: 67px">
+        <div class="container-non-responsive carousel content" style="margin-top: 5px">
             <!-- Title Product -->
             <div class="row">
                 <div class="col-xs-12">

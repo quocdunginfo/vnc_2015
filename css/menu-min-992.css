@@ -2,7 +2,7 @@
 @media screen and (min-width: 992px) 
 {
     .navMenu {
-        height: 88px;
+        height: 40px;
         line-height: 36px;
         width: 100%;
         /* CSS 3 
@@ -23,8 +23,8 @@
     
     
     .navMenu ul ul{
-            display: none;//
-            position: absolute;
+            display: none;
+            //position: absolute;
     }
     
     .navMenu ul li:hover ul{
@@ -40,7 +40,7 @@
         }
         
            .navMenu ul li:hover a {
-			text-decoration: none;
+		text-decoration: none;
             }
     
     .navMenu ul li .nav-links {
@@ -53,9 +53,36 @@
            
     }
     
-        
 
-    .navMenu input {
+    /*.navMenu input:hover { opacity: 1 }    
+    
+    .navMenu input:focus {
+        
+    }
+
+    .navMenu input:focus ~ ul li { width: 11%; }*/
+    
+    
+    .sub-image {
+        width: 100%; 
+        height: 252px;        
+        margin-top: 42px;
+        border: 2px solid #ebebeb;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+}
+
+    /* new css */
+    
+    .vnc-nav
+    {
+        height: 83px;
+        width: 100%;
+        border-bottom: 1px #ccc solid;
+    }
+    
+    .vnc-nav input {
         background: url(http://cssdeck.com/uploads/media/items/4/4yK4Jqj.jpg) 10px center no-repeat #FFF;
         border: 1px solid #AAA;
         color: #666;
@@ -70,44 +97,32 @@
         border-bottom-width: 1px;
         border-top-width: 1px;
         height: 30px;
-        width: 180px;
-        /* CSS3 */
+        width: 15%;/* CSS3 */
         /* border-radius: 25px; */
         -webkit-transition: 0.3s;
         -moz-transition: 0.3s;
         -o-transition: 0.3s;
         transition: 0.3s;
     }
-
-    /*.navMenu input:hover { opacity: 1 }    
     
-    .navMenu input:focus {
-        
+    .logo-home
+    {
+        height: 70px;
+        width: 25%;
+        float: left;
+        background: url('../img/logo2.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
     }
-
-    .navMenu input:focus ~ ul li { width: 11%; }*/
-
-    .vn-sub {
-        position: absolute;
-        left: 0px;
-        top: 75px;
-        width: 100%;
-        /* height: 420px; */
-        background-color: rgba(255,255,255,0.9);
-        border-bottom: 1px solid rgb(153, 153, 153);
-}
     
-    .sub-image {
-        width: 100%; 
-        height: 252px;        
-        margin-top: 42px;
-        border: 2px solid #ebebeb;
-        margin-left: auto;
-        margin-right: auto;
+        
+    .vnc-searchbox
+    {
+        float: right;
+        margin-top: 48px;
+    } 
     
-        margin-bottom: 20px;
-}
-
     .sub-title {
         margin-top: 10px;
         height: 80px;    
@@ -115,21 +130,16 @@
         color: rgb(64,64,65);
         font-weight: bold;
         text-align: center;
-    }
-
-    .sub-info {
-        text-align: left;    
-        height: auto;
-    }
+    }    
 
     .vn-sub-title{    
         font-weight: bold;
         font-size: 14px;
+        margin-bottom: 15px;
     }
 
     .vn-sub-icons{
-        font-size: 13px;
-        margin-top: px;
+        font-size: 13px;        
         height : 25px;
     }
 
@@ -143,24 +153,196 @@
         font-weight: bold;
     }
     
-    .vnc-nav-logo
+    
+    
+    .logo-home-link:hover
     {
-        display: inline-block;
-        width: 25%;
+        text-decoration: none;
     }
     
-    .vnc-nav-menu
+    .vnc-menu
     {
-        display: inline-block; 
-        padding-top: 10px;
-        width: 54%;
+        float: left;
+        width: 60%;
+        /* margin-left: 20px; */
+        margin-top: 52px;
     }
     
-    .vnc-nav-search
+    .vnc-menu>li
     {
-        display: inline-block; 
+        display: inline;
+        padding-bottom: 6px;
+    }
+    
+    .vnc-menu>li:hover
+    {
+        border-bottom: 5px solid rgb(203,203,203) ;
+    }
+    
+    .vnc-menu>li:hover .vnc-memu-sub
+    {
+        display: block;
+    }
+    
+    .vnc-menu>li>a:hover
+    {
+        text-decoration: none;
+    }
+    
+    .vnc-menu>li>a
+    {
+        padding: 5px 30px 5px 0px;
+        color: #333;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: left;
+        line-height: 21px;
+    }
+    
+    .vnc-memu-sub
+    {
+        height: auto;
+        width: 100%;
+        background-color: rgba(255,255,255,0.9);
+        position: absolute;
+        z-index: 100;
+        top: 80px;
+        left: 0;
+        border-top: 1px solid rgb(203,203,203) ;
+        border-bottom: 1px solid rgb(203,203,203) ;
+        display: none;
+        padding-bottom: 20px;
+    }
+    
+    .sub-info
+    {
+        margin-top: 40px;
+        list-style: none;
+    }
+    
+    .vn-sub {
+        position: absolute;    
+        left: 0px;
+        top: 49px;
+        width: 100%;
+        /* height: 420px; */
+        background-color: rgba(255,255,255,0.9);    
+        border-bottom: 1px solid rgb(153, 153, 153);
+    }
+    
+    /* css fixed top*/
+    
+    .logo-home-top
+    {
+        height: 36px;
+        width: 36px;
+        float: left;
+        margin-top: 4px;
+        background: url('../img/loi logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    
+    
+    .vnc-nav-top
+    {
+        display: none;
+        height: 44px;
+        width: 100%;
+        border-bottom: 1px #ccc solid;
+        background-color: white;
+        position: fixed;
+        top:0;
+        left: 0;
+        z-index: 200;
+    }
+    
+    .vnc-menu-top
+    {
+        float: left;
+        margin-top: 15px;
+    }
+    
+    .vnc-menu-top>li
+    {
+        display: inline;
         padding-bottom: 5px;
-        width: 20%;
+    }
+    
+    .vnc-menu-top>li:hover
+    {
+        border-bottom: 5px solid rgb(203,203,203) ;
+    }    
+    
+    
+    .vnc-menu-top>li>a:hover
+    {
+        text-decoration: none;
+    }
+    
+    .vnc-menu-top>li>a
+    {
+        padding: 5px 30px 5px 0px;
+        color: #333;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+        line-height: 21px;
+    }
+    
+    .vnc-searchbox-top
+    {
+        float: right;
+        margin-top: 10px;
+    } 
+    
+    .vnc-nav-top input {
+        background: url(http://cssdeck.com/uploads/media/items/4/4yK4Jqj.jpg) 10px center no-repeat #FFF;
+        border: 1px solid #AAA;
+        color: #666;
+        float: right;
+        font-size: 12px;
+        /* margin: 7px 32px 0 0; */
+        opacity: 1;
+        outline: none;
+        padding-left: 25px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border-bottom-width: 1px;
+        border-top-width: 1px;
+        height: 30px;
+        width: 15%;/* CSS3 */
+        /* border-radius: 25px; */
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+    }
+    
+    .vnc-memu-sub-top
+    {
+        height: auto;
+        width: 100%;
+        background-color: rgba(255,255,255,0.9);
+        position: absolute;
+        z-index: 100;
+        top: 43px;
+        left: 0;
+        border-top: 1px solid rgb(203,203,203) ;
+        border-bottom: 1px solid rgb(203,203,203) ;
+        display: none;
+        padding-bottom: 20px;
+    }
+    
+    .vnc-menu-top>li:hover .vnc-memu-sub-top
+    {
+        display: block;
+    }    
+    
+    .fixed-show
+    {
+        display: block;
     }
 }
 

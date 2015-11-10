@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var num = 156; //number of pixels before modifying styles
+var num = 105; //number of pixels before modifying styles
 
 $(window).bind('scroll', function () {
     if ($(window).scrollTop() > num) {
-        $('#nav-fix').addClass('fixed');
+        $('#nav-fix').addClass('fixed-show');
     } else {
-        $('#nav-fix').removeClass('fixed');
+        $('#nav-fix').removeClass('fixed-show');
     }
 });
 

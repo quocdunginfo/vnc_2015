@@ -19,7 +19,7 @@ class QdCPT_IntroductionLayout_View extends QdT_Layout_Root_View
     protected function getContentPart()
     {
         ?>
-        <div class="container-non-responsive" style="margin-top: 75px">
+        <div class="container-non-responsive" style="margin-top: 15px">
             <div class="row">
                 <div class="col-xs-12">
                     <?= $this->getBreadcrumbsPart() ?></div>
