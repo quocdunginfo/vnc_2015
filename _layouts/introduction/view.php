@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 23/06/2015
  * Time: 10:27 PM
- * Version: 150607, 151024
+ * Version: 150607, 151024, 151101
  */
 QdT_Library::loadLayoutView('root');
 
