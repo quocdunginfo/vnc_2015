@@ -303,11 +303,17 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
         if ($this->page->product_cat != null) {
             //array_push($obj, array('name' => $this->page->product_cat->name, 'url' => $this->page->product_cat->getPermalink()));//1 level
             $obj = array_merge($obj, $this->page->product_cat->getBreadcrumbs());//multi level
+        } else if ($this->page->product_cat_lv1_id != null) {
+            $obj = array_merge($obj, QdProductCat::getBreadcrumsStructLv1($this->page->product_cat_lv1_id));
+        } else if ($this->page->product_cat_lv2_id != null) {
+            $obj = array_merge($obj, QdProductCat::getBreadcrumsStructLv2($this->page->product_cat_lv2_id));
         } else if ($this->page->manufactor != null) {
             array_push($obj, array('name' => $this->page->manufactor->name, 'url' => $this->page->manufactor->getPermalink()));//1 level
 
         } else if ($this->page->shop_obj != null) {
             array_push($obj, array('name' => 'Shop ' . $this->page->shop_obj->name, 'url' => $this->page->shop_obj->getPermalink()));//1 level
+        } else {
+            array_push($obj, array('name' => 'Sản phẩm', 'url' => get_permalink(Qdmvc_Helper::getPageIdByTemplate('page-templates/product-search.php'))));//1 level
         }
         return $obj;
     }

@@ -15,6 +15,8 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     public $product_cat = null;
     public $size = null;
     public $shop_obj = null;
+    public $product_cat_lv1_id = null;
+    public $product_cat_lv2_id = null;
 
     public $size_thoitrang_list = array();
 
@@ -25,7 +27,8 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     function __construct()
     {
         parent::__construct();
-
+        $this->product_cat_lv1_id = get_query_var('product-cat-lv1-id', null);
+        $this->product_cat_lv2_id = get_query_var('product-cat-lv2-id', null);
         //reset uri, filter side by side not INCLUDED query
         $this->uri = get_permalink(Qdmvc_Helper::getPageIdByTemplate('page-templates/product-search.php'));
 
@@ -62,16 +65,35 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
                 static::redirectPageError404();
             }
         }
+        //gen manufactor_list
+        $this->manufactor_list = array();
+        $manu = new QdManufactor();
+        $pcatmanu = new QdProcat2Manu();
 
         if ($this->product_cat != null) {
-            $record = new QdManufactor();
-            //$record->SETRANGE('type2', $this->product_cat->type2);
-            $this->manufactor_list = $record->GETLIST();
+            $pcatmanu->SETRANGE('struct_level', 3);
+            $pcatmanu->SETRANGE('productcat_id', $this->product_cat->id);
+            foreach($pcatmanu->GETLIST() as $item){
+                array_push($this->manufactor_list, $manu->GET($item->manufactor_id));
+            }
         } else if ($this->manufactor != null) {
-            $record = new QdManufactor();
-            //$record->SETRANGE('type2', $this->manufactor->type2);
-            $this->manufactor_list = $record->GETLIST();
+            $this->manufactor_list = $manu->GETLIST();
+        } else if ($this->product_cat_lv1_id != null) {
+            $pcatmanu->SETRANGE('struct_level', 1);
+            $pcatmanu->SETRANGE('productcat_id', $this->product_cat_lv1_id);
+            foreach($pcatmanu->GETLIST() as $item){
+                array_push($this->manufactor_list, $manu->GET($item->manufactor_id));
+            }
+        } else if ($this->product_cat_lv2_id != null) {
+            $pcatmanu->SETRANGE('struct_level', 2);
+            $pcatmanu->SETRANGE('productcat_id', $this->product_cat_lv2_id);
+            foreach($pcatmanu->GETLIST() as $item){
+                array_push($this->manufactor_list, $manu->GET($item->manufactor_id));
+            }
+        } else{
+            $this->manufactor_list = $manu->GETLIST();
         }
+        //end gen
 
         $record = new QdSize();
         $record->SETRANGE('type', QdManufactor::$TYPE2_MANUFACTOR_THOITRANG);
