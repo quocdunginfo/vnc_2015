@@ -142,7 +142,7 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
                         </div>
                     </div>
 
-                    <?= $this->getSizeQuanAoPart() ?>
+                    <?= $this->getSizeThoiTrangPart() ?>
 
                     <?= $this->getSizeGiayDepPart() ?>
 
@@ -213,44 +213,58 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
     <?php
     }
 
-    protected function getSizeQuanAoPart()
+    protected function getSizeThoiTrangPart()
     {
+        $sl = array();
         if (
-            (!QdT_Library::isNullOrEmpty($this->page->product_cat) && $this->page->product_cat->type2 == QdManufactor::$TYPE2_MANUFACTOR_THOITRANG)
-            ||
-            (!QdT_Library::isNullOrEmpty($this->page->manufactor) && $this->page->manufactor->type2 == QdManufactor::$TYPE2_MANUFACTOR_THOITRANG)
-            ||
-            (!QdT_Library::isNullOrEmpty($this->page->size) && $this->page->size->type == QdManufactor::$TYPE2_MANUFACTOR_THOITRANG)
-        ):
-            ?>
-            <!-- Size quan ao -->
-            <div class="row">
-                <div class="col-xs-12">
-                    <ul class="product-list">
-                        <div class="row">
-                            <div class="col-xs-12 title">
-                                SIZE QUẦN ÁO
-                            </div>
+        (!QdT_Library::isNullOrEmpty($this->page->product_cat) && $this->page->product_cat->property_grp_type == QdProductCat::$PROPERTY_G3)
+        ) {
+            $size_list = new QdProcat2Size();
+            $size_list->SETRANGE('productcat_id', $this->page->product_cat->id);
+            $size_list = $size_list->GETLIST();
+            foreach ($size_list as $item) {
+                $sizeobj = QdSize::GET($item->size_id);
+                if ($sizeobj != null) {
+                    array_push($sl, $sizeobj);
+                }
+            }
+        } else if (
+        !QdT_Library::isNullOrEmpty($this->page->size)
+        ) {
+            $sizeobj = new QdSize();
+            $sl = $sizeobj->GETLIST();
+        }
+        if (empty($sl)) {
+            return;
+        }
+        ?>
+        <!-- Size quan ao -->
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="product-list">
+                    <div class="row">
+                        <div class="col-xs-12 title">
+                            SIZE
                         </div>
-                        <div class="row" style="">
-                            <div class="col-xs-12" style="">
-                                <?php
-                                foreach ($this->page->size_quanao_list as $item):
-                                    ?>
-                                    <span style="display: inline-block; margin-top: 15px; margin-bottom: 15px">
+                    </div>
+                    <div class="row" style="">
+                        <div class="col-xs-12" style="">
+                            <?php
+                            foreach ($sl as $item):
+                                ?>
+                                <span style="display: inline-block; margin-top: 15px; margin-bottom: 15px">
                                 <a href="<?= add_query_arg(array('size-id' => $item->id), $this->page->uri) ?>"
                                    class="product-links product-quanao">
                                     <?= $item->code ?>
                                 </a>
                                     </span>
-                                <?php endforeach; ?>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
-                    </ul>
-                </div>
+                    </div>
+                </ul>
             </div>
-        <?php
-        endif;
+        </div>
+    <?php
     }
 
     protected function getSizeGiayDepPart()
