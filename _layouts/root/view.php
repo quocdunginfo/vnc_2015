@@ -110,6 +110,7 @@ class QdT_Layout_Root_View
 
         <body <?php body_class(); ?> style="/*background: rgba(0,0,0,0.1);*/">
         <?= $this->getDefaultMaterial() ?>
+        <?=$this->getScriptLibs()?>
         <?= $this->getHeaderPart() ?>
 
         <?php
@@ -150,6 +151,20 @@ class QdT_Layout_Root_View
         </div>
         <!-- Modal -->
     <?php
+    }
+    protected function getScriptLibs(){
+        ?>
+        <script>
+            MYAPP.RootProgressBar = function (show) {
+                if (show) {
+                    $('#qd-root-progressing-modal').modal('show');
+                } else {
+                    $('#qd-root-progressing-modal').modal('hide');
+                }
+            };
+
+        </script>
+        <?php
     }
 
     /*
@@ -257,17 +272,7 @@ class QdT_Layout_Root_View
     private function getSearchBoxPart($id=1, $istop=true){
         $search_url = get_permalink(QdT_Library::getPageIdByTemplate('page-templates/product-search.php'));
         ?>
-        <form action="<?= $search_url ?>" method="get" onsubmit="MYAPP.RootProgressBar<?=$id?>(true)">
-            <script>
-                MYAPP.RootProgressBar<?=$id?> = function (show) {
-                    if (show) {
-                        $('#qd-root-progressing-modal').modal('show');
-                    } else {
-                        $('#qd-root-progressing-modal').modal('hide');
-                    }
-                };
-
-            </script>
+        <form action="<?= $search_url ?>" method="get" onsubmit="MYAPP.RootProgressBar(true)">
             <input type="search" placeholder="Tìm kiếm..." class="vnc-searchbox<?=$istop?'-top':''?>" name="key-word"
                    value="<?= get_query_var('key-word', '') ?>">
         </form>
