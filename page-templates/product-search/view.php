@@ -107,40 +107,7 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
                 </div>
                 <div class="col-xs-3 product-right">
 
-                    <!-- Mức giá -->
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <ul class="straight-product" style="margin-top: 0px;"></ul>
-                        </div>
-                        <div class="col-xs-12 title">
-                            MỨC GIÁ
-                        </div>
-                        <div class="col-xs-12">
-                            <ul class="product-list1 edit-product-list1" style="height:150px;">
-                                <li><a href="<?= remove_query_arg(array('price-from', 'price-to'), $this->page->uri) ?>"
-                                       class="product-links">(Tất cả)</a></li>
-                                <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 0, 'price-to' => 10000000), $this->page->uri) ?>"
-                                       class="product-links">0 - 10.000.000 vnđ</a></li>
-                                <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 10000000, 'price-to' => 20000000), $this->page->uri) ?>"
-                                       class="product-links">Từ 10.000.000 - 20.000.000</a></li>
-                                <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 20000000, 'price-to' => 30000000), $this->page->uri) ?>"
-                                       class="product-links">Từ 20.000.000 - 30.000.000</a></li>
-                                <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 30000000, 'price-to' => 40000000), $this->page->uri) ?>"
-                                       class="product-links">Từ 30.000.000 - 40.000.000</a></li>
-                                <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 40000000, 'price-to' => 50000000), $this->page->uri) ?>"
-                                       class="product-links">Từ 40.000.000 - 50.000.000</a></li>
-                                <li>
-                                    <a href="<?= add_query_arg(array('price-from' => 50000000, 'price-to' => -1), $this->page->uri) ?>"
-                                       class="product-links">Trên 50.000.000</a></li>
-
-                            </ul>
-                        </div>
-                    </div>
+                    <?=$this->getPriceRangePart()?>
 
                     <?= $this->getSizeThoiTrangPart() ?>
 
@@ -155,6 +122,54 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
         </div>
         <!-- End Content -->
     <?php
+    }
+    private function getPriceRangePart(){
+        if($this->page->product_cat == null){
+            $pr = array();
+        }
+        else{
+            $pr = QdProductCat::getPriceRanges($this->page->product_cat->price_range_type);
+        }
+        ?>
+        <!-- Mức giá -->
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="straight-product" style="margin-top: 0px;"></ul>
+            </div>
+            <div class="col-xs-12 title">
+                MỨC GIÁ
+            </div>
+            <div class="col-xs-12">
+                <ul class="product-list1 edit-product-list1" style="height:150px;">
+                    <li><a href="<?= remove_query_arg(array('price-from', 'price-to'), $this->page->uri) ?>"
+                           class="product-links">(Tất cả)</a></li>
+                    <?php
+                    foreach($pr as $item){
+                        $s = '';
+                        $from = number_format( $item[0] , 0, '.' , ',');
+                        $to = number_format( $item[1] , 0, '.' , ',');
+                        if($item[0]<=0){
+                            $s .= 'Dưới '.$to;
+                        }else if ($item[1]<=0){
+                            $s .= 'Trên '.$from;
+                        } else{
+                            $s .= 'Từ '.$from.' - '.$to;
+                        }
+                        ?>
+                        <li>
+                            <a href="<?= add_query_arg(array('price-from' => $item[0], 'price-to' => $item[1]), $this->page->uri) ?>"
+                               class="product-links">
+                                <?=$s?>
+                            </a>
+                        </li>
+                        <?php
+                    }
+                    ?>
+
+                </ul>
+            </div>
+        </div>
+        <?php
     }
 
     protected function getShopPart()

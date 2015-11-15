@@ -1,0 +1,17 @@
+Như vậy khi mình tạo danh mục sản phẩm thì mình sẽ chọn loại khung mức giá luôn. Và nó sẳn khung mức giá để chọn. Anh có ý này, căn cứ theo thực tế SP thì mình sẽ có (và giới hạn) trong 4 khung mức giá để tiện việc quản trị. Cụ thể: 
+
+Khung 1: Loại danh mục có mức giá thấp (hàng triệu)
+0 - 1tr, 1 - 2tr, 2 - 3tr, 3 - 4tr, 4 - 5tr, trên 5tr 
+(áp dụng cho: xe đạp...)
+
+Khung 2: Loại có mức giá vừa (hàng chục triệu)
+0 - 5tr, 5 - 10tr, 10 - 20tr, 20 - 30tr, 30-40tr, 40-50, trên 50tr 
+(áp dụng cho: xe máy...)
+
+Khung 3: Loại có mức giá lớn (hàng trăm triệu)
+< 50tr, 50 - 100tr, 100 - 200tr, 200 - 300tr, 300 - 400tr, 400 - 500tr, > 500tr
+(áp dụng cho: ô tô...) 
+
+Khung 4: Loại mức giá rất lớn 
+< 500tr, 500 - 1 tỉ, 1 - 2 tỉ, 2 - 3 tỉ, 3 - 4 tỉ - 4 - 5 tỉ, lớn hơn 5 tỉ 
+(áp dụng cho: loại hàng đặc biệt) 
