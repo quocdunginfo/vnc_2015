@@ -228,16 +228,12 @@ class QdT_Layout_Root_View
                 <div class="row">
                     <div class="col-xs-7 header-phonenumber">
                         <!-- Phone Number -->
-                        <p><b>MIỄN PHÍ</b> TOÀN QUỐC CHO ĐƠN HÀNG TỪ 250K - Chi tiết</p>
+                        <?= $this->page->theme_root_setup->topcenter_promotion ?>
                     </div>
 
                     <div class="col-xs-5 header-links">
                         <!-- Content -->
-                        <a href="#">DỊCH VỤ</a>
-                        <img src="img/border-links.png">
-                        <a href="#">HƯỚNG DẪN</a>
-                        <img src="img/border-links.png">
-                        <a href="#">HOTLINE: <b>0904516725</b></a>
+                        <?= $this->page->theme_root_setup->topright_navs ?>
                     </div>
                 </div>
             </div>

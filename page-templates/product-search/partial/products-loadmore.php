@@ -33,7 +33,7 @@ if (count($products) > 0):
         <?php
         $next_url = add_query_arg(array('offset' => $offset + $item_per_segment), $_SERVER['REQUEST_URI']);
         ?>
-        <a href="<?= $next_url ?>">Xem thêm</a>
+        <a href="<?= $next_url ?>" rel="nofollow">Xem thêm</a>
     </div>
 <?php
 endif;
