@@ -101,10 +101,12 @@ class QdT_PageT_ProductDetail_ViewMobile extends QdT_Layout_Root_ViewMobile
                         </div>
                     <?php endif; ?>
                 </div>
-                <?php if (!QdT_Library::isNullOrEmpty($this->page->product) && ($this->page->product->temp_out_of_stock == true)): ?>
+                <?php if (!QdT_Library::isNullOrEmpty($this->page->product) && ($this->page->product->stock_status != QdProduct::$STOCK_DF)):
+                    $options = QdProduct::getFieldOptions('stock_status', 'vi-VN');
+                    ?>
                     <div class="col-xs-12">
                         <div class="state">
-                            Tạm hết hàng
+                            <?=$options[$this->page->product->stock_status]?>
                         </div>
                     </div>
                 <?php endif; ?>

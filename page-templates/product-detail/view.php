@@ -157,10 +157,13 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
                                 </div>
                             <?php endif; ?>
 
-                            <?php if (!QdT_Library::isNullOrEmpty($this->page->product) && ($this->page->product->temp_out_of_stock == true)): ?>
+                            <?php if (!QdT_Library::isNullOrEmpty($this->page->product) && ($this->page->product->stock_status != QdProduct::$STOCK_DF)):
+                             $options = QdProduct::getFieldOptions('stock_status', 'vi-VN');
+
+                                ?>
                                 <div class="vn-symbol">|</div>
                                 <div class="state">
-                                    Tạm hết hàng
+                                    <?=$options[$this->page->product->stock_status]?>
                                 </div>
                             <?php endif; ?>
                         </div>
