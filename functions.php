@@ -28,7 +28,7 @@
 class QdT_Fn_Config
 {
     public static $query_args = array(
-        'id', 'offset', 'product-cat-id', 'manufactor-id', 'size-id', 'price-from', 'price-to', 'key-word', 'shop-id', 'product-cat-level', 'query', 'product-cat-lv1-id', 'product-cat-lv2-id'
+        'id', 'offset', 'product-cat-id', 'manufactor-id', 'size-id', 'price-from', 'price-to', 'key-word', 'shop-id', 'query'
     );
 }
 

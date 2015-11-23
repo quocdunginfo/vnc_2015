@@ -15,8 +15,6 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     public $product_cat = null;
     public $size = null;
     public $shop_obj = null;
-    public $product_cat_lv1_id = null;
-    public $product_cat_lv2_id = null;
 
     public $size_thoitrang_list = array();
 
@@ -27,8 +25,6 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
     function __construct()
     {
         parent::__construct();
-        $this->product_cat_lv1_id = get_query_var('product-cat-lv1-id', null);
-        $this->product_cat_lv2_id = get_query_var('product-cat-lv2-id', null);
         //reset uri, filter side by side not INCLUDED query
         $this->uri = get_permalink(Qdmvc_Helper::getPageIdByTemplate('page-templates/product-search.php'));
 
@@ -71,22 +67,8 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
         $pcatmanu = new QdProcat2Manu();
 
         if ($this->product_cat != null) {
-            $pcatmanu->SETRANGE('struct_level', 3);
+            $pcatmanu->SETRANGE('selection', true);
             $pcatmanu->SETRANGE('productcat_id', $this->product_cat->id);
-            foreach($pcatmanu->GETLIST() as $item){
-                array_push($this->manufactor_list, $manu->GET($item->manufactor_id));
-            }
-        } else if ($this->manufactor != null) {
-            $this->manufactor_list = $manu->GETLIST();
-        } else if ($this->product_cat_lv1_id != null) {
-            $pcatmanu->SETRANGE('struct_level', 1);
-            $pcatmanu->SETRANGE('productcat_id', $this->product_cat_lv1_id);
-            foreach($pcatmanu->GETLIST() as $item){
-                array_push($this->manufactor_list, $manu->GET($item->manufactor_id));
-            }
-        } else if ($this->product_cat_lv2_id != null) {
-            $pcatmanu->SETRANGE('struct_level', 2);
-            $pcatmanu->SETRANGE('productcat_id', $this->product_cat_lv2_id);
             foreach($pcatmanu->GETLIST() as $item){
                 array_push($this->manufactor_list, $manu->GET($item->manufactor_id));
             }
@@ -96,8 +78,10 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
         //end gen
 
         $record = new QdSize();
-        $record->SETRANGE('type', QdManufactor::$TYPE2_MANUFACTOR_THOITRANG);
-        $this->size_thoitrang_list = $record->GETLIST();
+        if ($this->product_cat != null && $this->product_cat->struct_lv_4 != QdProductCat::$LV4_DF) {
+            $record->SETRANGE('type', $this->product_cat->struct_lv_4);
+            $this->size_thoitrang_list = $record->GETLIST();
+        }
 
         $record = new QdShop();
         $record->SETRANGE('active', true);

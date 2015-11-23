@@ -234,20 +234,15 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
         if (
         (!QdT_Library::isNullOrEmpty($this->page->product_cat) && $this->page->product_cat->property_grp_type == QdProductCat::$PROPERTY_G3)
         ) {
-            $size_list = new QdProcat2Size();
-            $size_list->SETRANGE('productcat_id', $this->page->product_cat->id);
-            $size_list = $size_list->GETLIST();
-            foreach ($size_list as $item) {
-                $sizeobj = QdSize::GET($item->size_id);
-                if ($sizeobj != null) {
-                    array_push($sl, $sizeobj);
-                }
-            }
+            $size = new QdSize();
+            $size->SETRANGE('type', $this->page->product_cat->struct_lv_4);
+            $sl = $size->GETLIST();
         } else if (
         !QdT_Library::isNullOrEmpty($this->page->size)
         ) {
-            $sizeobj = new QdSize();
-            $sl = $sizeobj->GETLIST();
+            $size = new QdSize();
+            $size->SETRANGE('type', $this->page->size->type);
+            $sl = $size->GETLIST();
         }
         if (empty($sl)) {
             return;
@@ -332,10 +327,6 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
         if ($this->page->product_cat != null) {
             //array_push($obj, array('name' => $this->page->product_cat->name, 'url' => $this->page->product_cat->getPermalink()));//1 level
             $obj = array_merge($obj, $this->page->product_cat->getBreadcrumbs());//multi level
-        } else if ($this->page->product_cat_lv1_id != null) {
-            $obj = array_merge($obj, QdProductCat::getBreadcrumsStructLv1($this->page->product_cat_lv1_id));
-        } else if ($this->page->product_cat_lv2_id != null) {
-            $obj = array_merge($obj, QdProductCat::getBreadcrumsStructLv2($this->page->product_cat_lv2_id));
         } else if ($this->page->manufactor != null) {
             array_push($obj, array('name' => $this->page->manufactor->name, 'url' => $this->page->manufactor->getPermalink()));//1 level
 

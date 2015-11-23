@@ -5,9 +5,7 @@
  * Date: 7/22/15
  * Time: 10:49 PM
  */
-$product_cat_id = get_query_var('product-cat-id', 0);
-$product_cat_lv1_id = get_query_var('product-cat-lv1-id', '');
-$product_cat_lv2_id = get_query_var('product-cat-lv2-id', '');
+$product_cat_id = get_query_var('product-cat-id', '');
 
 $product_cat_level = 0;
 $product_cat_obj = QdProductCat::GET($product_cat_id);
@@ -15,7 +13,7 @@ if ($product_cat_obj != null) {
     $product_cat_level = $product_cat_obj->level;
 }
 
-$manufactor_id = get_query_var('manufactor-id', 0);
+$manufactor_id = get_query_var('manufactor-id', '');
 $price_from = get_query_var('price-from', -1);
 $price_to = get_query_var('price-to', -1);
 $size_id = get_query_var('size-id', 0);
@@ -48,21 +46,15 @@ if ($shop_id > 0) {
         $obj->SETRANGE('code', $key_word, $obj::$OP_CONTAINS);
         $obj->SETFILTERRELATION('OR');
     } else {
-        if ($product_cat_id > 0) {
+        if ($product_cat_id != '') {
             if ($product_cat_level > 0) {
-                $obj->SETRANGE("product_cat_lv{$product_cat_level}_id", $product_cat_id);
+                $obj->SETRANGE("struct_lv_{$product_cat_level}", $product_cat_id);
             } else {
                 $obj->SETRANGE('product_cat_id', $product_cat_id);
             }
         }
-        if ($product_cat_lv1_id != '') {
-            $obj->SETRANGE("type3", $product_cat_lv1_id);
-        }
-        if ($product_cat_lv2_id != '') {
-            $obj->SETRANGE("type", $product_cat_lv2_id);
-        }
 
-        if ($manufactor_id > 0)
+        if ($manufactor_id != '')
             $obj->SETRANGE('manufacturer_id', $manufactor_id);
         if ($size_id > 0)
             $obj->SETRANGE('size_id', $size_id);

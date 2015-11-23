@@ -118,12 +118,13 @@ class QdT_PageT_ProductSearch_ViewMobile extends QdT_Layout_Root_ViewMobile
 
     protected function getSizeQuanAoPart()
     {
+        return;
         if (
-            (!QdT_Library::isNullOrEmpty($this->page->product_cat) && $this->page->product_cat->type2 == QdManufactor::$TYPE2_MANUFACTOR_THOITRANG)
+            (!QdT_Library::isNullOrEmpty($this->page->product_cat) && $this->page->product_cat->type2 == QdManufactor::$TYPE2_MANUFACTOR_QUANAO)
             ||
-            (!QdT_Library::isNullOrEmpty($this->page->manufactor) && $this->page->manufactor->type2 == QdManufactor::$TYPE2_MANUFACTOR_THOITRANG)
+            (!QdT_Library::isNullOrEmpty($this->page->manufactor) && $this->page->manufactor->type2 == QdManufactor::$TYPE2_MANUFACTOR_QUANAO)
             ||
-            (!QdT_Library::isNullOrEmpty($this->page->size) && $this->page->size->type == QdManufactor::$TYPE2_MANUFACTOR_THOITRANG)
+            (!QdT_Library::isNullOrEmpty($this->page->size) && $this->page->size->type == QdManufactor::$TYPE2_MANUFACTOR_QUANAO)
         ):
             ?>
             <!-- Size quan ao -->
