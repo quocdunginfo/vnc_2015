@@ -125,10 +125,14 @@ class QdT_PageT_ProductSearch_View extends QdT_Layout_Root_View
     }
     private function getPriceRangePart(){
         if($this->page->product_cat == null){
-            $pr = array();
+            if($this->page->manufactor != null){
+                $pr = $this->page->manufactor->getCalPriceRanges();
+            }else{
+                $pr = array();
+            }
         }
         else{
-            $pr = QdProductCat::getPriceRanges($this->page->product_cat->price_range_type);
+            $pr = $this->page->product_cat->getCalPriceRanges();
         }
         ?>
         <!-- Mức giá -->
