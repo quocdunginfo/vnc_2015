@@ -23,6 +23,8 @@ class QdT_PageT_Error404 extends QdT_Layout_Root
     {
         return 'QdT_PageT_Error404_ViewMobile';
     }
-
-
+    public function getPageTitle()
+    {
+        return str_replace('{prefix}', '404 Page not found', parent::getPageTitle());
+    }
 }

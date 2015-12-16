@@ -145,8 +145,7 @@ class QdT_Layout_Root
 
     public function getPageTitle()
     {
-        $obj = str_replace("{prefix}", 'Mua bán, ký gửi đồ hiệu', $this->theme_root_setup->seo_title_struct);
-        return $obj;
+        return $this->theme_root_setup->seo_title_struct_4;
     }
 
     public function getPageDescription()

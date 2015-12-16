@@ -44,4 +44,10 @@ class QdT_PageT_HomePage extends QdT_Layout_Root
         return "QdT_PageT_HomePage_ViewMobile";
     }
 
+    public function getPageTitle()
+    {
+        return $this->theme_root_setup->seo_title_struct_3;
+    }
+
+
 }

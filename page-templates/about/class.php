@@ -28,4 +28,11 @@ class QdT_PageT_About extends QdT_Layout_Root
     {
         return 'about';
     }
+
+    public function getPageTitle()
+    {
+        global $post;
+        return str_replace('{prefix}', $post->post_title, parent::getPageTitle());
+    }
+
 }

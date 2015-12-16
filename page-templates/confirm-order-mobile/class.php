@@ -47,4 +47,8 @@ class QdT_PageT_ConfirmOrderMobile extends QdT_Layout_Root
     {
         return 'QdT_PageT_ConfirmOrder_ViewMobile';
     }
+    public function getPageTitle()
+    {
+        return str_replace('{prefix}', 'Xác nhận đặt hàng', parent::getPageTitle());
+    }
 }

@@ -42,4 +42,8 @@ class QdT_PageT_Service extends QdCPT_IntroductionLayout
     {
         return true;
     }
+    public function getPageTitle()
+    {
+        return str_replace('{prefix}', $this->obj->title, parent::getPageTitle());
+    }
 }

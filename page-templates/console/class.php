@@ -45,6 +45,10 @@ class QdT_PageT_Console
             case 'test3':
                 $re['result'] = $_SERVER['HTTP_HOST'];
                 break;
+            case 'get_note':
+                $p = new QdNote();
+                $re['result'] = QdNote::toJSON($p->GETLIST());
+                break;
         }
         echo json_encode($re);
     }

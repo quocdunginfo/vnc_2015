@@ -34,6 +34,10 @@ class QdT_PageT_FAQS extends QdCPT_IntroductionLayout
     {
         return true;
     }
-
+    public function getPageTitle()
+    {
+        global $post;
+        return str_replace('{prefix}', $post->post_title, parent::getPageTitle());
+    }
 
 }

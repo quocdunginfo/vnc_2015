@@ -105,8 +105,12 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
 
     public function getPageTitle()
     {
-        $obj = $this->getGeneralPanelName();
-
+        $prefix = $this->getGeneralPanelName();
+        if($prefix===false){
+            global $post;
+            $prefix = $post->post_title;
+        }
+        /*
         if ($this->product_cat != null) {
             $c = $this->product_cat->getParentObj();
             if ($c != null) {
@@ -118,9 +122,10 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
                 $c = $c->getParentObj();
             }
         }
+        */
 
-        $obj = str_replace("{prefix}", $obj, $this->theme_root_setup->seo_title_struct);
-        return $obj;
+        $prefix = str_replace("{prefix}", $prefix, $this->theme_root_setup->seo_title_struct_4);
+        return $prefix;
     }
 
     public function getPageDescription()
@@ -135,12 +140,12 @@ class QdT_PageT_ProductSearch extends QdT_Layout_Root
             return $this->product_cat->name;
         }
         if ($this->manufactor != null) {
-            return $this->manufactor->name;
+            return 'Hãng ' . $this->manufactor->name;
         }
         if ($this->shop_obj != null) {
             return 'Shop ' . $this->shop_obj->name;
         }
-        return 'Sản phẩm';
+        return false;
     }
 
 }
