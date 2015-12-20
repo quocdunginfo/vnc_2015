@@ -165,4 +165,23 @@ class QdT_Layout_Root
         }
         return $obj;
     }
+    public function useJQueryVersion($version='', $use_wp_default=false){
+        if($use_wp_default){
+
+        }else{
+            if($version!=''){
+                if (!is_admin()) add_action("wp_enqueue_scripts", array($this, '_system_wp_enqueue_jquery'), 11);
+            }else{
+                if (!is_admin()) add_action("wp_enqueue_scripts", array($this, '_system_wp_unregister_jquery'), 11);
+            }
+        }
+    }
+    public function _system_wp_unregister_jquery(){
+        wp_deregister_script('jquery');
+        wp_enqueue_script('jquery');
+    }
+    public function _system_wp_enqueue_jquery(){
+        wp_deregister_script('jquery');
+        wp_enqueue_script('jquery');
+    }
 }
