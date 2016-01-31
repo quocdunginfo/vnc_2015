@@ -49,9 +49,6 @@ class QdT_PageT_Console
                 $p = new QdNote();
                 $re['result'] = QdNote::toJSON($p->GETLIST());
                 break;
-            case 'zip':
-                $re['result'] = Qdmvc::extractQdmvcCoreFiles();
-                break;
         }
         echo json_encode($re);
     }
