@@ -5,7 +5,7 @@
  * User: quocd_000
  * Date: 23/06/2015
  * Time: 10:15 PM
- * Version: 150607, 151024, 151101
+ * Version: 150607, 151024, 151101, 160204
  */
 class QdT_Layout_Root_View
 {
@@ -966,7 +966,11 @@ class QdT_Layout_Root_View
         </header>
     <?php
     }
-
+    /*
+     * VN160204:
+     * Breadcrumb: margin bottom = 20px
+     *
+     * */
     protected function getBreadcrumbsPart()
     {
         ?>
@@ -994,7 +998,7 @@ class QdT_Layout_Root_View
         $this->getWidgetNavsPart();
         ?>
         <!-- Begin Footer -->
-        <div class="vn-cas-footer">
+        <div class="vn-cas-footer vnc-footer-edit1">
             <!-- Begin Footer Email-->
             <div class="footer-email">
                 <div class="container-non-responsive">
@@ -1235,20 +1239,11 @@ class QdT_Layout_Root_View
                 </p>
 
                 <p class="p-edit-1">
-                    <b style="color: rgb(131,131,132);font-weight: normal;"><?= number_format($item->price, 0, '.', ',') ?>
-                        VND</b>
-                    <?php if ($size_obj != null): ?>
-                        <img src="img/border-links.png" style="margin: 0px 5px;">
-                        <b>
-                            <?= $size_obj->code ?>
-                        </b>
-                    <?php endif; ?>
-
-                    <?php if ($item->discount_percent > 0) : ?>
-                    </br>
-                    <b style="color: #C80815;">
-                        <?= number_format($item->_price_discount, 0, '.', ',') ?> VND
-                    </b>
+                    <?php if($item->_price_discount > 0): ?>
+                    <STRIKE class="mau-gia-ban-dau"><?= number_format($item->price, 0, '.', ',') ?> VND</STRIKE><br/>
+                    <b class="mau-gia-km"><?= number_format($item->_price_discount, 0, '.', ',') ?> VND</b>
+                    <?php else: ?>
+                        <b class="mau-gia"><?= number_format($item->price, 0, '.', ',') ?> VND</b>
                     <?php endif; ?>
                 </p>
             </div>

@@ -95,7 +95,7 @@ and open the template in the editor.
 }   
     .vn-choise-box {
         width: 100%;
-        height: 250px;
+        padding-bottom: 65.96%;
         border: 2px solid #ebebeb;
         margin-left: auto;
         margin-right: auto;
@@ -156,24 +156,25 @@ and open the template in the editor.
     
     .vn-cas-footer {
         background-color: rgb(231,231,232);
-        margin-top: 50px;
+        margin-top: 20px;
     }
 
     .footer-email {
         background-color: rgb(231,231,232);
-        height: 190px;
+        height: 150px;
     }    
     
     .title-email {
-        margin-top: 50px;
-        text-align: center;   
+        margin-top: 30px;
+        text-align: center;
+        font-size: 25px;
     }
     
     .form-email {
         position: relative;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 30px;
+        margin-top: 20px;
         height: 35px;
         width: 501px;
         background-image: url("../img/form-email.png");
@@ -237,7 +238,7 @@ and open the template in the editor.
     }
     
     header.carousel {
-        height: 391px;
+        height: 341px;
     }
     .footer-center-img-tt {
           height: 30px;
@@ -261,8 +262,8 @@ and open the template in the editor.
           padding-right: 7.5px;
     }
     .vn-sanpham-box {
-        width: 175px;
-        height: 117px;
+        width: 100%;
+        padding-bottom: 65.96%;
         margin-bottom: 15px;
         border: 2px solid #ebebeb;
     }
@@ -288,11 +289,13 @@ and open the template in the editor.
     /* San pham */
       
       .content {
-          margin-top: 45px;
+          margin-top: 0px;
       }
       
       .sanpham-header {
           color: black;
+          margin-bottom: 20px;
+          margin-top: 15px;
       }
       
       .product-right
@@ -619,12 +622,11 @@ and open the template in the editor.
             font-size: 25px;
             margin-top: 80px;
             padding-bottom: 15px;
-            border-bottom: 3px solid rgb(74,102,178);
+            border-bottom: 2px solid #CCC;
             text-align: center;
             width: 70%;
             margin-left: auto;
             margin-right: auto;
-        
             margin-bottom: 25px;
 }
         
@@ -764,4 +766,54 @@ and open the template in the editor.
         .vn-modal-a{
             padding-bottom: 0px;
         }
+        .mau-gia
+        {
+            color: #4C4A4A;
+        }
+        .mau-gia-km
+        {
+            color: #FF9800;
+            font-weight: bold;
+        }
+        .mau-gia-ban-dau
+        {
+            color: rgba(131, 131, 132, 0.48);
+        }
+        .vnc-khoang-cach
+        {
+            margin-top: 15px;
+        }
+        
+        .vnc-footer-edit1
+        {
+            margin-top: 0px;
+        }
+        
+        .font-chu-giakm
+        {
+            font-weight: bold;
+        }
+        
+        .chitiet-breadcrumb
+        {
+            margin-bottom: 20px;
+        }
+        
+        .imgStyle
+        {
+            width: 22.50%;
+            /* padding-bottom: 60%; */
+            border: 1px solid #CCC;
+            padding: 3px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .test
+        {
+            width:100%;
+            padding-bottom: 66.30%;
+            border: 1px solid #CCC;
+            margin-bottom: 20px;
+        }   
 }

@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:25 PM
- * Version: 150607, 151024
+ * Version: 150607, 151024, 160204
  */
 QdT_Library::loadLayoutView('root');
 
@@ -36,7 +36,7 @@ class QdT_PageT_HomePage_View extends QdT_Layout_Root_View
             <!-- BEST CHOICE 1 -->
             <div class="container-non-responsive">
                 <div class="row">
-                    <div class="col-lg-12" style="margin-top: 20px;">
+                    <div class="col-lg-12">
                         <h3 class="page-header">
                             <?= $item->title ?>
                         </h3>
@@ -96,7 +96,7 @@ class QdT_PageT_HomePage_View extends QdT_Layout_Root_View
         <div class="container-non-responsive">
             <!-- Title BIG SALE -->
             <div class="row">
-                <div class="col-lg-12" style="margin-top: 20px;">
+                <div class="col-lg-12">
                     <h3 class="page-header">
                         <?= $this->page->big_sale_cat->name; ?>
                     </h3>
@@ -105,7 +105,7 @@ class QdT_PageT_HomePage_View extends QdT_Layout_Root_View
 
 
             <!-- San pham 1 -->
-            <div class="row" style="margin-top: 20px;">
+            <div class="row vnc-khoang-cach">
                 <?php
                 $count = 1;
                 foreach ($this->page->big_sale_products as $item):
@@ -130,7 +130,7 @@ class QdT_PageT_HomePage_View extends QdT_Layout_Root_View
         <div class="container-non-responsive">
             <!-- Title BIG SALE -->
             <div class="row">
-                <div class="col-lg-12" style="margin-top: 20px;">
+                <div class="col-lg-12">
                     <h3 class="page-header">
                         <?=$this->page->theme_root_setup->latest_product_label?>
                     </h3>
@@ -139,7 +139,7 @@ class QdT_PageT_HomePage_View extends QdT_Layout_Root_View
 
 
             <!-- San pham 1 -->
-            <div class="row" style="margin-top: 20px;">
+            <div class="row vnc-khoang-cach">
                 <?php
                 $count = 1;
                 foreach ($this->page->latestproduct_list as $item):

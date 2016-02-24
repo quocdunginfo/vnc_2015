@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 23/06/2015
  * Time: 11:22 PM
- * Version: 150607, 151024
+ * Version: 150607, 151024, 160204
  */
 QdT_Library::loadLayoutView('introduction');
 
@@ -106,7 +106,7 @@ class QdT_PageT_Contact_View extends QdCPT_IntroductionLayout_View
                     </div>
                     <div class="row col-xs-12">
                         <button id="formContactSubmit" type="submit" class="btn btn-primary"
-                                style="width:180px; height: 36px; font-size: 18px;">GỬI
+                                style="width:150px; height: 34px; font-size: 18px;">GỬI
                         </button>
                         <img id="qd-loading" src="img/loading.gif"
                              style="width: 30px; height: 30px; display: none; margin-left: 10px">

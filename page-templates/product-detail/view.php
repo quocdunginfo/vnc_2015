@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 24/06/2015
  * Time: 9:32 PM
- * Version: 150607, 151024, 151101
+ * Version: 150607, 151024, 151101, 160204
  */
 QdT_Library::loadLayoutView('root');
 
@@ -27,7 +27,7 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
         ?>
         <?= $this->dialog() ?>
         <div class="container-non-responsive carousel content" style="margin-top: 5px">
-            <div class="row">
+            <div class="row chitiet-breadcrumb">
                 <div class="col-xs-12">
                     <?= $this->getBreadcrumbsPart() ?></div>
             </div>
@@ -37,22 +37,26 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
                 <!--Left-->
                 <div class="col-xs-6 edit-slider-768">
                     <!-- Limited -->
-                    <div id="bigPic">
-                        <?php
-                        $count = 0;
-                        foreach ($this->page->product_imgs as $item):
-                            ?>
-                            <img src="<?= $item->path ?>" alt=""
-                                 style="border:1px solid #CCC;padding: 1px;">
-                            <?php
-                            $count++;
-                        endforeach; ?>
+                    <?php
+                    //1st Img in list
+                    $first_img_path = '';
+                    if(count($this->page->product_imgs) > 0){
+                        $first_img_path = $this->page->product_imgs[0]->path;
+                    }
+                    ?>
+                    <div id="mainImage" class="test" style="background: url('<?=$first_img_path?>');
+                                                          background-repeat: no-repeat;
+                                                          background-size: contain;
+                                                          background-position: center;">
                     </div>
+
+
                     <script>
                         (function ($) {
                             $(document).ready(function () {
-                                $('#bigPic img').click(function () {
-                                    $('#picture-Popup .vn-popup-slide-sanpham').css('background-image', "url('" + $(this).attr('src') + "')");
+                                $('#mainImage').click(function () {
+                                    var _img = $(this).css('background-image');
+                                    $('#picture-Popup .vn-popup-slide-sanpham').css('background-image', _img);
                                     $('#picture-Popup').modal('show');
                                 });
                             });
@@ -84,16 +88,16 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
                     </div>
                     <!-- Modal -->
 
-                    <ul id="thumbs">
+                    <div id="divContainer">
                         <?php
                         $count = 1;
                         foreach ($this->page->product_imgs as $item):
                             ?>
-                            <li rel="<?= $count ?>" class=""><img src="<?= $item->path ?>" alt=""></li>
+                            <img src="<?= $item->path ?>" class="imgStyle">
                             <?php
                             $count++;
                         endforeach; ?>
-                    </ul>
+                    </div>
 
                     <!-- Limited -->
                 </div>
@@ -138,32 +142,34 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
                     <!-- detail product 2-->
                     <div class="row price-tag">
                         <div class="col-xs-12">
-                            <div class="price">
-                                <?= number_format($this->page->product->price, 0, '.', ',') ?> VND
-                            </div>
-
-                            <?php if (!QdT_Library::isNullOrEmpty($this->page->size) && $this->page->size->code != ''): ?>
-                                <div class="vn-symbol">|</div>
-                                <div class="size">
-                                    <?= $this->page->size->code ?>
+                            <?php
+                            //Has promotion
+                            if ($this->page->product->_price_discount > 0):
+                                ?>
+                                <div class="price">
+                                    <STRIKE class="mau-gia-ban-dau">
+                                        <?= number_format($this->page->product->price, 0, '.', ',') ?> VND
+                                    </STRIKE>
                                 </div>
-                            <?php endif; ?>
-
-                            <?php if (!QdT_Library::isNullOrEmpty($this->page->product) && $this->page->product->discount_percent > 0): ?>
                                 <div class="vn-symbol">|</div>
-                                <div class="off">
+                                <div class="off mau-gia-km">
                                     <?= number_format($this->page->product->_price_discount, 0, '.', ',') ?> VND
-                                    (<?= $this->page->product->discount_percent * 100 ?>% OFF)
+                                </div>
+                            <?php else: ?>
+                                <div class="off mau-gia-km">
+                                    <?= number_format($this->page->product->price, 0, '.', ',') ?> VND
                                 </div>
                             <?php endif; ?>
 
-                            <?php if (!QdT_Library::isNullOrEmpty($this->page->product) && ($this->page->product->stock_status != QdProduct::$STOCK_DF)):
-                             $options = QdProduct::getFieldOptions('stock_status', 'vi-VN');
+                            <?php
+                            //Stock Status
+                            if (!QdT_Library::isNullOrEmpty($this->page->product) && ($this->page->product->stock_status != QdProduct::$STOCK_DF)):
+                                $options = QdProduct::getFieldOptions('stock_status', 'vi-VN');
 
                                 ?>
                                 <div class="vn-symbol">|</div>
                                 <div class="state">
-                                    <?=$options[$this->page->product->stock_status]?>
+                                    <?= $options[$this->page->product->stock_status] ?>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -221,7 +227,7 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
                                     <div class="modal-content">
                                         <div class="modal-header vn-modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                                    aria-hidden="true">X</span></button>
+                                                    aria-hidden="true">&times;</span></button>
                                             <div
                                                 class="vn-modal-title"><?= $this->page->product_order_setup->order_form_title ?></div>
                                         </div>
@@ -240,18 +246,21 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
                                                         </p>
 
                                                         <p class="p-edit-1">
-                                                            <b style="color: rgb(131,131,132);font-weight: normal;">
-                                                                <?= number_format($this->page->product->price, 0, '.', ',') ?>
-                                                                VND</b>
-                                                            <img src="img/border-links.png" style="margin: 0px 5px;">
-                                                            <b>L</b>
-                                                            <br>
-                                                            <b style="color: #C80815;">
-                                                                <?= number_format($this->page->product->_price_discount, 0, '.', ',') ?>
-                                                                VND
-                                                                (OFF <?= $this->page->product->discount_percent * 100 ?>
-                                                                %)
-                                                            </b>
+                                                            <?php if ($this->page->product->_price_discount > 0): ?>
+
+                                                            <STRIKE class="mau-gia-ban-dau">
+                                                                <?= number_format($this->page->product->price, 0, '.', ',') ?> VND
+                                                             </STRIKE>
+                                                             </br>
+                                                            <b class="mau-gia-km font-chu-giakm">
+                                                             <?= number_format($this->page->product->_price_discount, 0, '.', ',') ?> VND
+                                                             </b>
+                                                            <?php else: ?>
+                                                                <b class="mau-gia-km font-chu-giakm">
+                                                                    <?= number_format($this->page->product->price, 0, '.', ',') ?>
+                                                                    VND
+                                                                </b>
+                                                            <?php endif; ?>
                                                         </p>
                                                     </div>
                                                     <div style="position: absolute;bottom: 5px;font-size: 16px; ">
@@ -349,7 +358,7 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
 
                                                         <button id="formOrderDoneConfirm" type="submit"
                                                                 class="btn btn-primary"
-                                                                style="width:150px;">XÁC NHẬN
+                                                                style="width:120px;">XÁC NHẬN
                                                         </button>
                                                         <img id="qd-loading" src="img/loading.gif"
                                                              style="width: 30px; height: 30px; display: none; margin-left: 10px">
@@ -425,7 +434,7 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
                                     <div class="modal-content" style="height:275px;">
                                         <div class="modal-header" style="border-bottom: 0px;">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                                    aria-hidden="true">X</span></button>
+                                                    aria-hidden="true">&times;</span></button>
                                         </div>
                                         <div class="modal-body vn-modal-a">
                                             <div class="row">
@@ -433,7 +442,7 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
                                                     <div
                                                         class="vn-modal1-title"><?= $this->page->product_order_setup->form_order_done_title ?></div>
                                                     <div id="formOrderDoneTpl" class="col-xs-12"
-                                                         style="margin-top: 10px;">
+                                                         style="margin-top: 20px;">
 
                                                     </div>
                                                 </div>
@@ -492,45 +501,26 @@ class QdT_PageT_ProductDetail_View extends QdT_Layout_Root_View
                 interval: 5000 //changes the speed
             });
 
-
-            var currentImage;
-            var currentIndex = -1;
             var interval;
-            function showImage(index) {
-                if (index < $('#bigPic img').length) {
-                    var indexImage = $('#bigPic img')[index]
-                    if (currentImage) {
-                        if (currentImage != indexImage) {
-                            $(currentImage).css('z-index', 2);
-                            clearTimeout(myTimer);
-                            $(currentImage).fadeOut(250, function () {
-                                myTimer = setTimeout("showNext()", 3000);
-                                $(this).css({'display': 'none', 'z-index': 1})
-                            });
-                        }
-                    }
-                    $(indexImage).css({'display': 'block', 'opacity': 1});
-                    currentImage = indexImage;
-                    currentIndex = index;
-                    $('#thumbs li').removeClass('active');
-                    $($('#thumbs li')[index]).addClass('active');
-                }
-            }
 
-            function showNext() {
-                var len = $('#bigPic img').length;
-                var next = currentIndex < (len - 1) ? currentIndex + 1 : 0;
-                showImage(next);
-            }
-
-            var myTimer;
 
             $(document).ready(function () {
-                myTimer = setTimeout("showNext()", 3000);
-                showNext(); //loads first image
-                $('#thumbs li').bind('click', function (e) {
-                    var count = $(this).attr('rel');
-                    showImage(parseInt(count) - 1);
+                $('#divContainer img').on({
+                    mouseover: function () {
+                        $(this).css({
+                            'cursor': 'pointer',
+                            'border-Color': 'grey'
+                        });
+                    },
+                    click: function () {
+                        var imageUrl = $(this).attr('src');
+                        $('#mainImage').css({
+                            'background-image': 'url(' + imageUrl + ')',
+                            'background-size': 'contain',
+                            'background-position': 'center',
+                            'background-repeat': 'no-repeat'
+                        });
+                    }
                 });
             });
 

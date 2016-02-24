@@ -4,7 +4,7 @@
  * User: quocd_000
  * Date: 23/06/2015
  * Time: 10:27 PM
- * Version: 150607, 151024, 151101
+ * Version: 150607, 151024, 151101, 160204
  */
 QdT_Library::loadLayoutView('root');
 
@@ -15,14 +15,18 @@ class QdCPT_IntroductionLayout_View extends QdT_Layout_Root_View
     {
         return QdT_Library::getNoneText();
     }
-
+    /*
+     * VN160204:
+     * Breadcrumbs: margin bottom = 20px
+     * */
     protected function getContentPart()
     {
         ?>
         <div class="container-non-responsive" style="margin-top: 15px">
-            <div class="row">
+            <div class="row chitiet-breadcrumb">
                 <div class="col-xs-12">
-                    <?= $this->getBreadcrumbsPart() ?></div>
+                    <?= $this->getBreadcrumbsPart() ?>
+                </div>
             </div>
             <div class="row">
                 <div class="col-xs-8 vn-lienhe-left">

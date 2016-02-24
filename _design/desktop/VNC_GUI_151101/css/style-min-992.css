@@ -153,7 +153,7 @@ and open the template in the editor.
     
     .vn-choise-box {
         width: 100%;
-        height: 332px;
+        padding-bottom: 65.96%;
         border: 2px solid #ebebeb;
         margin-left: auto;
         margin-right: auto;
@@ -189,7 +189,7 @@ and open the template in the editor.
         
     .vn-sanpham-box {
         width: 100%;
-        height: 158px;
+        padding-bottom: 65.96%;
         margin-bottom: 15px;
         border: 2px solid #ebebeb;
     }
@@ -208,7 +208,7 @@ and open the template in the editor.
     /* Begin Footer */
     .vn-cas-footer {
         background-color: rgb(231,231,232);
-        margin-top: 50px;
+        margin-top: 20px;
     }
 
     .footer-email {
@@ -236,7 +236,8 @@ and open the template in the editor.
 
     .title-email {
         margin-top: 30px;
-        text-align: center;   
+        text-align: center;
+        font-size: 25px;
     }
 
     .footer-center-img {
@@ -349,7 +350,7 @@ and open the template in the editor.
           margin-top: 50px;
       }
       header.carousel {
-          height: 500px;
+          height: 450px;
       }
       
       .img-hover {
@@ -371,13 +372,14 @@ and open the template in the editor.
       /* San pham */
       
       .content {
-          margin-top: 50px;
+          margin-top: 0px;
           padding-top: 10px;
       }
       
       .sanpham-header {
           color: black;
-      
+          margin-top: 0px;
+          margin-bottom: 20px;
 }
       .product-right 
       {
@@ -407,10 +409,10 @@ and open the template in the editor.
         }
 
         .product-list2{
-          height: 150px;
-          overflow:hidden; 
+          height: 180px;
+          overflow:hidden;
           overflow-y:scroll;
-          list-style: none;      
+          list-style: none;
           padding-left: 0px;
           font-size: 13px;
         }
@@ -540,8 +542,7 @@ and open the template in the editor.
       .price-tag .off{
           float: left;
           font-size: 14px;
-          color: #C80815;
-      
+          /* color: #C80815; */
           font-weight: bold;
 }
       
@@ -705,12 +706,11 @@ and open the template in the editor.
             /* font-weight: bold; */
             margin-top: 150px;
             padding-bottom: 15px;
-            border-bottom: 3px solid rgb(74,102,178);
+            border-bottom: 2px solid #CCC;
             text-align: center;
             width: 500px;
             margin-left: auto;
             margin-right: auto;
-        
             margin-bottom: 15px;
             font-size: 25px;
 }
@@ -832,4 +832,55 @@ and open the template in the editor.
         {
             padding-right: 80px;
         }
+        .mau-gia
+        {
+            color: #4C4A4A;
+        }
+        .mau-gia-km
+        {
+            color: #FF9800;
+            font-weight: bold;
+        }
+        .mau-gia-ban-dau
+        {
+            color: rgba(131, 131, 132, 0.48);
+        }
+        .vnc-khoang-cach
+        {
+            margin-top: 15px;
+        }
+        
+        .vnc-footer-edit1
+        {
+            margin-top: 0px;
+        }
+        
+        .font-chu-giakm
+        {
+            font-weight: bold;
+        }
+        
+        .chitiet-breadcrumb
+        {
+            margin-bottom: 20px;
+        }
+        
+        .imgStyle
+        {
+            width: 23.50%;
+            /* padding-bottom: 60%; */
+            border: 1px solid #CCC;
+            padding: 3px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .test
+        {
+            width:100%;
+            padding-bottom: 66.80%;
+            border: 1px solid #CCC;
+            margin-bottom: 50px;
+        }  
 }
+

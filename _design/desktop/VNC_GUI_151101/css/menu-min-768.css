@@ -131,7 +131,7 @@
     
     .vnc-nav
     {
-        height: 83px;
+        height: 52px;
         width: 100%;
         border-bottom: 1px #ccc solid;
     }
@@ -150,8 +150,8 @@
         padding-bottom: 0px;
         border-bottom-width: 1px;
         border-top-width: 1px;
-        height: 30px;
-        width: 15%;/* CSS3 */
+        height: 28px;
+        width: 18%;/* CSS3 */
         /* border-radius: 25px; */
         -webkit-transition: 0.3s;
         -moz-transition: 0.3s;
@@ -161,8 +161,8 @@
     
     .logo-home
     {
-        height: 70px;
-        width: 25%;
+        height: 52px;
+        width: 24%;
         float: left;
         background: url('../img/logo2.png');
         background-repeat: no-repeat;
@@ -174,7 +174,7 @@
     .vnc-searchbox
     {
         float: right;
-        margin-top: 48px;
+        margin-top: 12px;
     } 
     
     .sub-title {
@@ -217,19 +217,19 @@
     .vnc-menu
     {
         float: left;
-        width: 60%;
-        margin-top: 52px;
+        width: 58%;
+        margin-top: 16px;
     }
     
     .vnc-menu>li
     {
         display: inline;
-        padding-bottom: 6px;
+        padding-bottom: 15px;
     }
     
     .vnc-menu>li:hover
     {
-        border-bottom: 5px solid rgb(203,203,203) ;
+        border-bottom: 3px solid rgb(203,203,203) ;
     }
     
     .vnc-menu>li:hover .vnc-memu-sub
@@ -244,9 +244,9 @@
     
     .vnc-menu>li>a
     {
-        padding: 5px 14px 5px 0px;
+        padding: 6px 14px 4px 0px;
         color: #333;
-        font-size: 13px;
+        font-size: 12px;
         font-weight: bold;
         text-align: left;
         line-height: 21px;
@@ -259,17 +259,16 @@
         background-color: rgba(255,255,255,0.9);
         position: absolute;
         z-index: 100;
-        top: 80px;
+        top: 52px;
         left: 0;
-        border-top: 1px solid rgb(203,203,203) ;
-        border-bottom: 1px solid rgb(203,203,203) ;
+        border-bottom: 1px solid rgb(203,203,203);
         display: none;
         padding-bottom: 20px;
     }
     
     .sub-info
     {
-        margin-top: 40px;
+        margin-top: 30px;
         list-style: none;
     }
     
@@ -383,9 +382,9 @@
         z-index: 100;
         top: 43px;
         left: 0;
-        border-top: 1px solid rgb(203,203,203) ;
-        border-bottom: 1px solid rgb(203,203,203) ;
-        display: block;
+        border-top: 1px solid rgb(203,203,203);
+        border-bottom: 1px solid rgb(203,203,203);
+        display: none;
         padding-bottom: 20px;
     }
     
