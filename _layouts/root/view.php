@@ -73,9 +73,6 @@ class QdT_Layout_Root_View
             <script src="js/html5shiv.js"></script>
             <![endif]-->
 
-            <!-- Fav and touch icons -->
-            <link rel="shortcut icon" href="img/favicon.png">
-
             <!-- USE WP instead -->
             <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
             <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -174,34 +171,7 @@ class QdT_Layout_Root_View
     {
         //$logo_url = ot_get_option('header_logo', 'img/logo.jpg');
         ?>
-        <?php if (false): ?>
-        <!-- Cash Header -->
-        <div class="vn-cas-header">
-            <div class="container-non-responsive">
-                <div class="row">
-                    <div class="col-xs-7 header-phonenumber">
-                        <!-- Content -->
-                        <?= $this->page->theme_root_setup->topcenter_promotion ?>
-                    </div>
-                    <div class="col-xs-5 header-links">
-                        <!-- Content
-                        <a href="#">DỊCH VỤ</a>
-                        <img src="img/border-links.png">
-                        <a href="#">HƯỚNG DẪN</a>
-                        <img src="img/border-links.png">
-                        <a href="#">LIÊN HỆ</a> -->
-                        <?= $this->page->theme_root_setup->topright_navs ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Header -->
-    <?php endif; ?>
-        <?php
-        //$this->oldVersion()
-        ?>
         <?= $this->version151101() ?>
-
         <?= $this->getBannerPart() ?>
     <?php
     }
@@ -223,7 +193,7 @@ class QdT_Layout_Root_View
         </div>
 
         <!-- Cash Header -->
-        <div class="vn-cas-header">
+        <div class="vn-cas-header" style="display: none">
             <div class="container-non-responsive">
                 <div class="row">
                     <div class="col-xs-7 header-phonenumber">
@@ -1253,6 +1223,7 @@ class QdT_Layout_Root_View
 
     protected function getWidgetNavsPart()
     {
+        return;
         if ($this->page->widget_nav_list == null || empty($this->page->widget_nav_list)) {
             return;
         }
